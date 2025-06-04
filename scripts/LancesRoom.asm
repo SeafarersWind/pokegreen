@@ -143,15 +143,55 @@ LancesRoomLanceText:
 	jp TextScriptEnd
 
 LancesRoomLanceBeforeBattleText:
-	text_far _LancesRoomLanceBeforeBattleText
-	text_end
+	text "そうか！　きみが　<PLAYER>！"
+
+	para "おれは　してんのうの　たいしょう！"
+	line "ドラゴン　つかいの　ワタルだ！"
+
+	para "しってるだろ　ドラゴンは"
+	line "せいなる　でんせつの　いきものだ！"
+
+	para "つかまえるのが　むずかしいけど"
+	line "うまく　そだてりゃ"
+	cont "つよさは　てんか　いっぴんだ"
+
+	para "からだも　じょうぶ　だし"
+	line "こてさきの　こうげきも　むださ！"
+	cont "<……>　さてと！"
+	cont "そろそろ　はじめよう！"
+
+	para "それとも　いまから"
+	line "シッポ　まいて　かえるかい！"
+	cont "<PLAYER>！"
+	done
 
 LancesRoomLanceEndBattleText:
-	text_far _LancesRoomLanceEndBattleText
-	text_end
+	text "うう<……>！"
+
+	para "くやしいが　きみの"
+	line "#の　うでは　ほんものだ！"
+	prompt
 
 LancesRoomLanceAfterBattleText:
-	text_far _LancesRoomLanceAfterBattleText
+	text "ドラゴン　ぐんだんが"
+	line "まける　なんて　しんじられない"
+	cont "<PLAYER>！"
+
+	para "これからは　きみが"
+	line "#　りーグ　チャンピオンだ！"
+	cont "<……>　<……>　<……>"
+	cont "<……>　と　いいたい　とこだが"
+
+	para "じつは　きみは　もう　ひとり"
+	line "たたかわなくては　ならない！"
+	cont "その　<TRAINER>の　なまえは<……>"
+
+	para "<RIVAL>だ！"
+	line "かれは<……>　きみ　よりも　はやく！"
+	cont "おれたち　してんのうに　かった！"
+
+	para "いまや　かれこそ　#　りーグ"
+	line "しんの　チャンピオン　なのだ！@"
 	text_asm
 	SetEvent EVENT_BEAT_LANCE
 	jp TextScriptEnd

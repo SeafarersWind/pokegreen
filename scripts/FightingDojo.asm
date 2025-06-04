@@ -136,20 +136,42 @@ FightingDojoKarateMasterText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _FightingDojoKarateMasterText
-	text_end
+	text "オスッ！"
+
+	para "わしが　かくとう　どうじょうの"
+	line "しはん　カラテ　だいおう　である！"
+
+	para "おぬしは　どうじょう　やぶりか！"
+	line "ならば　ようしゃは　せんぞ！"
+
+	para "トオりャー！"
+	done
 
 .DefeatedText:
-	text_far _FightingDojoKarateMasterDefeatedText
-	text_end
+	text "ウオりャ！"
+	line "だー！　やられたあー！"
+	prompt
 
 .IWillGiveYouAPokemonText:
-	text_far _FightingDojoKarateMasterIWillGiveYouAPokemonText
-	text_end
+	text "わしは　たしかに　まけた！"
+
+	para "しかし　どうじょうの　かんばん"
+	line "<……>　だけは！"
+	cont "もって　いかないで　くれい！"
+
+	para "かわりに　わしの　だいじな"
+	line "かくとう　#を　わたす！"
+
+	para "どうか！"
+	line "すきな　ほうを　えらんで　くれい！"
+	done
 
 .StayAndTrainWithUsText:
-	text_far _FightingDojoKarateMasterStayAndTrainWithUsText
-	text_end
+	text "オスッ！"
+
+	para "どうだ？　ついでに　ここで"
+	line "カラテ　れんしゅう　していくか！"
+	done
 
 FightingDojoBlackbelt1Text:
 	text_asm
@@ -158,16 +180,21 @@ FightingDojoBlackbelt1Text:
 	jp TextScriptEnd
 
 FightingDojoBlackbelt1BattleText:
-	text_far _FightingDojoBlackbelt1BattleText
-	text_end
+	text "ウオースッ！"
+	line "きさま！　どうじょう　やぶり　か！"
+	done
 
 FightingDojoBlackbelt1EndBattleText:
-	text_far _FightingDojoBlackbelt1EndBattleText
-	text_end
+	text "ま　まいった！"
+	prompt
 
 FightingDojoBlackbelt1AfterBattleText:
-	text_far _FightingDojoBlackbelt1AfterBattleText
-	text_end
+	text "あんしん　するのは"
+	line "しはんに　かって　からに　しろ！"
+
+	para "おれに　かっても"
+	line "たいした　こと　ないぜ！　オスッ！"
+	done
 
 FightingDojoBlackbelt2Text:
 	text_asm
@@ -176,16 +203,18 @@ FightingDojoBlackbelt2Text:
 	jp TextScriptEnd
 
 FightingDojoBlackbelt2BattleText:
-	text_far _FightingDojoBlackbelt2BattleText
-	text_end
+	text "オスッ！　うでが　たつ　らしいな！"
+	line "えんりょ　なく　いくぜ！"
+	done
 
 FightingDojoBlackbelt2EndBattleText:
-	text_far _FightingDojoBlackbelt2EndBattleText
-	text_end
+	text "ウオッス！　わざあり！"
+	prompt
 
 FightingDojoBlackbelt2AfterBattleText:
-	text_far _FightingDojoBlackbelt2AfterBattleText
-	text_end
+	text "しはんは　かくとうかの　かみさまだ！"
+	line "いどむと　いうなら　かくご　していけ"
+	done
 
 FightingDojoBlackbelt3Text:
 	text_asm
@@ -194,16 +223,21 @@ FightingDojoBlackbelt3Text:
 	jp TextScriptEnd
 
 FightingDojoBlackbelt3BattleText:
-	text_far _FightingDojoBlackbelt3BattleText
-	text_end
+	text "チェストー！"
+	line "かたい　もの　など　こわく　ない！"
+
+	para "まいにち　こぶしで"
+	line "いわを　わる　れんしゅう　してる！"
+	done
 
 FightingDojoBlackbelt3EndBattleText:
-	text_far _FightingDojoBlackbelt3EndBattleText
-	text_end
+	text "あたっ！　オスッ！"
+	prompt
 
 FightingDojoBlackbelt3AfterBattleText:
-	text_far _FightingDojoBlackbelt3AfterBattleText
-	text_end
+	text "かくとうかが　こわい　もの　など"
+	line "ちょうのうりょく　ぐらいだ！オスッ！"
+	done
 
 FightingDojoBlackbelt4Text:
 	text_asm
@@ -212,16 +246,20 @@ FightingDojoBlackbelt4Text:
 	jp TextScriptEnd
 
 FightingDojoBlackbelt4BattleText:
-	text_far _FightingDojoBlackbelt4BattleText
-	text_end
+	text "オスッ！"
+
+	para "ここを　かくとう　どうじょうと"
+	line "しっての　ぶれい　か！"
+	done
 
 FightingDojoBlackbelt4EndBattleText:
-	text_far _FightingDojoBlackbelt4EndBattleText
-	text_end
+	text "ぐッ！　まいった！"
+	prompt
 
 FightingDojoBlackbelt4AfterBattleText:
-	text_far _FightingDojoBlackbelt4AfterBattleText
-	text_end
+	text "ここは　ぜんこくの　かくとうか　が"
+	line "あつまる　どうじょう　だ！　オスッ！"
+	done
 
 FightingDojoHitmonleePokeBallText:
 	text_asm
@@ -254,8 +292,9 @@ FightingDojoHitmonleePokeBallText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _FightingDojoHitmonleePokeBallText
-	text_end
+	text "ウスッ！　キック　わざのおに！"
+	line "サワムラーを　とるか？"
+	done
 
 FightingDojoHitmonchanPokeBallText:
 	text_asm
@@ -288,9 +327,10 @@ FightingDojoHitmonchanPokeBallText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _FightingDojoHitmonchanPokeBallText
-	text_end
+	text "ウスッ！　うなる　こぶし！"
+	line "エビワラーに　するか？"
+	done
 
 FightingDojoBetterNotGetGreedyText:
-	text_far _FightingDojoBetterNotGetGreedyText
-	text_end
+	text "よくばるのは　よそう<……>"
+	done

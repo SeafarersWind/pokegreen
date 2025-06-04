@@ -58,16 +58,18 @@ Route11Gambler1Text:
 	jp TextScriptEnd
 
 Route11Gambler1BattleText:
-	text_far _Route11Gambler1BattleText
-	text_end
+	text "かつか　まけるか　しょうぶ！"
+	done
 
 Route11Gambler1EndBattleText:
-	text_far _Route11Gambler1EndBattleText
-	text_end
+	text "ちッ！"
+	line "きょうは　ついて　ない"
+	prompt
 
 Route11Gambler1AfterBattleText:
-	text_far _Route11Gambler1AfterBattleText
-	text_end
+	text "#は　じんせい　だ！"
+	line "じんせいは　ギャンブル　だ！"
+	done
 
 Route11Gambler2Text:
 	text_asm
@@ -76,16 +78,19 @@ Route11Gambler2Text:
 	jp TextScriptEnd
 
 Route11Gambler2BattleText:
-	text_far _Route11Gambler2BattleText
-	text_end
+	text "しょうぶ　ごとが　すきでよ！"
+	line "だから　あいては　えらばねえ！"
+	done
 
 Route11Gambler2EndBattleText:
-	text_far _Route11Gambler2EndBattleText
-	text_end
+	text "くそッ！"
+	line "かてると　ふんだ　が　だめか！"
+	prompt
 
 Route11Gambler2AfterBattleText:
-	text_far _Route11Gambler2AfterBattleText
-	text_end
+	text "まけを　こわがって　たら"
+	line "#は　できねえ　もんな！"
+	done
 
 Route11Youngster1Text:
 	text_asm
@@ -94,16 +99,19 @@ Route11Youngster1Text:
 	jp TextScriptEnd
 
 Route11Youngster1BattleText:
-	text_far _Route11Youngster1BattleText
-	text_end
+	text "#に　ずるは　なし　だよ！"
+	line "せいせい　どうどう　やろう！"
+	done
 
 Route11Youngster1EndBattleText:
-	text_far _Route11Youngster1EndBattleText
-	text_end
+	text "ありゃ？"
+	line "こんな　はずじゃ<……>"
+	prompt
 
 Route11Youngster1AfterBattleText:
-	text_far _Route11Youngster1AfterBattleText
-	text_end
+	text "せいせい　どうどう　やった！"
+	line "こうかいは　しないよ！"
+	done
 
 Route11SuperNerd1Text:
 	text_asm
@@ -112,16 +120,19 @@ Route11SuperNerd1Text:
 	jp TextScriptEnd
 
 Route11SuperNerd1BattleText:
-	text_far _Route11SuperNerd1BattleText
-	text_end
+	text "こんちは！"
+	line "おたくの　でんき　あんぜん　ですか？"
+	done
 
 Route11SuperNerd1EndBattleText:
-	text_far _Route11SuperNerd1EndBattleText
-	text_end
+	text "おじさんを"
+	line "まかす　なんて　すごいな！"
+	prompt
 
 Route11SuperNerd1AfterBattleText:
-	text_far _Route11SuperNerd1AfterBattleText
-	text_end
+	text "ひとこと　いい　わすれてた！"
+	line "でんきは　たいせつに！"
+	done
 
 Route11Youngster2Text:
 	text_asm
@@ -130,16 +141,20 @@ Route11Youngster2Text:
 	jp TextScriptEnd
 
 Route11Youngster2BattleText:
-	text_far _Route11Youngster2BattleText
-	text_end
+	text "ぼくは　#　<TRAINER>に"
+	line "なった　ばかり　だ！"
+	cont "でも　かつ　じしん　あるよ！"
+	done
 
 Route11Youngster2EndBattleText:
-	text_far _Route11Youngster2EndBattleText
-	text_end
+	text "まける　なんて<……>　まだ"
+	line "#　そだって　ないのか　なあ"
+	prompt
 
 Route11Youngster2AfterBattleText:
-	text_far _Route11Youngster2AfterBattleText5
-	text_end
+	text "なんだよー"
+	line "おまえなんか　あっちいけよー！"
+	done
 
 Route11Gambler3Text:
 	text_asm
@@ -148,16 +163,19 @@ Route11Gambler3Text:
 	jp TextScriptEnd
 
 Route11Gambler3BattleText:
-	text_far _Route11Gambler3BattleText
-	text_end
+	text "ははーは！　わたしは"
+	line "いままで　まけた　ことが　ないぞ！"
+	done
 
 Route11Gambler3EndBattleText:
-	text_far _Route11Gambler3EndBattleText
-	text_end
+	text "はッ！"
+	line "はじめて　まけたーッ！"
+	prompt
 
 Route11Gambler3AfterBattleText:
-	text_far _Route11Gambler3AfterBattleText
-	text_end
+	text "しょうぶは　ときの　うん　だ！"
+	line "そう　おもわないと　おちこむよ"
+	done
 
 Route11Gambler4Text:
 	text_asm
@@ -166,16 +184,19 @@ Route11Gambler4Text:
 	jp TextScriptEnd
 
 Route11Gambler4BattleText:
-	text_far _Route11Gambler4BattleText
-	text_end
+	text "わたしは"
+	line "いままで　かった　ことが　ない<……>"
+	done
 
 Route11Gambler4EndBattleText:
-	text_far _Route11Gambler4EndBattleText
-	text_end
+	text "<……>　がく！"
+	line "やっぱり　まけた！"
+	prompt
 
 Route11Gambler4AfterBattleText:
-	text_far _Route11Gambler4AfterBattleText
-	text_end
+	text "しょうぶは　ときの　うん　だ<……>"
+	line "そう　おもわないと　おちこむよ"
+	done
 
 Route11Youngster3Text:
 	text_asm
@@ -184,16 +205,22 @@ Route11Youngster3Text:
 	jp TextScriptEnd
 
 Route11Youngster3BattleText:
-	text_far _Route11Youngster3BattleText
-	text_end
+	text "ぼくは　クラスで　いちばん　つよい！"
+	line "まいあさ　れんしゅうも　してるんだ！"
+	done
 
 Route11Youngster3EndBattleText:
-	text_far _Route11Youngster3EndBattleText
-	text_end
+	text "あちゃー！　<……>　もっと"
+	line "つよい　#　でなきゃ　だめだ！"
+	prompt
 
 Route11Youngster3AfterBattleText:
-	text_far _Route11Youngster3AfterBattleText
-	text_end
+	text "たまに　やまから　おりてくる"
+	line "ふとった　#<……>"
+
+	para "あれ　つかまえたら"
+	line "つよいんじゃ　ないかな？"
+	done
 
 Route11SuperNerd2Text:
 	text_asm
@@ -202,16 +229,19 @@ Route11SuperNerd2Text:
 	jp TextScriptEnd
 
 Route11SuperNerd2BattleText:
-	text_far _Route11SuperNerd2BattleText
-	text_end
+	text "オッース！"
+	line "でんきの　けしわすれ　して　ないか"
+	done
 
 Route11SuperNerd2EndBattleText:
-	text_far _Route11SuperNerd2EndBattleText
-	text_end
+	text "まいった！"
+	line "さいきんの　こどもは　つよい！"
+	prompt
 
 Route11SuperNerd2AfterBattleText:
-	text_far _Route11SuperNerd2AfterBattleText
-	text_end
+	text "さてと<……>"
+	line "でんきこうじに　いかなくちゃ"
+	done
 
 Route11Youngster4Text:
 	text_asm
@@ -220,17 +250,20 @@ Route11Youngster4Text:
 	jp TextScriptEnd
 
 Route11Youngster4BattleText:
-	text_far _Route11Youngster4BattleText
-	text_end
+	text "だいじに　そだてた　#！"
+	line "そろそろ　たたかわせて　みよう！"
+	done
 
 Route11Youngster4EndBattleText:
-	text_far _Route11Youngster4EndBattleText
-	text_end
+	text "バイバイ<……>！"
+	line "ありがとう　さようなら！"
+	prompt
 
 Route11Youngster4AfterBattleText:
-	text_far _Route11Youngster4AfterBattleText
-	text_end
+	text "ちえッ<……>！"
+	line "もっと　つよいの　さがして　こよう"
+	done
 
 Route11DiglettsCaveSignText:
-	text_far _Route11DiglettsCaveSignText
-	text_end
+	text "ディグダの　あな"
+	done

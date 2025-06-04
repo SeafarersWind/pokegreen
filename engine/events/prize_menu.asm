@@ -43,17 +43,18 @@ CeladonPrizeMenu::
 	ret
 
 RequireCoinCaseTextPtr:
-	text_far _RequireCoinCaseText
+	text "コインケースを　もっていない！@"
 	text_waitbutton
 	text_end
 
 ExchangeCoinsForPrizesTextPtr:
-	text_far _ExchangeCoinsForPrizesText
-	text_end
+	text "コインを"
+	line "けいひんと　こうかんするよ"
+	prompt
 
 WhichPrizeTextPtr:
-	text_far _WhichPrizeText
-	text_end
+	text "なにと　こうかんする？"
+	done
 
 GetPrizeMenuId:
 ; determine which one among the three prize texts has been selected using the text ID (stored in [hTextID])
@@ -125,15 +126,15 @@ GetPrizeMenuId:
 	call PlaceString
 ; put prices on the right side of the textbox
 	ld de, wPrize1Price
-	hlcoord 13, 5
+	hlcoord 11, 4
 	ld c, 2 | LEADING_ZEROES
 	call PrintBCDNumber
 	ld de, wPrize2Price
-	hlcoord 13, 7
+	hlcoord 11, 6
 	ld c, 2 | LEADING_ZEROES
 	call PrintBCDNumber
 	ld de, wPrize3Price
-	hlcoord 13, 9
+	hlcoord 11, 8
 	ld c, 2 | LEADING_ZEROES
 	jp PrintBCDNumber
 
@@ -158,10 +159,10 @@ PrintPrizePrice:
 	ret
 
 .CoinString:
-	db "COIN@"
+	db "コイン@"
 
 .SixSpacesString:
-	db "      @"
+	db "　　　　まい@"
 
 LoadCoinsToSubtract:
 	ld a, [wWhichPrize]
@@ -257,26 +258,28 @@ UnknownPrizeData:
 	db $00,$01,$00,$01,$00,$01,$00,$00,$01
 
 HereYouGoTextPtr:
-	text_far _HereYouGoText
+	text "はい　どうぞ@"
 	text_waitbutton
 	text_end
 
 SoYouWantPrizeTextPtr:
-	text_far _SoYouWantPrizeText
-	text_end
+	text_ram wNameBuffer
+	text "で"
+	line "いいんだね？"
+	done
 
 SorryNeedMoreCoinsText:
-	text_far _SorryNeedMoreCoinsText
+	text "おきゃくさん　コイン　たりないよ@"
 	text_waitbutton
 	text_end
 
 PrizeRoomBagIsFullTextPtr:
-	text_far _OopsYouDontHaveEnoughRoomText
+	text "おきゃくさん　もう　もてないよ@"
 	text_waitbutton
 	text_end
 
 OhFineThenTextPtr:
-	text_far _OhFineThenText
+	text "あっ　そう@"
 	text_waitbutton
 	text_end
 

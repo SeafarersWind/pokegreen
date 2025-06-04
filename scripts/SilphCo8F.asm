@@ -104,12 +104,13 @@ SilphCo8FSilphWorkerMText:
 	jp TextScriptEnd
 
 .SilphIsFinishedText:
-	text_far __SilphCo8FSilphWorkerMThanksForSavingUsText
-	text_end
+	text "シルフは　のっとられて"
+	line "<……>　おわりかな"
+	done
 
 .ThanksForSavingUsText:
-	text_far _SilphCo8FSilphWorkerMThanksForSavingUsText
-	text_end
+	text "ありがとう　たすかった！"
+	done
 
 SilphCo8FRocket1Text:
 	text_asm
@@ -117,11 +118,39 @@ SilphCo8FRocket1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+SilphCo8FRocket1BattleText:
+	text "ここから　さきは　いかせ　ないぜ！"
+	done
+
+SilphCo8FRocket1EndBattleText:
+	text "きあいが　たりんか"
+	prompt
+
+SilphCo8FRocket1AfterBattleText:
+	text "はやく　ひきかえさないと"
+	line "<……>　なかまを　よぶぜ！"
+	done
+
 SilphCo8FScientistText:
 	text_asm
 	ld hl, SilphCo8TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+SilphCo8FScientistBattleText:
+	text "すき　かって　やられちゃ"
+	line "こまるんだぜ！"
+	done
+
+SilphCo8FScientistEndBattleText:
+	text "<……>？　まけたのか"
+	prompt
+
+SilphCo8FScientistAfterBattleText:
+	text "どうだね？"
+	line "めいろの　ような"
+	cont "シルフ　ビルの　かんそうは？"
+	done
 
 SilphCo8FRocket2Text:
 	text_asm
@@ -129,38 +158,16 @@ SilphCo8FRocket2Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo8FRocket1BattleText:
-	text_far _SilphCo8FRocket1BattleText
-	text_end
-
-SilphCo8FRocket1EndBattleText:
-	text_far _SilphCo8FRocket1EndBattleText
-	text_end
-
-SilphCo8FRocket1AfterBattleText:
-	text_far _SilphCo8FRocket1AfterBattleText
-	text_end
-
-SilphCo8FScientistBattleText:
-	text_far _SilphCo8FScientistBattleText
-	text_end
-
-SilphCo8FScientistEndBattleText:
-	text_far _SilphCo8FScientistEndBattleText
-	text_end
-
-SilphCo8FScientistAfterBattleText:
-	text_far _SilphCo8FScientistAfterBattleText
-	text_end
-
 SilphCo8FRocket2BattleText:
-	text_far _SilphCo8FRocket2BattleText
-	text_end
+	text "おれこそは"
+	line "ロケット　４きょうだいの　ひとり！"
+	done
 
 SilphCo8FRocket2EndBattleText:
-	text_far _SilphCo8FRocket2EndBattleText
-	text_end
+	text "にいさん　まけたよ"
+	prompt
 
 SilphCo8FRocket2AfterBattleText:
-	text_far _SilphCo8FRocket2AfterBattleText
-	text_end
+	text "まあ　いい"
+	line "あにきが　かたきを　とって　くれる"
+	done

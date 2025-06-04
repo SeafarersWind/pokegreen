@@ -58,16 +58,20 @@ Route14CooltrainerM1Text:
 	jp TextScriptEnd
 
 Route14CooltrainerM1BattleText:
-	text_far _Route14CooltrainerM1BattleText
-	text_end
+	text "つよい　#に　するなら"
+	line "やっぱり　<TM>で"
+	cont "いい　わざを　おしえないとね！"
+	done
 
 Route14CooltrainerM1EndBattleText:
-	text_far _Route14CooltrainerM1EndBattleText
-	text_end
+	text "まだまだって　かんじだ"
+	prompt
 
 Route14CooltrainerM1AfterBattleText:
-	text_far _Route14CooltrainerM1AfterBattleText
-	text_end
+	text "きみ　ひでんマシンも　もってるね"
+	line "あれで　おぼえた　わざは"
+	cont "#は　２どと　わすれないよ"
+	done
 
 Route14CooltrainerM2Text:
 	text_asm
@@ -76,16 +80,19 @@ Route14CooltrainerM2Text:
 	jp TextScriptEnd
 
 Route14CooltrainerM2BattleText:
-	text_far _Route14CooltrainerM2BattleText
-	text_end
+	text "ぼくの　とり　#"
+	line "そろそろ<……>"
+	cont "たたかわせて　みようか！"
+	done
 
 Route14CooltrainerM2EndBattleText:
-	text_far _Route14CooltrainerM2EndBattleText
-	text_end
+	text "まだ　はやかった"
+	prompt
 
 Route14CooltrainerM2AfterBattleText:
-	text_far _Route14CooltrainerM2AfterBattleText
-	text_end
+	text "もっと　つよい　わざ"
+	line "おしえて　から　たたかわせよう"
+	done
 
 Route14CooltrainerM3Text:
 	text_asm
@@ -94,16 +101,22 @@ Route14CooltrainerM3Text:
 	jp TextScriptEnd
 
 Route14CooltrainerM3BattleText:
-	text_far _Route14CooltrainerM3BattleText
-	text_end
+	text "<TM>は"
+	line "タマムシ　デパート　でも　かえる！"
+	cont "でも　ひでんマシン　もってる"
+	cont "ひとは　すくないね"
+	done
 
 Route14CooltrainerM3EndBattleText:
-	text_far _Route14CooltrainerM3EndBattleText
-	text_end
+	text "もう　ダサダサ"
+	prompt
 
 Route14CooltrainerM3AfterBattleText:
-	text_far _Route14CooltrainerM3AfterBattleText
-	text_end
+	text "#の　タイプと　おなじ"
+	line "タイプの　わざを　おしえると"
+	cont "わざの　いりょくが"
+	cont "おおきくなる　らしいよ"
+	done
 
 Route14CooltrainerM4Text:
 	text_asm
@@ -112,16 +125,20 @@ Route14CooltrainerM4Text:
 	jp TextScriptEnd
 
 Route14CooltrainerM4BattleText:
-	text_far _Route14CooltrainerM4BattleText
-	text_end
+	text "きみの　とり　#は"
+	line "きみを　のせて　そらを　とぶ"
+	cont "わざは　おぼえたかい？"
+	done
 
 Route14CooltrainerM4EndBattleText:
-	text_far _Route14CooltrainerM4EndBattleText
-	text_end
+	text "ぼろまけ！"
+	prompt
 
 Route14CooltrainerM4AfterBattleText:
-	text_far _Route14CooltrainerM4AfterBattleText
-	text_end
+	text "ぼくらは　とり#が"
+	line "だいすき　だから<……>"
+	cont "それしか　そだてたく　ないよ"
+	done
 
 Route14CooltrainerM5Text:
 	text_asm
@@ -130,16 +147,19 @@ Route14CooltrainerM5Text:
 	jp TextScriptEnd
 
 Route14CooltrainerM5BattleText:
-	text_far _Route14CooltrainerM5BattleText
-	text_end
+	text "でんせつの　#　という"
+	line "はなし　きいた　こと　ある？"
+	done
 
 Route14CooltrainerM5EndBattleText:
-	text_far _Route14CooltrainerM5EndBattleText
-	text_end
+	text "どうして　まけたかな"
+	prompt
 
 Route14CooltrainerM5AfterBattleText:
-	text_far _Route14CooltrainerM5AfterBattleText
-	text_end
+	text "でんせつの　#は"
+	line "３しゅるい　いて"
+	cont "すべて　とり　#だ！"
+	done
 
 Route14CooltrainerM6Text:
 	text_asm
@@ -148,16 +168,19 @@ Route14CooltrainerM6Text:
 	jp TextScriptEnd
 
 Route14CooltrainerM6BattleText:
-	text_far _Route14CooltrainerM6BattleText
-	text_end
+	text "きが　のらない　けど<……>"
+	line "しょうが　ない！　やるか！"
+	done
 
 Route14CooltrainerM6EndBattleText:
-	text_far _Route14CooltrainerM6EndBattleText
-	text_end
+	text "ああ<……>　やっぱりな"
+	prompt
 
 Route14CooltrainerM6AfterBattleText:
-	text_far _Route14CooltrainerM6AfterBattleText
-	text_end
+	text "そらの　ひろさに　くらべたら"
+	line "かち　まけ　なんて"
+	cont "どうって　こと　ないのさ！"
+	done
 
 Route14Biker1Text:
 	text_asm
@@ -166,16 +189,19 @@ Route14Biker1Text:
 	jp TextScriptEnd
 
 Route14Biker1BattleText:
-	text_far _Route14Biker1BattleText
-	text_end
+	text "おれ　おれは　せっかちだ！"
+	line "はやく　はやく　はやく　しろ！"
+	done
 
 Route14Biker1EndBattleText:
-	text_far _Route14Biker1EndBattleText
-	text_end
+	text "まけた　まけた"
+	line "おわりだ　じゃあな"
+	prompt
 
 Route14Biker1AfterBattleText:
-	text_far _Route14Biker1AfterBattleText
-	text_end
+	text "なんだ　なんだ　なんだ！"
+	line "まだ　ようじが　ある　ある　のか！"
+	done
 
 Route14Biker2Text:
 	text_asm
@@ -184,16 +210,18 @@ Route14Biker2Text:
 	jp TextScriptEnd
 
 Route14Biker2BattleText:
-	text_far _Route14Biker2BattleText
-	text_end
+	text "ちょうど　いいぜ！"
+	line "つべこべ　いわずに　あいて　しな"
+	done
 
 Route14Biker2EndBattleText:
-	text_far _Route14Biker2EndBattleText
-	text_end
+	text "なんだ　こらあ！"
+	prompt
 
 Route14Biker2AfterBattleText:
-	text_far _Route14Biker2AfterBattleText
-	text_end
+	text "どうも　ちまちまと"
+	line "そだてる　のは　にがてだぜ！"
+	done
 
 Route14Biker3Text:
 	text_asm
@@ -202,16 +230,22 @@ Route14Biker3Text:
 	jp TextScriptEnd
 
 Route14Biker3BattleText:
-	text_far _Route14Biker3BattleText
-	text_end
+	text "この　あたりは"
+	line "たてものが　すくねえ　から"
+	cont "よく　はしりに　くるぜ！"
+	done
 
 Route14Biker3EndBattleText:
-	text_far _Route14Biker3EndBattleText
-	text_end
+	text "おっと　こけちまった！"
+	prompt
 
 Route14Biker3AfterBattleText:
-	text_far _Route14Biker3AfterBattleText
-	text_end
+	text "よく　そこまで　そだてたな！"
+	line "なんにしても<……>"
+
+	para "つよいって　ことは"
+	line "たいした　もんだぜ！"
+	done
 
 Route14Biker4Text:
 	text_asm
@@ -220,17 +254,21 @@ Route14Biker4Text:
 	jp TextScriptEnd
 
 Route14Biker4BattleText:
-	text_far _Route14Biker4BattleText
-	text_end
+	text "#　たいけつか！"
+	line "おもしろい！　つきあうぜ！"
+	done
 
 Route14Biker4EndBattleText:
-	text_far _Route14Biker4EndBattleText
-	text_end
+	text "なっとく　いかねえ"
+	prompt
 
 Route14Biker4AfterBattleText:
-	text_far _Route14Biker4AfterBattleText
-	text_end
+	text "おれと　おまえの"
+	line "ちょくせつ　たいけつ　だったら"
+	cont "おれが　かつぜ！"
+	done
 
 Route14SignText:
-	text_far _Route14SignText
-	text_end
+	text "ここは　１４ばん　どうろ"
+	line "にし　<……>　セキチク　シティ"
+	done

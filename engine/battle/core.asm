@@ -85,7 +85,7 @@ SlidePlayerAndEnemySilhouettesOnScreen:
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
 	ld a, $31
-	ldh [hStartTileID], a
+	ld [hStartTileID], a
 	hlcoord 1, 5
 	predef CopyUncompressedPicToTilemap
 	xor a
@@ -151,7 +151,7 @@ StartBattle:
 	ld [wSerialExchangeNybbleReceiveData], a
 	ld a, [wIsInBattle]
 	dec a ; is it a trainer battle?
-	call nz, EnemySendOutFirstMon ; if it is a trainer battle, send out enemy mon
+	call nz, EnemySendOut ; if it is a trainer battle, send out enemy mon
 	ld c, 40
 	call DelayFrames
 	call SaveScreenTilesToBuffer1
@@ -207,8 +207,11 @@ StartBattle:
 	jr EnemyRan ; if b was greater than the random value, the enemy runs
 
 .outOfSafariBallsText
-	text_far _OutOfSafariBallsText
-	text_end
+	text "アナウンス<BOLD_P>ピンポーン！"
+
+	para "サファり　ボールを"
+	line "ぜんぶ　なげました！"
+	prompt
 
 .playerSendOutFirstMon
 	xor a
@@ -263,19 +266,23 @@ EnemyRan:
 	ld hl, EnemyRanText
 .printText
 	call PrintText
-	ld a, SFX_RUN
+	ld a, SFX_POISONED
 	call PlaySoundWaitForCurrent
 	xor a
 	ldh [hWhoseTurn], a
 	jpfar AnimationSlideEnemyMonOff
 
 WildRanText:
-	text_far _WildRanText
-	text_end
+	text "やせいの@"
+	text_ram wEnemyMonNick
+	text "は　にげだした！"
+	prompt
 
 EnemyRanText:
-	text_far _EnemyRanText
-	text_end
+	text "てきの@"
+	text_ram wEnemyMonNick
+	text "は　にげだした！"
+	prompt
 
 MainInBattleLoop:
 	call ReadPlayerMonCurHPAndStatus
@@ -298,8 +305,9 @@ MainInBattleLoop:
 	res FLINCHED, [hl] ; reset flinch bit
 	ld hl, wPlayerBattleStatus1
 	res FLINCHED, [hl] ; reset flinch bit
-	ld a, [hl]
-	and (1 << THRASHING_ABOUT) | (1 << CHARGING_UP) ; check if the player is thrashing about or charging for an attack
+	bit CHARGING_UP, [hl] ; check if the player is charging for an attack
+	jr nz, .selectEnemyMove ; if so, jump
+	bit THRASHING_ABOUT, [hl] ; check if the player is thrashing about
 	jr nz, .selectEnemyMove ; if so, jump
 ; the player is neither thrashing about nor charging for an attack
 	call DisplayBattleMenu ; show battle menu
@@ -315,20 +323,16 @@ MainInBattleLoop:
 	jr nz, .selectEnemyMove ; if so, jump
 	ld a, [wEnemyBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; check if enemy is using a multi-turn attack like wrap
-	jr z, .selectPlayerMove ; if not, jump
-; enemy is using a multi-turn attack like wrap, so player is trapped and cannot execute a move
-	ld a, $ff
-	ld [wPlayerSelectedMove], a
-	jr .selectEnemyMove
+	jr nz, .selectEnemyMove ; if so, jump
+; enemy is not using a multi-turn attack like wrap, so player can execute a move
 .selectPlayerMove
 	ld a, [wActionResultOrTookBattleTurn]
 	and a ; has the player already used the turn (e.g. by using an item, trying to run or switching pokemon)
 	jr nz, .selectEnemyMove
-	ld [wMoveMenuType], a
-	inc a
-	ld [wAnimationID], a
+	ld a, 1
+	ld [wDefaultMap], a
 	xor a
-	ld [wMenuItemToSwap], a
+	ld [wMoveMenuType], a
 	call MoveSelectionMenu
 	push af
 	call LoadScreenTilesFromBuffer1
@@ -346,10 +350,10 @@ MainInBattleLoop:
 	jp z, EnemyRan
 	cp LINKBATTLE_STRUGGLE
 	jr z, .noLinkBattle
-	cp LINKBATTLE_NO_ACTION
-	jr z, .noLinkBattle
 	sub 4
 	jr c, .noLinkBattle
+	cp LINKBATTLE_STRUGGLE
+	jr z, .noLinkBattle
 ; the link battle enemy has switched mons
 	ld a, [wPlayerBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; check if using multi-turn move like Wrap
@@ -366,6 +370,7 @@ MainInBattleLoop:
 	ld [wPlayerSelectedMove], a
 .specialMoveNotUsed
 	callfar SwitchEnemyMon
+	jp .enemyMovesFirst
 .noLinkBattle
 	ld a, [wPlayerSelectedMove]
 	cp QUICK_ATTACK
@@ -532,16 +537,19 @@ HandlePoisonBurnLeechSeed:
 	ret
 
 HurtByPoisonText:
-	text_far _HurtByPoisonText
-	text_end
+	text "<USER>は"
+	line "どくの　ダメージを　うけている！"
+	prompt
 
 HurtByBurnText:
-	text_far _HurtByBurnText
-	text_end
+	text "<USER>は"
+	line "やけどの　ダメージを　うけている！"
+	prompt
 
 HurtByLeechSeedText:
-	text_far _HurtByLeechSeedText
-	text_end
+	text "やどりぎが　<USER>の"
+	line "たいりょくを　うばう！"
+	prompt
 
 ; decreases the mon's current HP by 1/16 of the Max HP (multiplied by number of toxic ticks if active)
 ; note that the toxic ticks are considered even if the damage is not poison (hence the Leech Seed glitch)
@@ -770,8 +778,8 @@ FaintEnemyPokemon:
 	hlcoord 12, 5
 	decoord 12, 6
 	call SlideDownFaintedMonPic
-	hlcoord 0, 0
-	lb bc, 4, 11
+	hlcoord 1, 0
+	lb bc, 4, 10
 	call ClearScreenArea
 	ld a, [wIsInBattle]
 	dec a
@@ -858,8 +866,10 @@ FaintEnemyPokemon:
 	jpfar GainExperience
 
 EnemyMonFaintedText:
-	text_far _EnemyMonFaintedText
-	text_end
+	text "てきの　@"
+	text_ram wEnemyMonNick
+	text "は　たおれた！"
+	prompt
 
 EndLowHealthAlarm:
 ; This function is called when the player has the won the battle. It turns off
@@ -949,12 +959,17 @@ TrainerBattleVictory:
 	predef_jump AddBCDPredef
 
 MoneyForWinningText:
-	text_far _MoneyForWinningText
-	text_end
+	text "<PLAYER>は　しょうきんとして"
+	line "@"
+	text_bcd wAmountMoneyWon, 3 | LEADING_ZEROES | LEFT_ALIGN
+	text "円　てにいれた！"
+	prompt
 
 TrainerDefeatedText:
-	text_far _TrainerDefeatedText
-	text_end
+	text_ram wTrainerName
+	text "との"
+	line "しょうぶに　かった！"
+	prompt
 
 PlayBattleVictoryMusic:
 	push af
@@ -1044,8 +1059,9 @@ RemoveFaintedPlayerMon:
 	jp PrintText
 
 PlayerMonFaintedText:
-	text_far _PlayerMonFaintedText
-	text_end
+	text_ram wBattleMonNick
+	text "は　たおれた！"
+	prompt
 
 ; asks if you want to use next mon
 ; stores whether you ran in C flag
@@ -1078,8 +1094,8 @@ DoUseNextMonDialogue:
 	jp TryRunningFromBattle
 
 UseNextMonText:
-	text_far _UseNextMonText
-	text_end
+	text "つぎの　#をつかいますか？"
+	done
 
 ; choose next player mon to send out
 ; stores whether enemy mon has no HP left in Z flag
@@ -1098,7 +1114,7 @@ ChooseNextMon:
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	jr nz, .notLinkBattle
-	inc a ; 1
+	ld a, 1
 	ld [wActionResultOrTookBattleTurn], a
 	call LinkBattleExchangeData
 .notLinkBattle
@@ -1157,24 +1173,28 @@ HandlePlayerBlackOut:
 	ld hl, LinkBattleLostText
 .noLinkBattle
 	call PrintText
-	ld a, [wStatusFlags6]
-	res BIT_ALWAYS_ON_BIKE, a
-	ld [wStatusFlags6], a
 	call ClearScreen
 	scf
 	ret
 
 Rival1WinText:
-	text_far _Rival1WinText
-	text_end
+	text "<RIVAL><BOLD_P>やりー！"
+	line "やっぱ　おれって　てんさい？"
+	prompt
 
 PlayerBlackedOutText2:
-	text_far _PlayerBlackedOutText2
-	text_end
+	text "<PLAYER>の　てもとには"
+	line "たたかえる　#が　いない！"
+
+	para "<PLAYER>は"
+	line "めのまえが　まっくらに　なった！"
+	prompt
 
 LinkBattleLostText:
-	text_far _LinkBattleLostText
-	text_end
+	text_ram wTrainerName
+	text "との"
+	line "しょうぶに　まけた！"
+	prompt
 
 ; slides pic of fainted mon downwards until it disappears
 ; bug: when this is called, [hAutoBGTransferEnabled] is non-zero, so there is screen tearing
@@ -1286,9 +1306,6 @@ EnemySendOut:
 	ld [hl], a
 	pop bc
 	predef FlagActionPredef
-
-; don't change wPartyGainExpFlags or wPartyFoughtCurrentEnemyFlags
-EnemySendOutFirstMon:
 	xor a
 	ld hl, wEnemyStatsToDouble ; clear enemy statuses
 	ld [hli], a
@@ -1411,8 +1428,8 @@ EnemySendOutFirstMon:
 	call LoadScreenTilesFromBuffer1
 .next4
 	call ClearSprites
-	hlcoord 0, 0
-	lb bc, 4, 11
+	hlcoord 1, 0
+	lb bc, 4, 10
 	call ClearScreenArea
 	ld b, SET_PAL_BATTLE
 	call RunPaletteCommand
@@ -1426,7 +1443,7 @@ EnemySendOutFirstMon:
 	ld de, vFrontPic
 	call LoadMonFrontSprite
 	ld a, -$31
-	ldh [hStartTileID], a
+	ld [hStartTileID], a
 	hlcoord 15, 6
 	predef AnimateSendingOutMon
 	ld a, [wEnemyMonSpecies2]
@@ -1442,12 +1459,23 @@ EnemySendOutFirstMon:
 	jp SwitchPlayerMon
 
 TrainerAboutToUseText:
-	text_far _TrainerAboutToUseText
-	text_end
+	text_ram wTrainerName
+	text "は　@"
+	text_ram wEnemyMonNick
+	text "を"
+	line "くりだそうと　しているようだ"
+
+	para "<PLAYER>も　#を"
+	line "とりかえますか？"
+	done
 
 TrainerSentOutText:
-	text_far _TrainerSentOutText
-	text_end
+	text_ram wTrainerName
+	text "は"
+	line "@"
+	text_ram wEnemyMonNick
+	text "を　くりだした！"
+	done
 
 ; tests if the player has any pokemon that are not fainted
 ; sets d = 0 if all fainted, d != 0 if some mons are still alive
@@ -1487,8 +1515,8 @@ HasMonFainted:
 	ret
 
 NoWillText:
-	text_far _NoWillText
-	text_end
+	text "たたかう　きりょくが　ない！"
+	prompt
 
 ; try to run from battle (hl = player speed, de = enemy speed)
 ; stores whether the attempt was successful in carry flag
@@ -1610,16 +1638,18 @@ TryRunningFromBattle:
 	ret
 
 CantEscapeText:
-	text_far _CantEscapeText
-	text_end
+	text "にげられない！"
+	prompt
 
 NoRunningText:
-	text_far _NoRunningText
-	text_end
+	text "ダメだ！"
+	line "しょうぶの　さいちゅうに"
+	cont "あいてに　せなかは　みせられない！"
+	prompt
 
 GotAwayText:
-	text_far _GotAwayText
-	text_end
+	text "うまく　にげきれた！"
+	prompt
 
 ; copies from party data to battle mon data when sending out a new player mon
 LoadBattleMonFromParty:
@@ -1645,8 +1675,9 @@ LoadBattleMonFromParty:
 	ld [wCurSpecies], a
 	call GetMonHeader
 	ld hl, wPartyMonNicks
+	ld bc, NAME_LENGTH
 	ld a, [wPlayerMonNumber]
-	call SkipFixedLengthTextEntries
+	call AddNTimes
 	ld de, wBattleMonNick
 	ld bc, NAME_LENGTH
 	call CopyData
@@ -1689,8 +1720,9 @@ LoadEnemyMonFromParty:
 	ld [wCurSpecies], a
 	call GetMonHeader
 	ld hl, wEnemyMonNicks
+	ld bc, NAME_LENGTH
 	ld a, [wWhichPokemon]
-	call SkipFixedLengthTextEntries
+	call AddNTimes
 	ld de, wEnemyMonNick
 	ld bc, NAME_LENGTH
 	call CopyData
@@ -1730,10 +1762,9 @@ SendOutMon:
 	call DrawPlayerHUDAndHPBar
 	predef LoadMonBackPic
 	xor a
-	ldh [hStartTileID], a
-	ld hl, wBattleAndStartSavedMenuItem
-	ld [hli], a
-	ld [hl], a
+	ld [hStartTileID], a
+	ld [wPlayerMoveListIndex], a
+	ld [wBattleAndStartSavedMenuItem], a
 	ld [wBoostExpByExpAll], a
 	ld [wDamageMultipliers], a
 	ld [wPlayerMoveNum], a
@@ -1820,9 +1851,10 @@ DrawPlayerHUDAndHPBar:
 	hlcoord 18, 9
 	ld [hl], $73
 	ld de, wBattleMonNick
-	hlcoord 10, 7
+	hlcoord 10, 8
 	call CenterMonName
 	call PlaceString
+	push bc
 	ld hl, wBattleMonSpecies
 	ld de, wLoadedMon
 	ld bc, wBattleMonDVs - wBattleMonSpecies
@@ -1831,7 +1863,7 @@ DrawPlayerHUDAndHPBar:
 	ld de, wLoadedMonLevel
 	ld bc, wBattleMonPP - wBattleMonLevel
 	call CopyData
-	hlcoord 14, 8
+	pop hl
 	push hl
 	inc hl
 	ld de, wLoadedMonStatus
@@ -1874,15 +1906,16 @@ DrawPlayerHUDAndHPBar:
 DrawEnemyHUDAndHPBar:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	hlcoord 0, 0
-	lb bc, 4, 12
+	hlcoord 1, 0
+	lb bc, 4, 11
 	call ClearScreenArea
 	callfar PlaceEnemyHUDTiles
 	ld de, wEnemyMonNick
-	hlcoord 1, 0
+	hlcoord 2, 1
 	call CenterMonName
 	call PlaceString
-	hlcoord 4, 1
+	ld h, b
+	ld l, c
 	push hl
 	inc hl
 	ld de, wEnemyMonStatus
@@ -2034,12 +2067,12 @@ DisplayBattleMenu::
 	ld bc, NAME_LENGTH
 	call CopyData
 ; the following simulates the keystrokes by drawing menus on screen
-	hlcoord 9, 14
+	hlcoord 10, 14
 	ld [hl], "▶"
 	ld c, 80
 	call DelayFrames
 	ld [hl], " "
-	hlcoord 9, 16
+	hlcoord 15, 14
 	ld [hl], "▶"
 	ld c, 50
 	call DelayFrames
@@ -2047,7 +2080,7 @@ DisplayBattleMenu::
 	ld a, $2 ; select the "ITEM" menu
 	jp .upperLeftMenuItemWasNotSelected
 .oldManName
-	db "OLD MAN@"
+	db "おじいさん@"
 .handleBattleMenuInput
 	ld a, [wBattleAndStartSavedMenuItem]
 	ld [wCurrentMenuItem], a
@@ -2066,12 +2099,12 @@ DisplayBattleMenu::
 ; put cursor in left column for normal battle menu (i.e. when it's not a Safari battle)
 	ldcoord_a 15, 14 ; clear upper cursor position in right column
 	ldcoord_a 15, 16 ; clear lower cursor position in right column
-	ld b, $9 ; top menu item X
+	ld b, $a ; top menu item X
 	jr .leftColumn_WaitForInput
 .safariLeftColumn
-	ldcoord_a 13, 14
-	ldcoord_a 13, 16
-	hlcoord 7, 14
+	ldcoord_a 12, 14
+	ldcoord_a 12, 16
+	hlcoord 10, 14
 	ld de, wNumSafariBalls
 	lb bc, 1, 2
 	call PrintNumber
@@ -2097,18 +2130,18 @@ DisplayBattleMenu::
 	ld a, " "
 	jr z, .safariRightColumn
 ; put cursor in right column for normal battle menu (i.e. when it's not a Safari battle)
-	ldcoord_a 9, 14 ; clear upper cursor position in left column
-	ldcoord_a 9, 16 ; clear lower cursor position in left column
+	ldcoord_a 10, 14 ; clear upper cursor position in left column
+	ldcoord_a 10, 16 ; clear lower cursor position in left column
 	ld b, $f ; top menu item X
 	jr .rightColumn_WaitForInput
 .safariRightColumn
 	ldcoord_a 1, 14 ; clear upper cursor position in left column
 	ldcoord_a 1, 16 ; clear lower cursor position in left column
-	hlcoord 7, 14
+	hlcoord 10, 14
 	ld de, wNumSafariBalls
 	lb bc, 1, 2
 	call PrintNumber
-	ld b, $d ; top menu item X
+	ld b, $c ; top menu item X
 .rightColumn_WaitForInput
 	ld hl, wTopMenuItemY
 	ld a, $e
@@ -2129,25 +2162,8 @@ DisplayBattleMenu::
 	ld [wCurrentMenuItem], a
 .AButtonPressed
 	call PlaceUnfilledArrowMenuCursor
-	ld a, [wBattleType]
-	cp BATTLE_TYPE_SAFARI
 	ld a, [wCurrentMenuItem]
 	ld [wBattleAndStartSavedMenuItem], a
-	jr z, .handleMenuSelection
-; not Safari battle
-; swap the IDs of the item menu and party menu (this is probably because they swapped the positions
-; of these menu items in first generation English versions)
-	cp $1 ; was the item menu selected?
-	jr nz, .notItemMenu
-; item menu was selected
-	inc a ; increment a to 2
-	jr .handleMenuSelection
-.notItemMenu
-	cp $2 ; was the party menu selected?
-	jr nz, .handleMenuSelection
-; party menu selected
-	dec a ; decrement a to 1
-.handleMenuSelection
 	and a
 	jr nz, .upperLeftMenuItemWasNotSelected
 ; the upper left menu item was selected
@@ -2232,7 +2248,6 @@ DisplayBagMenu:
 	ld [wBagSavedMenuItem], a
 	ld a, $0
 	ld [wMenuWatchMovingOutOfBounds], a
-	ld [wMenuItemToSwap], a
 	jp c, DisplayBattleMenu ; go back to battle menu if an item was not selected
 
 UseBagItem:
@@ -2293,8 +2308,9 @@ UseBagItem:
 	ret
 
 ItemsCantBeUsedHereText:
-	text_far _ItemsCantBeUsedHereText
-	text_end
+	text "ここでは　どうぐを"
+	line "つかうことは　できません"
+	prompt
 
 PartyMenuOrRockOrRun:
 	dec a ; was Run selected?
@@ -2312,7 +2328,6 @@ PartyMenuOrRockOrRun:
 	call LoadScreenTilesFromBuffer1
 	xor a ; NORMAL_PARTY_MENU
 	ld [wPartyMenuTypeOrMessageID], a
-	ld [wMenuItemToSwap], a
 	call DisplayPartyMenu
 .checkIfPartyMonWasSelected
 	jp nc, .partyMonWasSelected ; if a party mon was selected, jump, else we quit the party menu
@@ -2340,6 +2355,7 @@ PartyMenuOrRockOrRun:
 	ld hl, wTopMenuItemY
 	ld a, $c
 	ld [hli], a ; wTopMenuItemY
+	ld a, $c
 	ld [hli], a ; wTopMenuItemX
 	xor a
 	ld [hli], a ; wCurrentMenuItem
@@ -2438,8 +2454,9 @@ SwitchPlayerMon:
 	ret
 
 AlreadyOutText:
-	text_far _AlreadyOutText
-	text_end
+	text_ram wBattleMonNick
+	text "はもうでています"
+	prompt
 
 BattleMenu_RunWasSelected:
 	call LoadScreenTilesFromBuffer1
@@ -2457,88 +2474,60 @@ BattleMenu_RunWasSelected:
 	jp DisplayBattleMenu
 
 MoveSelectionMenu:
+	ld hl, wEnemyMonMoves
 	ld a, [wMoveMenuType]
 	dec a
 	jr z, .mimicmenu
 	dec a
 	jr z, .relearnmenu
-	jr .regularmenu
-
-.loadmoves
-	ld de, wMoves
-	ld bc, NUM_MOVES
-	call CopyData
-	callfar FormatMovesString
-	ret
-
-.writemoves
-	ld de, wMovesString
-	ldh a, [hUILayoutFlags]
-	set BIT_SINGLE_SPACED_LINES, a
-	ldh [hUILayoutFlags], a
-	call PlaceString
-	ldh a, [hUILayoutFlags]
-	res BIT_SINGLE_SPACED_LINES, a
-	ldh [hUILayoutFlags], a
-	ret
-
-.regularmenu
 	call AnyMoveToSelect
 	ret z
 	ld hl, wBattleMonMoves
-	call .loadmoves
-	hlcoord 4, 12
-	ld b, 4
-	ld c, 14
-	di ; out of pure coincidence, it is possible for vblank to occur between the di and ei
-	   ; so it is necessary to put the di ei block to not cause tearing
-	call TextBoxBorder
-	hlcoord 4, 12
-	ld [hl], "─"
-	hlcoord 10, 12
-	ld [hl], "┘"
-	ei
-	hlcoord 6, 13
-	call .writemoves
-	ld b, $5
-	ld a, $c
-	jr .menuset
-.mimicmenu
-	ld hl, wEnemyMonMoves
-	call .loadmoves
-	hlcoord 0, 7
-	ld b, 4
-	ld c, 14
-	call TextBoxBorder
-	hlcoord 2, 8
-	call .writemoves
-	ld b, $1
-	ld a, $7
-	jr .menuset
+	jr .mimicmenu
+
 .relearnmenu
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMon1Moves
 	ld bc, wPartyMon2 - wPartyMon1
 	call AddNTimes
-	call .loadmoves
-	hlcoord 4, 7
-	ld b, 4
-	ld c, 14
+.mimicmenu
+	ld de, wMoves
+	ld bc, NUM_MOVES
+	call CopyData
+	callfar FormatMovesString
+	hlcoord 0, 8
+	ld b, $8
+	ld c, $8
+	ld a, [wMoveMenuType]
+	cp $2
+	jr nz, .loadmoves
+	hlcoord 10, 8
+	ld b, $8
+	ld c, $8
+.loadmoves
 	call TextBoxBorder
-	hlcoord 6, 8
-	call .writemoves
-	ld b, $5
-	ld a, $7
+	hlcoord 2, 10
+	ld a, [wMoveMenuType]
+	cp a, $2
+	jr nz, .writemoves
+	hlcoord 12, 10
+.writemoves
+	ld de, wMovesString
+	call PlaceString
+	ld b, $1
+	ld a, [wMoveMenuType]
+	cp a, $2
+	jr nz, .menuset
+	ld b, $b
 .menuset
 	ld hl, wTopMenuItemY
+	ld a, 8
 	ld [hli], a ; wTopMenuItemY
 	ld a, b
 	ld [hli], a ; wTopMenuItemX
 	ld a, [wMoveMenuType]
 	cp $1
 	jr z, .selectedmoveknown
-	ld a, $1
-	jr nc, .selectedmoveknown
 	ld a, [wPlayerMoveListIndex]
 	inc a
 .selectedmoveknown
@@ -2582,7 +2571,7 @@ SelectMenuItem:
 	jr z, .battleselect
 	dec a
 	jr nz, .select
-	hlcoord 1, 14
+	hlcoord 11, 14
 	ld de, WhichTechniqueString
 	call PlaceString
 	jr .select
@@ -2598,17 +2587,13 @@ SelectMenuItem:
 	ld a, [wMenuItemToSwap]
 	and a
 	jr z, .select
-	hlcoord 5, 13
+	hlcoord 1, 10
 	dec a
-	ld bc, SCREEN_WIDTH
+	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld [hl], "▷"
 .select
-	ld hl, hUILayoutFlags
-	set BIT_DOUBLE_SPACED_MENU, [hl]
 	call HandleMenuInput
-	ld hl, hUILayoutFlags
-	res BIT_DOUBLE_SPACED_MENU, [hl]
 	bit BIT_D_UP, a
 	jp nz, SelectMenuItem_CursorUp
 	bit BIT_D_DOWN, a
@@ -2677,15 +2662,15 @@ SelectMenuItem:
 	jp MoveSelectionMenu
 
 MoveNoPPText:
-	text_far _MoveNoPPText
-	text_end
+	text "わざの　のこりポイントが　ない！"
+	prompt
 
 MoveDisabledText:
-	text_far _MoveDisabledText
-	text_end
+	text "わざを　ふうじられている！"
+	prompt
 
 WhichTechniqueString:
-	db "WHICH TECHNIQUE?@"
+	db "どのわざを<NEXT>ものまねする？@"
 
 SelectMenuItem_CursorUp:
 	ld a, [wCurrentMenuItem]
@@ -2724,7 +2709,6 @@ AnyMoveToSelect:
 	or [hl]
 	inc hl
 	or [hl]
-	and PP_MASK
 	ret nz
 	jr .noMovesLeft
 .handleDisabledMove
@@ -2754,8 +2738,10 @@ AnyMoveToSelect:
 	ret
 
 NoMovesLeftText:
-	text_far _NoMovesLeftText
-	text_end
+	text_ram wBattleMonNick
+	text "は　だすことの　できる"
+	line "わざが　ない！"
+	done
 
 SwapMovesInMenu:
 	ld a, [wMenuItemToSwap]
@@ -2836,8 +2822,8 @@ SwapMovesInMenu:
 PrintMenuItem:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	hlcoord 0, 8
-	ld b, 3
+	hlcoord 9, 12
+	ld b, 4
 	ld c, 9
 	call TextBoxBorder
 	ld a, [wPlayerDisabledMove]
@@ -2849,7 +2835,7 @@ PrintMenuItem:
 	ld a, [wCurrentMenuItem]
 	cp b
 	jr nz, .notDisabled
-	hlcoord 1, 10
+	hlcoord 10, 15
 	ld de, DisabledText
 	call PlaceString
 	jr .moveDisabled
@@ -2881,23 +2867,23 @@ PrintMenuItem:
 	and PP_MASK
 	ld [wBattleMenuCurrentPP], a
 ; print TYPE/<type> and <curPP>/<maxPP>
-	hlcoord 1, 9
+	hlcoord 10, 15
 	ld de, TypeText
 	call PlaceString
-	hlcoord 7, 11
+	hlcoord 16, 13
 	ld [hl], "/"
-	hlcoord 5, 9
+	hlcoord 14, 16
 	ld [hl], "/"
-	hlcoord 5, 11
+	hlcoord 14, 13
 	ld de, wBattleMenuCurrentPP
 	lb bc, 1, 2
 	call PrintNumber
-	hlcoord 8, 11
+	hlcoord 17, 13
 	ld de, wMaxPP
 	lb bc, 1, 2
 	call PrintNumber
 	call GetCurrentMove
-	hlcoord 2, 10
+	hlcoord 15, 16
 	predef PrintMoveType
 .moveDisabled
 	ld a, $1
@@ -2905,10 +2891,10 @@ PrintMenuItem:
 	jp Delay3
 
 DisabledText:
-	db "disabled!@"
+	db "ふうじられている！@"
 
 TypeText:
-	db "TYPE@"
+	db "わざタイプ@"
 
 SelectEnemyMove:
 	ld a, [wLinkState]
@@ -2921,13 +2907,11 @@ SelectEnemyMove:
 	ld a, [wSerialExchangeNybbleReceiveData]
 	cp LINKBATTLE_STRUGGLE
 	jp z, .linkedOpponentUsedStruggle
-	cp LINKBATTLE_NO_ACTION
-	jr z, .unableToSelectMove
 	cp 4
 	ret nc
 	ld [wEnemyMoveListIndex], a
-	ld c, a
 	ld hl, wEnemyMonMoves
+	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
@@ -2937,8 +2921,9 @@ SelectEnemyMove:
 	and (1 << NEEDS_TO_RECHARGE) | (1 << USING_RAGE) ; need to recharge or using rage
 	ret nz
 	ld hl, wEnemyBattleStatus1
-	ld a, [hl]
-	and (1 << CHARGING_UP) | (1 << THRASHING_ABOUT) ; using a charging move or thrash/petal dance
+	bit CHARGING_UP, [hl] ; using a charging move
+	ret nz
+	bit THRASHING_ABOUT, [hl] ; using thrash/petal dance
 	ret nz
 	ld a, [wEnemyMonStatus]
 	and (1 << FRZ) | SLP_MASK
@@ -2946,13 +2931,9 @@ SelectEnemyMove:
 	ld a, [wEnemyBattleStatus1]
 	and (1 << USING_TRAPPING_MOVE) | (1 << STORING_ENERGY) ; using a trapping move like wrap or bide
 	ret nz
-	ld a, [wPlayerBattleStatus1]
+	ld a, [wEnemyBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; caught in player's trapping move (e.g. wrap)
-	jr z, .canSelectMove
-.unableToSelectMove
-	ld a, $ff
-	jr .done
-.canSelectMove
+	ret nz
 	ld hl, wEnemyMonMoves+1 ; 2nd enemy move
 	ld a, [hld]
 	and a
@@ -3006,28 +2987,19 @@ SelectEnemyMove:
 LinkBattleExchangeData:
 	ld a, $ff
 	ld [wSerialExchangeNybbleReceiveData], a
-	ld a, [wPlayerMoveListIndex]
-	cp LINKBATTLE_RUN ; is the player running from battle?
-	jr z, .doExchange
 	ld a, [wActionResultOrTookBattleTurn]
 	and a ; is the player switching in another mon?
 	jr nz, .switching
 ; the player used a move
 	ld a, [wPlayerSelectedMove]
 	cp STRUGGLE
-	ld b, LINKBATTLE_STRUGGLE
-	jr z, .next
-	dec b ; LINKBATTLE_NO_ACTION
-	inc a ; does move equal -1 (i.e. no action)?
-	jr z, .next
+	ld a, LINKBATTLE_STRUGGLE
+	jr z, .doExchange
 	ld a, [wPlayerMoveListIndex]
 	jr .doExchange
 .switching
 	ld a, [wWhichPokemon]
 	add 4
-	ld b, a
-.next
-	ld a, b
 .doExchange
 	ld [wSerialExchangeNybbleSendData], a
 	vc_hook Wireless_start_exchange
@@ -3068,12 +3040,11 @@ ENDC
 	ret
 
 ExecutePlayerMove:
-	xor a
-	ldh [hWhoseTurn], a ; set player's turn
 	ld a, [wPlayerSelectedMove]
 	inc a
 	jp z, ExecutePlayerMoveDone ; for selected move = FF, skip most of player's turn
 	xor a
+	ldh [hWhoseTurn], a
 	ld [wMoveMissed], a
 	ld [wMonIsDisobedient], a
 	ld [wMoveDidntMiss], a
@@ -3265,8 +3236,10 @@ MirrorMoveCheck:
 	jp ExecutePlayerMoveDone
 
 MultiHitText:
-	text_far _MultiHitText
-	text_end
+	text "あいてに　@"
+	text_decimal wPlayerNumHits, 1, 1
+	text "かい　あたった！"
+	prompt
 
 ExecutePlayerMoveDone:
 	xor a
@@ -3295,12 +3268,14 @@ PrintGhostText:
 	ret
 
 ScaredText:
-	text_far _ScaredText
-	text_end
+	text_ram wBattleMonNick
+	text "は　こわがっている！"
+	line "わざを　だすことが　できない！"
+	prompt
 
 GetOutText:
-	text_far _GetOutText
-	text_end
+	text "ゆうれい<BOLD_P>タチサレ<……>タチサレ<……>"
+	prompt
 
 IsGhostBattle:
 	ld a, [wIsInBattle]
@@ -3403,8 +3378,8 @@ CheckPlayerStatusConditions:
 
 .ConfusedCheck
 	ld a, [wPlayerBattleStatus1]
-	add a ; is player confused?
-	jr nc, .TriedToUseDisabledMoveCheck
+	bit CONFUSED, a ; is player confused?
+	jr z, .TriedToUseDisabledMoveCheck
 	ld hl, wPlayerConfusedCounter
 	dec [hl]
 	jr nz, .IsConfused
@@ -3422,7 +3397,7 @@ CheckPlayerStatusConditions:
 	call PlayMoveAnimation
 	call BattleRandom
 	cp 50 percent + 1 ; chance to hurt itself
-	jr c, .TriedToUseDisabledMoveCheck
+	jp c, .ParalysisCheck
 	ld hl, wPlayerBattleStatus1
 	ld a, [hl]
 	and 1 << CONFUSED ; if mon hurts itself, clear every other status from wPlayerBattleStatus1
@@ -3583,64 +3558,75 @@ CheckPlayerStatusConditions:
 	ret
 
 FastAsleepText:
-	text_far _FastAsleepText
-	text_end
+	text "<USER>は"
+	line "ぐうぐう　ねむっている"
+	prompt
 
 WokeUpText:
-	text_far _WokeUpText
-	text_end
+	text "<USER>は　めをさました！"
+	prompt
 
 IsFrozenText:
-	text_far _IsFrozenText
-	text_end
+	text "<USER>は"
+	line "こおって　しまって　うごかない！"
+	prompt
 
 FullyParalyzedText:
-	text_far _FullyParalyzedText
-	text_end
+	text "<USER>は"
+	line "からだが　しびれて　うごけない"
+	prompt
 
 FlinchedText:
-	text_far _FlinchedText
-	text_end
+	text "<USER>は　ひるんだ！"
+	prompt
 
 MustRechargeText:
-	text_far _MustRechargeText
-	text_end
+	text "こうげきの　はんどうで"
+	line "<USER>は　うごけない！"
+	prompt
 
 DisabledNoMoreText:
-	text_far _DisabledNoMoreText
-	text_end
+	text "<USER>の"
+	line "かなしばりが　とけた！"
+	prompt
 
 IsConfusedText:
-	text_far _IsConfusedText
-	text_end
+	text "<USER>は"
+	line "こんらんしている！"
+	prompt
 
 HurtItselfText:
-	text_far _HurtItselfText
-	text_end
+	text "わけも　わからず"
+	line "じぶんを　こうげきした！"
+	prompt
 
 ConfusedNoMoreText:
-	text_far _ConfusedNoMoreText
-	text_end
+	text "<USER>の"
+	line "こんらんが　とけた！"
+	prompt
 
 SavingEnergyText:
-	text_far _SavingEnergyText
-	text_end
+	text "<USER>は　がまんしている"
+	prompt
 
 UnleashedEnergyText:
-	text_far _UnleashedEnergyText
-	text_end
+	text "<USER>の"
+	line "がまんが　とかれた！"
+	prompt
 
 ThrashingAboutText:
-	text_far _ThrashingAboutText
-	text_end
+	text "<USER>は　あばれている"
+	done
 
 AttackContinuesText:
-	text_far _AttackContinuesText
-	text_end
+	text "<USER>の　こうげきは"
+	line "まだ　つづいている"
+	done
 
 CantMoveText:
-	text_far _CantMoveText
-	text_end
+	text "<USER>は"
+	line "みうごきが　とれない！"
+	prompt
 
 PrintMoveIsDisabledText:
 	ld hl, wPlayerSelectedMove
@@ -3661,8 +3647,11 @@ PrintMoveIsDisabledText:
 	jp PrintText
 
 MoveIsDisabledText:
-	text_far _MoveIsDisabledText
-	text_end
+	text "<USER>は　かなしばりで"
+	line "@"
+	text_ram wNameBuffer
+	text "がだせない！"
+	prompt
 
 HandleSelfConfusionDamage:
 	ld hl, HurtItselfText
@@ -3718,7 +3707,7 @@ PrintMonName1Text:
 ; this likely had to do with Japanese grammar that got translated,
 ; but the functionality didn't get removed
 MonName1Text:
-	text_far _MonName1Text
+	text "<USER>@"
 	text_asm
 	ldh a, [hWhoseTurn]
 	and a
@@ -3743,12 +3732,12 @@ MonName1Text:
 	ret
 
 Used1Text:
-	text_far _Used1Text
+	text "の　@"
 	text_asm
 	jr PrintInsteadText
 
 Used2Text:
-	text_far _Used2Text
+	text "は　@"
 	text_asm
 	; fall through
 
@@ -3760,7 +3749,7 @@ PrintInsteadText:
 	ret
 
 InsteadText:
-	text_far _InsteadText
+	text "めいれいをむしして@"
 	text_asm
 	; fall through
 
@@ -3769,7 +3758,9 @@ PrintMoveName:
 	ret
 
 _PrintMoveName:
-	text_far _MoveNameText
+	text_start
+	line "@"
+	text_ram wStringBuffer
 	text_asm
 	ld hl, ExclamationPointPointerTable
 	ld a, [wMoveGrammar]
@@ -3792,24 +3783,24 @@ ExclamationPointPointerTable:
 	dw ExclamationPoint5Text
 
 ExclamationPoint1Text:
-	text_far _ExclamationPoint1Text
-	text_end
+	text "を　つかった！"
+	done
 
 ExclamationPoint2Text:
-	text_far _ExclamationPoint2Text
-	text_end
+	text "を　した！"
+	done
 
 ExclamationPoint3Text:
-	text_far _ExclamationPoint3Text
-	text_end
+	text "した！"
+	done
 
 ExclamationPoint4Text:
-	text_far _ExclamationPoint4Text
-	text_end
+	text "　こうげき！"
+	done
 
 ExclamationPoint5Text:
-	text_far _ExclamationPoint5Text
-	text_end
+	text "！"
+	done
 
 ; this function does nothing useful
 ; if the move being used is in set [1-4] from ExclamationPointMoveSets,
@@ -3900,24 +3891,29 @@ PrintMoveFailureText:
 	jp ApplyDamageToEnemyPokemon
 
 AttackMissedText:
-	text_far _AttackMissedText
-	text_end
+	text "しかし　<USER>の"
+	line "こうげきは　はずれた！"
+	prompt
 
 KeptGoingAndCrashedText:
-	text_far _KeptGoingAndCrashedText
-	text_end
+	text "いきおい　あまって"
+	line "<USER>は"
+	cont "じめんに　ぶつかった！"
+	prompt
 
 UnaffectedText:
-	text_far _UnaffectedText
-	text_end
+	text "<TARGET>には"
+	line "ぜんぜんきいてない！"
+	prompt
 
 PrintDoesntAffectText:
 	ld hl, DoesntAffectMonText
 	jp PrintText
 
 DoesntAffectMonText:
-	text_far _DoesntAffectMonText
-	text_end
+	text "<TARGET>には"
+	line "こうかが　ない　みたいだ<……>"
+	prompt
 
 ; if there was a critical hit or an OHKO was successful, print the corresponding text
 PrintCriticalOHKOText:
@@ -3945,12 +3941,12 @@ CriticalOHKOTextPointers:
 	dw OHKOText
 
 CriticalHitText:
-	text_far _CriticalHitText
-	text_end
+	text "きゅうしょに　あたった！"
+	prompt
 
 OHKOText:
-	text_far _OHKOText
-	text_end
+	text "いちげき　ひっさつ！"
+	prompt
 
 ; checks if a traded mon will disobey due to lack of badges
 ; stores whether the mon will use a move in Z flag
@@ -4061,28 +4057,17 @@ CheckForDisobedience:
 	ld a, [wBattleMonMoves + 1]
 	and a ; is the second move slot empty?
 	jr z, .monDoesNothing ; mon will not use move if it only knows one move
-	ld a, [wPlayerDisabledMoveNumber]
-	and a
-	jr nz, .monDoesNothing
-	ld a, [wPlayerSelectedMove]
-	cp STRUGGLE
-	jr z, .monDoesNothing ; mon will not use move if struggling
 ; check if only one move has remaining PP
 	ld hl, wBattleMonPP
 	push hl
 	ld a, [hli]
-	and PP_MASK
-	ld b, a
-	ld a, [hli]
-	and PP_MASK
+	ld b, [hl]
+	inc hl
 	add b
-	ld b, a
-	ld a, [hli]
-	and PP_MASK
+	ld b, [hl]
+	inc hl
 	add b
-	ld b, a
-	ld a, [hl]
-	and PP_MASK
+	ld b, [hl]
 	add b
 	pop hl
 	push af
@@ -4090,9 +4075,7 @@ CheckForDisobedience:
 	ld c, a
 	ld b, $0
 	add hl, bc
-	ld a, [hl]
-	and PP_MASK
-	ld b, a
+	ld b, [hl]
 	pop af
 	cp b
 	jr z, .monDoesNothing ; mon will not use move if only one move has remaining PP
@@ -4134,24 +4117,29 @@ CheckForDisobedience:
 	ret
 
 LoafingAroundText:
-	text_far _LoafingAroundText
-	text_end
+	text_ram wBattleMonNick
+	text "は　なまけている"
+	prompt
 
 BeganToNapText:
-	text_far _BeganToNapText
-	text_end
+	text_ram wBattleMonNick
+	text "は　ひるねをはじめた！"
+	prompt
 
 WontObeyText:
-	text_far _WontObeyText
-	text_end
+	text_ram wBattleMonNick
+	text "は　いうことを　きかない"
+	prompt
 
 TurnedAwayText:
-	text_far _TurnedAwayText
-	text_end
+	text_ram wBattleMonNick
+	text "は　そっぽを　むいた"
+	prompt
 
 IgnoredOrdersText:
-	text_far _IgnoredOrdersText
-	text_end
+	text_ram wBattleMonNick
+	text "は　しらんぷりをした"
+	prompt
 
 ; sets b, c, d, and e for the CalculateDamage routine in the case of an attack by the player mon
 GetDamageVarsForPlayerAttack:
@@ -5029,12 +5017,14 @@ AttackSubstitute:
 	jp DrawHUDsAndHPBars
 
 SubstituteTookDamageText:
-	text_far _SubstituteTookDamageText
-	text_end
+	text "<TARGET>に　かわって"
+	line "ぶんしんが　こうげきを　うけた！"
+	prompt
 
 SubstituteBrokeText:
-	text_far _SubstituteBrokeText
-	text_end
+	text "<TARGET>の　ぶんしんは"
+	line "きえてしまった<……>"
+	prompt
 
 ; this function raises the attack modifier of a pokemon using Rage when that pokemon is attacked
 HandleBuildingRage:
@@ -5080,8 +5070,9 @@ HandleBuildingRage:
 	ret
 
 BuildingRageText:
-	text_far _BuildingRageText
-	text_end
+	text "<USER>の　いかりの"
+	line "ボルテージが　あがっていく！"
+	prompt
 
 ; copy last move for Mirror Move
 ; sets zero flag on failure and unsets zero flag on success
@@ -5116,8 +5107,9 @@ MirrorMoveCopyMove:
 	ret
 
 MirrorMoveFailedText:
-	text_far _MirrorMoveFailedText
-	text_end
+	text "しかし　オウムがえしは"
+	next "しっぱいにおわった！"
+	prompt
 
 ; function used to reload move data for moves like Mirror Move and Metronome
 ReloadMoveData:
@@ -5373,11 +5365,11 @@ MoveHitTest:
 	and SLP_MASK
 	jp z, .moveMissed
 .swiftCheck
+	call CheckTargetSubstitute
+	jr z, .checkForDigOrFlyStatus
 	ld a, [de]
 	cp SWIFT_EFFECT
-	ret z ; Swift never misses (this was fixed from the Japanese versions)
-	call CheckTargetSubstitute ; substitute check (note that this overwrites a)
-	jr z, .checkForDigOrFlyStatus
+	ret z ; Swift occasionally misses (this was fixed in the international versions)
 ; The fix for Swift broke this code. It's supposed to prevent HP draining moves from working on Substitutes.
 ; Since CheckTargetSubstitute overwrites a with either $00 or $01, it never works.
 	cp DRAIN_HP_EFFECT
@@ -5792,8 +5784,9 @@ EnemyCheckIfMirrorMoveEffect:
 	jr ExecuteEnemyMoveDone
 
 HitXTimesText:
-	text_far _HitXTimesText
-	text_end
+	text_decimal wEnemyNumHits, 1, 1
+	text "かい　ダメージをうけた！"
+	prompt
 
 ExecuteEnemyMoveDone:
 	ld b, $1
@@ -5875,8 +5868,8 @@ CheckEnemyStatusConditions:
 	call PrintText
 .checkIfConfused
 	ld a, [wEnemyBattleStatus1]
-	add a ; check if enemy mon is confused
-	jp nc, .checkIfTriedToUseDisabledMove
+	bit CONFUSED, a ; check if enemy mon is confused
+	jp z, .checkIfTriedToUseDisabledMove
 	ld hl, wEnemyConfusedCounter
 	dec [hl]
 	jr nz, .isConfused
@@ -6382,7 +6375,7 @@ LoadPlayerBackPic:
 	xor a
 	ld [MBC1SRamEnable], a
 	ld a, $31
-	ldh [hStartTileID], a
+	ld [hStartTileID], a
 	hlcoord 1, 5
 	predef_jump CopyUncompressedPicToTilemap
 
@@ -6635,8 +6628,8 @@ LoadHudAndHpBarAndStatusTilePatterns:
 
 LoadHudTilePatterns:
 	ldh a, [rLCDC]
-	add a ; is LCD disabled?
-	jr c, .lcdEnabled
+	bit rLCDC_ENABLE, a ; is LCD enabled?
+	jr nz, .lcdEnabled
 .lcdDisabled
 	ld hl, BattleHudTiles1
 	ld de, vChars2 tile $6d
@@ -6807,7 +6800,7 @@ InitBattleCommon:
 	call _LoadTrainerPic
 	xor a
 	ld [wEnemyMonSpecies2], a
-	ldh [hStartTileID], a
+	ld [hStartTileID], a
 	dec a
 	ld [wAICount], a
 	hlcoord 12, 0
@@ -6837,15 +6830,13 @@ InitWildBattle:
 	ld [hli], a   ; write front sprite pointer
 	ld [hl], b
 	ld hl, wEnemyMonNick  ; set name to "GHOST"
-	ld a, "G"
+	ld a, "ゆ"
 	ld [hli], a
-	ld a, "H"
+	ld a, "う"
 	ld [hli], a
-	ld a, "O"
+	ld a, "れ"
 	ld [hli], a
-	ld a, "S"
-	ld [hli], a
-	ld a, "T"
+	ld a, "い"
 	ld [hli], a
 	ld [hl], "@"
 	ld a, [wCurPartySpecies]
@@ -6863,7 +6854,7 @@ InitWildBattle:
 .spriteLoaded
 	xor a
 	ld [wTrainerClass], a
-	ldh [hStartTileID], a
+	ld [hStartTileID], a
 	hlcoord 12, 0
 	predef CopyUncompressedPicToTilemap
 
@@ -6879,12 +6870,12 @@ _InitBattleCommon:
 	call SaveScreenTilesToBuffer1
 	call ClearScreen
 	ld a, $98
-	ldh [hAutoBGTransferDest + 1], a
+	ld [hAutoBGTransferDest + 1], a
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
 	call Delay3
 	ld a, $9c
-	ldh [hAutoBGTransferDest + 1], a
+	ld [hAutoBGTransferDest + 1], a
 	call LoadScreenTilesFromBuffer1
 	hlcoord 9, 7
 	lb bc, 5, 10
@@ -6939,7 +6930,7 @@ AnimateSendingOutMon:
 	ld h, a
 	ld a, [wPredefHL + 1]
 	ld l, a
-	ldh a, [hStartTileID]
+	ld a, [hStartTileID]
 	ldh [hBaseTileID], a
 	ld b, $4c
 	ld a, [wIsInBattle]
@@ -6979,7 +6970,7 @@ CopyUncompressedPicToTilemap:
 	ld h, a
 	ld a, [wPredefHL + 1]
 	ld l, a
-	ldh a, [hStartTileID]
+	ld a, [hStartTileID]
 CopyUncompressedPicToHL::
 	lb bc, 7, 7
 	ld de, SCREEN_WIDTH

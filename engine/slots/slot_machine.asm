@@ -54,8 +54,9 @@ PromptUserToPlaySlots:
 	jp CloseTextDisplay
 
 PlaySlotMachineText:
-	text_far _PlaySlotMachineText
-	text_end
+	text "スロットマシーンが　ある！"
+	line "あそびますか？"
+	done
 
 MainSlotMachineLoop:
 	call SlotMachine_PrintCreditCoins
@@ -148,29 +149,32 @@ MainSlotMachineLoop:
 	jp MainSlotMachineLoop
 
 CoinMultiplierSlotMachineText:
-	db   "×3"
-	next "×2"
-	next "×1@"
+	db   "３まい"
+	next "２まい"
+	next "１まい@"
 
 OutOfCoinsSlotMachineText:
-	text_far _OutOfCoinsSlotMachineText
-	text_end
+	text "コインが"
+	line "なくなっちゃった<……>"
+	done
 
 BetHowManySlotMachineText:
-	text_far _BetHowManySlotMachineText
-	text_end
+	text "コインを"
+	line "なんまい　かけますか？"
+	done
 
 StartSlotMachineText:
-	text_far _StartSlotMachineText
-	text_end
+	text "スタート！"
+	done
 
 NotEnoughCoinsSlotMachineText:
-	text_far _NotEnoughCoinsSlotMachineText
-	text_end
+	text "コインが　たりません！"
+	prompt
 
 OneMoreGoSlotMachineText:
-	text_far _OneMoreGoSlotMachineText
-	text_end
+	text "もう　１かい"
+	line "あそびますか？"
+	done
 
 SlotMachine_SetFlags:
 	ld hl, wSlotMachineFlags
@@ -489,8 +493,11 @@ SymbolLinedUpSlotMachineText:
 	ret
 
 LinedUpText:
-	text_far _LinedUpText
-	text_end
+	text "が　そろった！"
+	line "コイン@"
+	text_ram wStringBuffer
+	text "まい　いただき！"
+	done
 
 SlotRewardPointers:
 	dw SlotReward300Func
@@ -519,8 +526,8 @@ SlotReward15Text:
 	db "15@"
 
 NotThisTimeText:
-	text_far _NotThisTimeText
-	text_end
+	text "はずれー"
+	prompt
 
 ; compares the slot machine tiles at bc, de, and hl
 SlotMachine_CheckForMatch:
@@ -610,7 +617,7 @@ SlotReward300Func:
 	ret
 
 YeahText:
-	text_far _YeahText
+	text "やった！@"
 	text_pause
 	text_end
 
@@ -879,7 +886,7 @@ LoadSlotMachineTiles:
 	jp SlotMachine_AnimWheel3
 
 SlotMachineMap:
-	INCBIN "gfx/slots/slots.tilemap"
+	INCBIN "gfx/slots/slots_rg.tilemap"
 SlotMachineMapEnd:
 
 INCLUDE "data/events/slot_machine_wheels.asm"
@@ -888,7 +895,7 @@ SlotMachineTiles1:
 IF DEF(_RED)
 	INCBIN "gfx/slots/red_slots_1.2bpp"
 ENDC
-IF DEF(_BLUE)
-	INCBIN "gfx/slots/blue_slots_1.2bpp"
+IF DEF(_GREEN)
+	INCBIN "gfx/slots/green_slots_1.2bpp", 0, $250
 ENDC
 SlotMachineTiles1End:

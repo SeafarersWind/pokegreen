@@ -78,24 +78,34 @@ PokemonMansion2FSuperNerdText:
 	jp TextScriptEnd
 
 PokemonMansion2FSuperNerdBattleText:
-	text_far _PokemonMansion2FSuperNerdBattleText
-	text_end
+	text "この　やしき　しかけが　してあって"
+	line "なかなか　すすめませんぜ！"
+	done
 
 PokemonMansion2FSuperNerdEndBattleText:
-	text_far _PokemonMansion2FSuperNerdEndBattleText
-	text_end
+	text "わーッ！"
+	line "ふろしきの　なかみが"
+	prompt
 
 PokemonMansion2FSuperNerdAfterBattleText:
-	text_far _PokemonMansion2FSuperNerdAfterBattleText
-	text_end
+	text "ひみつの　スイッチを　おすと"
+	line "ふたつの　とびらが"
+	cont "たがい　ちがいに　ひらくんでさ"
+	done
 
 PokemonMansion2FDiary1Text:
-	text_far _PokemonMansion2FDiary1Text
-	text_end
+	text "にっき　７がつ５か"
+	line "ここは　みなみアメりカの　ギアナ"
+
+	para "ジャングルの　おくちで"
+	line "しんしゅの　#を　はっけん"
+	done
 
 PokemonMansion2FDiary2Text:
-	text_far _PokemonMansion2FDiary2Text
-	text_end
+	text "にっき　７がつ１０か"
+	line "しんはっけんの　#を"
+	cont "わたしは　ミュウと　なづけた"
+	done
 
 PokemonMansion2FSwitchText:
 	text_asm
@@ -124,13 +134,15 @@ PokemonMansion2FSwitchText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _PokemonMansion2FSwitchText
-	text_end
+	text "ひみつの　スイッチが　ある！"
+
+	para "おして　みますか？"
+	done
 
 .PressedText:
-	text_far _PokemonMansion2FSwitchPressedText
-	text_end
+	text "おしてみよう！　<……>ポチッとな"
+	prompt
 
 .NotPressed:
-	text_far _PokemonMansion2FSwitchNotPressedText
-	text_end
+	text "おすのは　あきらめた"
+	done

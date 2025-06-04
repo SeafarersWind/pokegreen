@@ -60,16 +60,19 @@ Route13CooltrainerM1Text:
 	jp TextScriptEnd
 
 Route13CooltrainerM1BattleText:
-	text_far _Route13CooltrainerM1BattleText
-	text_end
+	text "ぼくの　とりポケが　きみたちと"
+	line "たたかい　たがってる！"
+	done
 
 Route13CooltrainerM1EndBattleText:
-	text_far _Route13CooltrainerM1EndBattleText
-	text_end
+	text "ポッポと　ピジョン"
+	line "コンビが　まける　なんて"
+	prompt
 
 Route13CooltrainerM1AfterBattleText:
-	text_far _Route13CooltrainerM1AfterBattleText
-	text_end
+	text "まけても　ぼくの　とりポケは"
+	line "まんぞく　した　みたい"
+	done
 
 Route13CooltrainerF1Text:
 	text_asm
@@ -78,16 +81,19 @@ Route13CooltrainerF1Text:
 	jp TextScriptEnd
 
 Route13CooltrainerF1BattleText:
-	text_far _Route13CooltrainerF1BattleText
-	text_end
+	text "おんなのこに　しては"
+	line "すじが　いいって　ほめられるの！"
+	done
 
 Route13CooltrainerF1EndBattleText:
-	text_far _Route13CooltrainerF1EndBattleText
-	text_end
+	text "まけちゃった"
+	prompt
 
 Route13CooltrainerF1AfterBattleText:
-	text_far _Route13CooltrainerF1AfterBattleText
-	text_end
+	text "いつかは"
+	line "つよい　<TRAINER>に　なりたい"
+	cont "きょうから　また　とっくんよ！"
+	done
 
 Route13CooltrainerF2Text:
 	text_asm
@@ -96,16 +102,19 @@ Route13CooltrainerF2Text:
 	jp TextScriptEnd
 
 Route13CooltrainerF2BattleText:
-	text_far _Route13CooltrainerF2BattleText
-	text_end
+	text "あら！"
+	line "かっこいい　バッジ　もってるね"
+	done
 
 Route13CooltrainerF2EndBattleText:
-	text_far _Route13CooltrainerF2EndBattleText
-	text_end
+	text "まだまだ　だわ"
+	prompt
 
 Route13CooltrainerF2AfterBattleText:
-	text_far _Route13CooltrainerF2AfterBattleText
-	text_end
+	text "そのバッジ<……>"
+	line "りーダー　から　もらったんでしょ"
+	cont "<……>　しってるわよ"
+	done
 
 Route13CooltrainerF3Text:
 	text_asm
@@ -114,16 +123,20 @@ Route13CooltrainerF3Text:
 	jp TextScriptEnd
 
 Route13CooltrainerF3BattleText:
-	text_far _Route13CooltrainerF3BattleText
-	text_end
+	text "かわいい　#　たちに"
+	line "ごあいさつを　させるわ！"
+	done
 
 Route13CooltrainerF3EndBattleText:
-	text_far _Route13CooltrainerF3EndBattleText
-	text_end
+	text "おみごと！"
+	line "わたしの　かんぱいね"
+	prompt
 
 Route13CooltrainerF3AfterBattleText:
-	text_far _Route13CooltrainerF3AfterBattleText
-	text_end
+	text "#は　こうやって"
+	line "どんどん　たたかわせて"
+	cont "つよく　してかないと！"
+	done
 
 Route13CooltrainerF4Text:
 	text_asm
@@ -132,16 +145,19 @@ Route13CooltrainerF4Text:
 	jp TextScriptEnd
 
 Route13CooltrainerF4BattleText:
-	text_far _Route13CooltrainerF4BattleText
-	text_end
+	text "どうくつ　たんけんに　いって"
+	line "インドメタシンを　ひろったのよ"
+	done
 
 Route13CooltrainerF4EndBattleText:
-	text_far _Route13CooltrainerF4EndBattleText
-	text_end
+	text "<……>　ざんねん！"
+	line "ちょうしが　でなかったわ"
+	prompt
 
 Route13CooltrainerF4AfterBattleText:
-	text_far _Route13CooltrainerF4AfterBattleText
-	text_end
+	text "そう　インドメタシン　あたえたら"
+	line "#の　すばやさが　あがったの"
+	done
 
 Route13CooltrainerM2Text:
 	text_asm
@@ -150,16 +166,19 @@ Route13CooltrainerM2Text:
 	jp TextScriptEnd
 
 Route13CooltrainerM2BattleText:
-	text_far _Route13CooltrainerM2BattleText
-	text_end
+	text "まけないよ！　かぜは"
+	line "ぼくの　ほうに　ふいて　いる！"
+	done
 
 Route13CooltrainerM2EndBattleText:
-	text_far _Route13CooltrainerM2EndBattleText
-	text_end
+	text "<……>　かざむきが"
+	line "かわった　みたい　だな"
+	prompt
 
 Route13CooltrainerM2AfterBattleText:
-	text_far _Route13CooltrainerM2AfterBattleText
-	text_end
+	text "たたかう　げんきも　ないや"
+	line "とりに　のって　うちに　かえろう"
+	done
 
 Route13Beauty1Text:
 	text_asm
@@ -168,16 +187,20 @@ Route13Beauty1Text:
 	jp TextScriptEnd
 
 Route13Beauty1BattleText:
-	text_far _Route13Beauty1BattleText
-	text_end
+	text "あら<……>　ぼうや"
+	line "あいて　して　あげても　いいわよ"
+	done
 
 Route13Beauty1EndBattleText:
-	text_far _Route13Beauty1EndBattleText
-	text_end
+	text "つよい！"
+	line "おとこ　らしいわね！"
+	prompt
 
 Route13Beauty1AfterBattleText:
-	text_far _Route13Beauty1AfterBattleText
-	text_end
+	text "#の　せかい　では"
+	line "オス　と　メス"
+	cont "どちらが　つよいの　かしら"
+	done
 
 Route13Beauty2Text:
 	text_asm
@@ -186,16 +209,20 @@ Route13Beauty2Text:
 	jp TextScriptEnd
 
 Route13Beauty2BattleText:
-	text_far _Route13Beauty2BattleText
-	text_end
+	text "わたしと　#　したいの？"
+	done
 
 Route13Beauty2EndBattleText:
-	text_far _Route13Beauty2EndBattleText
-	text_end
+	text "<……>　もう"
+	line "おわっちゃったのね"
+	prompt
 
 Route13Beauty2AfterBattleText:
-	text_far _Route13Beauty2AfterBattleText
-	text_end
+	text "わたし　ほんとは　#"
+	line "よく　わからないの"
+	cont "つかう　#も"
+	cont "かっこう　だけで　きめちゃうのよ"
+	done
 
 Route13BikerText:
 	text_asm
@@ -204,16 +231,18 @@ Route13BikerText:
 	jp TextScriptEnd
 
 Route13BikerBattleText:
-	text_far _Route13BikerBattleText
-	text_end
+	text "っだよ！　っせーな！"
+	done
 
 Route13BikerEndBattleText:
-	text_far _Route13BikerEndBattleText
-	text_end
+	text "ったくよ！"
+	line "っざけんなよ！"
+	prompt
 
 Route13BikerAfterBattleText:
-	text_far _Route13BikerAfterBattleText
-	text_end
+	text "っせーな！"
+	line "あっち　いけよ！"
+	done
 
 Route13CooltrainerM3Text:
 	text_asm
@@ -222,25 +251,37 @@ Route13CooltrainerM3Text:
 	jp TextScriptEnd
 
 Route13CooltrainerM3BattleText:
-	text_far _Route13CooltrainerM3BattleText
-	text_end
+	text "ずーッと　とり　#に"
+	line "こだわって　きた　ぼくです！"
+	done
 
 Route13CooltrainerM3EndBattleText:
-	text_far _Route13CooltrainerM3EndBattleText
-	text_end
+	text "ちから　つきた<……>"
+	prompt
 
 Route13CooltrainerM3AfterBattleText:
-	text_far _Route13CooltrainerM3AfterBattleText
-	text_end
+	text "あーあ<……>　ぼくも"
+	line "ポッポや　ビジョンの　ように"
+	cont "そらを　とんで　いきたい"
+	done
 
 Route13TrainerTips1Text:
-	text_far _Route13TrainerTips1Text
-	text_end
+	text "<……>　おとくな　けいじばん！"
+
+	para "そこ　そこ！"
+	line "くいを　はさんで　ひだり　がわ"
+	done
 
 Route13TrainerTips2Text:
-	text_far _Route13TrainerTips2Text
-	text_end
+	text "<……>　おとくな　けいじばん！"
+
+	para "どうぐ　ウィンドウで"
+	line "セレクト　ボタンを　おすと"
+	cont "どうぐの　ばしょを"
+	cont "いれかえる　ことが　できる！"
+	done
 
 Route13SignText:
-	text_far _Route13SignText
-	text_end
+	text "ここは　１３ばん　どうろ"
+	line "きた　<……>　サイレンズ　ブりッジ"
+	done

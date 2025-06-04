@@ -15,13 +15,6 @@ PrintBCDNumber::
 	ld b, c ; save flags in b
 	res BIT_LEADING_ZEROES, c
 	res BIT_LEFT_ALIGN, c
-	res BIT_MONEY_SIGN, c ; c now holds the length
-	bit BIT_MONEY_SIGN, b
-	jr z, .loop
-	bit BIT_LEADING_ZEROES, b
-	jr nz, .loop
-	ld [hl], "¥"
-	inc hl
 .loop
 	ld a, [de]
 	swap a
@@ -38,12 +31,7 @@ PrintBCDNumber::
 	jr nz, .skipRightAlignmentAdjustment
 	dec hl ; if the string is right-aligned, it needs to be moved back one space
 .skipRightAlignmentAdjustment
-	bit BIT_MONEY_SIGN, b
-	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
-	inc hl
-.skipCurrencySymbol
-	ld [hl], "0"
+	ld [hl], "０"
 	call PrintLetterDelay
 	inc hl
 .done
@@ -53,16 +41,6 @@ PrintBCDDigit::
 	and $f
 	and a
 	jr z, .zeroDigit
-.nonzeroDigit
-	bit BIT_LEADING_ZEROES, b
-	jr z, .outputDigit
-; if bit 7 is set, then no numbers have been printed yet
-	bit BIT_MONEY_SIGN, b
-	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
-	inc hl
-	res BIT_MONEY_SIGN, b
-.skipCurrencySymbol
 	res BIT_LEADING_ZEROES, b
 .outputDigit
 	add "0"

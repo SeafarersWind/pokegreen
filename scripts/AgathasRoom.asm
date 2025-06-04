@@ -135,17 +135,40 @@ AgathasRoomAgathaText:
 	jp TextScriptEnd
 
 AgathaBeforeBattleText:
-	text_far _AgathaBeforeBattleText
-	text_end
+	text "あたしは　してんのうの　キクコ！"
+
+	para "あんた　オーキドの　ジジイに"
+	line "かわいがられてんだって！"
+
+	para "ジジイ　むかしは　つよくて"
+	line "いい　おとこ　だった！"
+	cont "いまじゃ　みる　かげも　ないがね！"
+
+	para "#　ずかん"
+	line "つくってる　ようじゃ　だめだ！"
+	cont "#は　たたかわせる　ものさ"
+
+	para "<PLAYER><……>！　あんたにも"
+	line "ホントの　たたかいって　ものを"
+	cont "おしえて　やる！"
+	done
 
 AgathaEndBattleText:
-	text_far _AgathaEndBattleText
-	text_end
+	text "ほっほう！"
+	line "たいした　もんだよ！"
+	prompt
 
 AgathaAfterBattleText:
-	text_far _AgathaAfterBattleText
-	text_end
+	text "あんたの　かち　だ！"
+	line "ジジイが　めを　つける　だけの"
+	cont "ことは　ある！"
+
+	para "もう　これ　いじょう"
+	line "あたしが　いう　ことは　ない！"
+	cont "つぎの　へやに　すすみな！"
+	done
 
 AgathasRoomAgathaDontRunAwayText:
-	text_far _AgathasRoomAgathaDontRunAwayText
-	text_end
+	text "だれかの　こえが　きこえる<……>"
+	line "「にげては　ならん！」"
+	done

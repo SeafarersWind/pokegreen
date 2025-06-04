@@ -447,6 +447,7 @@ FishingAnim:
 	call PrintText
 	ld hl, wMovementFlags
 	res BIT_LEDGE_OR_FISHING, [hl]
+	call LoadPlayerSpriteGraphics
 	call LoadFontTilePatterns
 	ret
 
@@ -457,16 +458,17 @@ FishingAnim:
 	ret
 
 NoNibbleText:
-	text_far _NoNibbleText
-	text_end
+	text "つれないなー<……>"
+	prompt
 
 NothingHereText:
-	text_far _NothingHereText
-	text_end
+	text "なにも　いない　みたい<……>"
+	prompt
 
 ItsABiteText:
-	text_far _ItsABiteText
-	text_end
+	text "おっ！"
+	line "ひいてる　ひいてる！"
+	prompt
 
 FishingRodOAM:
 ; specifies how the fishing rod should be drawn on the screen

@@ -105,12 +105,16 @@ SilphCo5FSilphWorkerMText:
 	jp TextScriptEnd
 
 .ThatsYouRightText:
-	text_far _SilphCo5FSilphWorkerMThatsYouRightText
-	text_end
+	text "だれか　ビルに　しのび　こんだと"
+	line "<ROCKET>が　さわいでる"
+	cont "<……>　きみの　こと　らしいね"
+	done
 
 .YoureOurHeroText:
-	text_far _SilphCo5FSilphWorkerMYoureOurHeroText
-	text_end
+	text "<ROCKET>は　にげたよ！"
+	line "きみが　おっぱらったのかい"
+	cont "<……>　ありがとう！"
+	done
 
 SilphCo5FRocket1Text:
 	text_asm
@@ -119,16 +123,19 @@ SilphCo5FRocket1Text:
 	jp TextScriptEnd
 
 SilphCo5FRocket1BattleText:
-	text_far _SilphCo5FRocket1BattleText
-	text_end
+	text "こどもが　うろついてると"
+	line "さっき　れんらくが　あったぜ！"
+	done
 
 SilphCo5FRocket1EndBattleText:
-	text_far _SilphCo5FRocket1EndBattleText
-	text_end
+	text "ばったり<……>"
+	prompt
 
 SilphCo5FRocket1AfterBattleText:
-	text_far _SilphCo5FRocket1AfterBattleText
-	text_end
+	text "<ROCKET>に"
+	line "たてつかない　ほうが"
+	cont "みのため　だぜ"
+	done
 
 SilphCo5FScientistText:
 	text_asm
@@ -137,16 +144,21 @@ SilphCo5FScientistText:
 	jp TextScriptEnd
 
 SilphCo5FScientistBattleText:
-	text_far _SilphCo5FScientistBattleText
-	text_end
+	text "この　フロアは"
+	line "モンスターボールの"
+	cont "けんきゅう　セクションだ！"
+	done
 
 SilphCo5FScientistEndBattleText:
-	text_far _SilphCo5FScientistEndBattleText
-	text_end
+	text "ちくしょう！"
+	prompt
 
 SilphCo5FScientistAfterBattleText:
-	text_far _SilphCo5FScientistAfterBattleText
-	text_end
+	text "ここでは<……>"
+	line "でんせつの　#さえ　とれる"
+	cont "きゅうきょくの　モンスターボールを"
+	cont "けんきゅう　してたのだ"
+	done
 
 SilphCo5FRockerText:
 	text_asm
@@ -155,16 +167,20 @@ SilphCo5FRockerText:
 	jp TextScriptEnd
 
 SilphCo5FRockerBattleText:
-	text_far _SilphCo5FRockerBattleText
-	text_end
+	text "おかしいな？"
+	line "こどもが　はいって　これる"
+	cont "わけが　ないんだが"
+	done
 
 SilphCo5FRockerEndBattleText:
-	text_far _SilphCo5FRockerEndBattleText
-	text_end
+	text "こりゃ　いかん"
+	prompt
 
 SilphCo5FRockerAfterBattleText:
-	text_far _SilphCo5FRockerAfterBattleText
-	text_end
+	text "ここは　５かい<……>"
+	line "ボスの　いる　ところ　まで"
+	cont "まだまだ　あるぜ！"
+	done
 
 SilphCo5FRocket2Text:
 	text_asm
@@ -173,25 +189,42 @@ SilphCo5FRocket2Text:
 	jp TextScriptEnd
 
 SilphCo5FRocket2BattleText:
-	text_far _SilphCo5FRocket2BattleText
-	text_end
+	text "<ROCKET>　あいてに"
+	line "なめた　まねして　くれるぜ"
+	done
 
 SilphCo5FRocket2EndBattleText:
-	text_far _SilphCo5FRocket2EndBattleText
-	text_end
+	text "ふん　たまたまだ！"
+	prompt
 
 SilphCo5FRocket2AfterBattleText:
-	text_far _SilphCo5FRocket2AfterBattleText
-	text_end
+	text "たまたま<……>　おもいだした！"
+
+	para "タマタマは"
+	line "ナッシーに　しんか　するぞ"
+	done
 
 SilphCo5FPokemonReport1Text:
-	text_far _SilphCo5FPokemonReport1Text
-	text_end
+	text "<……>　#　レポートだ！"
+
+	para "#　けんきゅうじょ　では"
+	line "じんこうの　#"
+	cont "ポりゴンを　つくる　ことに"
+	cont "せいこう　した<……>　<……>"
+	done
 
 SilphCo5FPokemonReport2Text:
-	text_far _SilphCo5FPokemonReport2Text
-	text_end
+	text "<……>　#　レポートだ！"
+
+	para "#が　つかう　わざは"
+	line "げんざい　わかって　いるだけで"
+	cont "１６０しゅるい　いじょうある"
+	done
 
 SilphCo5FPokemonReport3Text:
-	text_far _SilphCo5FPokemonReport3Text
-	text_end
+	text "<……>　#　レポートだ！"
+
+	para "こうかん　ケーブルを　とおすと"
+	line "しんかする　#が"
+	cont "４しゅるい　かくにん　された"
+	done

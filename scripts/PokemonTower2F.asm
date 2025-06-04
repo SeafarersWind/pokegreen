@@ -174,21 +174,56 @@ PokemonTower2FRivalText:
 	jp TextScriptEnd
 
 .WhatBringsYouHereText:
-	text_far _PokemonTower2FRivalWhatBringsYouHereText
-	text_end
+	text "<RIVAL><BOLD_P>おう！　<PLAYER>！"
+	line "こんな　ところへ"
+	cont "なにしに　きたんだよ？"
+	cont "おまえの　#　しんだのか？"
+	cont "<……>あほか！　いきてる　じゃん"
+
+	para "だったら　せめて"
+	line "せんとう　ふのうに　してやるか！"
+	cont "かかって　こいよ！"
+	done
 
 .DefeatedText:
-	text_far _PokemonTower2FRivalDefeatedText
-	text_end
+	text "あ！　ちくしょう！"
+	line "やりやがったなー！"
+
+	para "せっかく　てかげん　してやったのに"
+	prompt
 
 .VictoryText:
-	text_far _PokemonTower2FRivalVictoryText
-	text_end
+	text "<RIVAL><BOLD_P>あーあ<……>！"
+	line "ほんとに　くたばっちまったぞ！"
+	cont "よわいなー！"
+	cont "もっと　ちゃんと　そだてて　やれよ"
+	prompt
 
 .HowsYourDexText:
-	text_far _PokemonTower2FRivalHowsYourDexText
-	text_end
+	text "おい　ところで<……>！"
+	cont "#ずかんは　どうだよ？"
+	cont "おれなんか　カラカラ"
+	cont "みつけた　もんね！"
+
+	para "おっきい　ほうの　ガラガラが"
+	line "みつからねえんだ！"
+	cont "どこかなー？"
+
+	para "ああー　きっと"
+	line "もう　このへんには　いないな！"
+	cont "じゃ　おれ　もう　いくわ！"
+	cont "おまえと　ちがって"
+	cont "おれ　いそがしいからよ！"
+
+	para "じゃーな！"
+	done
 
 PokemonTower2FChannelerText:
-	text_far _PokemonTower2FChannelerText
-	text_end
+	text "おぬし！　まよい　さまよう"
+	line "ゆうれいの　しょうたいは<……>"
+	cont "われわれでも　つかめない！"
+
+	para "もし　とくべつな　どうぐが<……>"
+	line "シルフ　スコープさえ　あれば"
+	cont "みやぶれるかも　しれないが<……>"
+	done

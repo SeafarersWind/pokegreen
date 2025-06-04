@@ -1,31 +1,29 @@
-PokemonLogoGraphics: INCBIN "gfx/title/pokemon_logo.2bpp"
-FontGraphics:: INCBIN "gfx/font/font.1bpp"
+PokemonLogoGraphics: INCBIN "gfx/title/pokemon_logo_rg.2bpp"
+FontGraphics:: INCBIN "gfx/font/font_rg.1bpp"
 FontGraphicsEnd::
 
 ABTiles: INCBIN "gfx/font/AB.2bpp"
 
-HpBarAndStatusGraphics:: INCBIN "gfx/font/font_battle_extra.2bpp"
+HpBarAndStatusGraphics:: INCBIN "gfx/font/font_battle_extra_rg.2bpp"
 HpBarAndStatusGraphicsEnd::
 
-BattleHudTiles1: INCBIN "gfx/battle/battle_hud_1.1bpp"
+BattleHudTiles1: INCBIN "gfx/battle/battle_hud_1_rg.1bpp"
 BattleHudTiles1End:
 BattleHudTiles2: INCBIN "gfx/battle/battle_hud_2.1bpp"
 BattleHudTiles3: INCBIN "gfx/battle/battle_hud_3.1bpp"
 BattleHudTiles3End:
 
-NintendoCopyrightLogoGraphics: INCBIN "gfx/splash/copyright.2bpp"
+CopyrightLogoGraphics: INCBIN "gfx/splash/copyright_rg.2bpp"
+CopyrightLogoGraphicsEnd:
 
-GameFreakLogoGraphics: INCBIN "gfx/title/gamefreak_inc.2bpp"
-GameFreakLogoGraphicsEnd:
-
-TextBoxGraphics:: INCBIN "gfx/font/font_extra.2bpp"
+TextBoxGraphics:: INCBIN "gfx/font/font_extra_rg.2bpp"
 TextBoxGraphicsEnd::
 
-PokedexTileGraphics: INCBIN "gfx/pokedex/pokedex.2bpp"
+PokedexTileGraphics: INCBIN "gfx/pokedex/pokedex_rg.2bpp"
 PokedexTileGraphicsEnd:
 
 WorldMapTileGraphics: INCBIN "gfx/town_map/town_map.2bpp"
 WorldMapTileGraphicsEnd:
 
-PlayerCharacterTitleGraphics: INCBIN "gfx/title/player.2bpp"
+PlayerCharacterTitleGraphics: INCBIN "gfx/title/player_rg.2bpp"
 PlayerCharacterTitleGraphicsEnd:

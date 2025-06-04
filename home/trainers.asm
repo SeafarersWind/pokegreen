@@ -31,7 +31,7 @@ ExecuteCurMapScriptInTable::
 LoadGymLeaderAndCityName::
 	push de
 	ld de, wGymCityName
-	ld bc, $11
+	ld bc, 5
 	call CopyData   ; load city name
 	pop hl
 	ld de, wGymLeaderName
@@ -379,7 +379,8 @@ GetSavedEndBattleTextPointer::
 	ret
 
 TrainerEndBattleText::
-	text_far _TrainerNameText
+	text_ram wNameBuffer
+	text "<BOLD_P>@"
 	text_asm
 	call GetSavedEndBattleTextPointer
 	call TextCommandProcessor

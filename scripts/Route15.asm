@@ -105,125 +105,166 @@ Route15TalkToTrainer:
 	jp TextScriptEnd
 
 Route15CooltrainerF1BattleText:
-	text_far _Route15CooltrainerF1BattleText
-	text_end
+	text "ともだちと　こうかん　した"
+	line "おきにいりで　しょうぶ　するわ！"
+	done
 
 Route15CooltrainerF1EndBattleText:
-	text_far _Route15CooltrainerF1EndBattleText
-	text_end
+	text "だめだわ！"
+	prompt
 
 Route15CooltrainerF1AfterBattleText:
-	text_far _Route15CooltrainerF1AfterBattleText
-	text_end
+	text "ともだちと　こうかん　した"
+	line "#の　ニックネーム"
+	cont "たとえ　きに　いらなくても<……>"
+	cont "とった　ひとで　ないと"
+	cont "つけ　なおせない　のよね！"
+	done
 
 Route15CooltrainerF2BattleText:
-	text_far _Route15CooltrainerF2BattleText
-	text_end
+	text "きみ　やさしそう　だから"
+	line "まける　きが　しない！"
+	cont "しょうぶ　してみるわ！"
+	done
 
 Route15CooltrainerF2EndBattleText:
-	text_far _Route15CooltrainerF2EndBattleText
-	text_end
+	text "あれ？　まけたの？"
+	prompt
 
 Route15CooltrainerF2AfterBattleText:
-	text_far _Route15CooltrainerF2AfterBattleText
-	text_end
+	text "ぼうそうぞく<……>"
+	line "よく　みかける　けど"
+	cont "こわそうで　いやだわ"
+	done
 
 Route15CooltrainerM1BattleText:
-	text_far _Route15CooltrainerM1BattleText
-	text_end
+	text "ぼくが　くちぶえ　ふいたり　すると"
+	line "とり　#が"
+	cont "とんで　きたり　するんだぜ！"
+	done
 
 Route15CooltrainerM1EndBattleText:
-	text_far _Route15CooltrainerM1EndBattleText
-	text_end
+	text "ふッ　かなしいね！"
+	prompt
 
 Route15CooltrainerM1AfterBattleText:
-	text_far _Route15CooltrainerM1AfterBattleText
-	text_end
+	text "ぼくの　ような　タイプは"
+	line "しょうぶ　ごと　には"
+	cont "むいて　ないのかなあ<……>"
+	done
 
 Route15CooltrainerM2BattleText:
-	text_far _Route15CooltrainerM2BattleText
-	text_end
+	text "おや<……>？"
+	line "とりが　ふるえてる！"
+	cont "おまえ　もしかして<……>　つよいな？"
+	done
 
 Route15CooltrainerM2EndBattleText:
-	text_far _Route15CooltrainerM2EndBattleText
-	text_end
+	text "おもった　とおりだ"
+	prompt
 
 Route15CooltrainerM2AfterBattleText:
-	text_far _Route15CooltrainerM2AfterBattleText
-	text_end
+	text "あったり　まえ　だけどさ<……>"
+	line "とり　#は"
+	cont "じしん　や　じわれ　には　つよいよ"
+	done
 
 Route15Beauty1BattleText:
-	text_far _Route15Beauty1BattleText
-	text_end
+	text "あらーん！"
+	line "#　みたいに"
+	cont "かわいい　おとこのこ　ね！"
+	done
 
 Route15Beauty1EndBattleText:
-	text_far _Route15Beauty1EndBattleText
-	text_end
+	text "ゆだん　しちゃった"
+	prompt
 
 Route15Beauty1AfterBattleText:
-	text_far _Route15Beauty1AfterBattleText
-	text_end
+	text "くやしい　けど"
+	line "おねえさんは　おとな　だから"
+	cont "ゆるして　あげるわね"
+	done
 
 Route15Beauty2BattleText:
-	text_far _Route15Beauty2BattleText
-	text_end
+	text "あのね<……>！"
+	line "わたしは　ひとり　ぐらし　だから"
+	cont "#　かってる　わけ！"
+	done
 
 Route15Beauty2EndBattleText:
-	text_far _Route15Beauty2EndBattleText
-	text_end
+	text "<……>　#は"
+	line "かち　まけ　じゃ　ないわ"
+	prompt
 
 Route15Beauty2AfterBattleText:
-	text_far _Route15Beauty2AfterBattleText
-	text_end
+	text "そう<……>！"
+	line "うちに　かえった　とき"
+	cont "#が　いると　ほっと　するの"
+	done
 
 Route15Biker1BattleText:
-	text_far _Route15Biker1BattleText
-	text_end
+	text "こら　ぼうず！　しょうぶだ！"
+	line "その　へんの　やつ　から"
+	cont "むりやり　とって　きたぜ！"
+	done
 
 Route15Biker1EndBattleText:
-	text_far _Route15Biker1EndBattleText
-	text_end
+	text "なっとく　いかねえ"
+	prompt
 
 Route15Biker1AfterBattleText:
-	text_far _Route15Biker1AfterBattleText
-	text_end
+	text "みじかい　じんせい<……>！"
+	line "ワルの　ほうが　かっこいいぜ！"
+	cont "<ROCKET>　みたいに　な！"
+	done
 
 Route15Biker2BattleText:
-	text_far _Route15Biker2BattleText
-	text_end
+	text "おうッ！"
+	line "まけたら　ありがね　ぜんぶ！"
+	cont "おいて　いって　もらおうか！"
+	done
 
 Route15Biker2EndBattleText:
-	text_far _Route15Biker2EndBattleText
-	text_end
+	text "そりゃ　ねえだろ"
+	prompt
 
 Route15Biker2AfterBattleText:
-	text_far _Route15Biker2AfterBattleText
-	text_end
+	text "ありがね　おいてく　なんて"
+	line "じょうだんに　きまってる　だろ！"
+	cont "かるい　じょうだんだ！"
+	done
 
 Route15CooltrainerF3BattleText:
-	text_far _Route15CooltrainerF3BattleText
-	text_end
+	text "さいきん　はやってる　こと<……>？"
+	line "そうねえ<……>！"
+	cont "#の　こうかん　かな！"
+	done
 
 Route15CooltrainerF3EndBattleText:
-	text_far _Route15CooltrainerF3EndBattleText
-	text_end
+	text "もうッ<……>！"
+	line "しょうぶ　じゃ　なくて　こうかんよ"
+	prompt
 
 Route15CooltrainerF3AfterBattleText:
-	text_far _Route15CooltrainerF3AfterBattleText
-	text_end
+	text "よく　わたしも　おともだちと"
+	line "#　こうかん　するわ！"
+	done
 
 Route15CooltrainerF4BattleText:
-	text_far _Route15CooltrainerF4BattleText
-	text_end
+	text "しようよ　しようよ"
+	line "#　しようよーッ！"
+	done
 
 Route15CooltrainerF4EndBattleText:
-	text_far _Route15CooltrainerF4EndBattleText
-	text_end
+	text "しょうぶ　あせり　すぎたわ"
+	prompt
 
 Route15CooltrainerF4AfterBattleText:
-	text_far _Route15CooltrainerF4AfterBattleText
+	text "もう　すこし　よわい　ひとと"
+	line "れんしゅう　して　くるよ@"
 	text_end
 
 Route15SignText:
-	text_far _Route15SignText
-	text_end
+	text "ここは　１５ばん　どうろ"
+	line "にし　<……>　セキチク　シティ"
+	done

@@ -161,23 +161,55 @@ OakSpeech:
 	call GBFadeOutToWhite
 	jp ClearScreen
 OakSpeechText1:
-	text_far _OakSpeechText1
-	text_end
+	text "はじめまして！"
+	line "ポケット　モンスターの　せかいへ"
+	cont "ようこそ！"
+
+	para "わたしの　なまえは　オーキド"
+	line "みんなからは　#　はかせと"
+	cont "したわれて　おるよ"
+	prompt
 OakSpeechText2:
-	text_far _OakSpeechText2A
+	text "この　せかいには"
+	line "ポケット　モンスターと　よばれる"
+
+	para "いきもの　たちが"
+	line "いたるところに　すんでいる！@"
 	; BUG: The cry played does not match the sprite displayed.
 	sound_cry_nidorina
-	text_far _OakSpeechText2B
-	text_end
+	text_start
+
+	para "その　#　という　いきものを"
+	line "ひとは　ぺットに　したり"
+	cont "しょうぶに　つかったり№№№"
+
+	para "そして№№№"
+
+	para "わたしは　この　#の"
+	line "けんきゅうを　してる　というわけだ"
+	prompt
 IntroducePlayerText:
-	text_far _IntroducePlayerText
-	text_end
+	text "では　はじめに　きみの　なまえを"
+	line "おしえて　もらおう！"
+	prompt
 IntroduceRivalText:
-	text_far _IntroduceRivalText
-	text_end
+	text "こいつは　わたしの　まご"
+	line "きみの　おさななじみであり"
+	cont "ライバル　である"
+
+	para "№№№えーと？"
+	line "なまえは　なんて　いったかな？"
+	prompt
 OakSpeechText3:
-	text_far _OakSpeechText3
-	text_end
+	text "<PLAYER>！"
+
+	para "いよいよ　これから　"
+	line "きみの　ものがたりの　はじまりだ！"
+
+	para "ゆめと　ぼうけんと！"
+	line "ポケット　モンスターの　せかいへ！"
+	cont "レッツ　ゴー！"
+	done
 
 FadeInIntroPic:
 	ld hl, IntroFadePalettes

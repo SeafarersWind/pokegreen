@@ -61,13 +61,8 @@ PlaceNextChar::
 .NotTerminator
 	cp "<NEXT>"
 	jr nz, .NotNext
-	ld bc, 2 * SCREEN_WIDTH
-	ldh a, [hUILayoutFlags]
-	bit BIT_SINGLE_SPACED_LINES, a
-	jr z, .ok
-	ld bc, SCREEN_WIDTH
-.ok
 	pop hl
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	push hl
 	jp NextChar
@@ -87,7 +82,6 @@ PlaceNextChar::
 	dict "<SCROLL>",  _ContTextNoPause
 	dict "<_CONT>",   _ContText
 	dict "<PARA>",    Paragraph
-	dict "<PAGE>",    PageChar
 	dict "<PLAYER>",  PrintPlayerName
 	dict "<RIVAL>",   PrintRivalName
 	dict "#",         PlacePOKe
@@ -99,11 +93,65 @@ PlaceNextChar::
 	dict "<……>",      SixDotsChar
 	dict "<DONE>",    DoneText
 	dict "<PROMPT>",  PromptText
-	dict "<PKMN>",    PlacePKMN
-	dict "<DEXEND>",  PlaceDexEnd
 	dict "<TARGET>",  PlaceMoveTargetsName
 	dict "<USER>",    PlaceMoveUsersName
 
+	; Japanese-specific alterations
+	; The labels named here are probably not perfectly accurate to their function
+	cp "ﾟ"
+	jr z, .Dakuten
+	cp "ﾞ"
+	jr nz, .NotDakuten
+	
+.Dakuten
+	push hl
+	ld bc, -SCREEN_WIDTH ; one tile up
+	add hl, bc
+	ld [hl], a
+	pop hl
+	jr NextChar
+
+.NotDakuten
+	cp a, "′"
+	jr nc, .Apostrophe
+	cp a, "パ"
+	jr nc, .Handakuten
+	cp a, $20
+	jr nc, .SmallLetter
+	add a, "ア"
+	jr .Katakana
+
+.SmallLetter
+	add a, "ィ" - $20
+.Katakana
+	push af
+	ld a, "ﾞ"
+	push hl
+	ld bc, -SCREEN_WIDTH ; one tile up
+	add hl, bc
+	ld [hl], a
+	pop hl
+	pop af
+	jr .Apostrophe
+
+.Handakuten
+	cp a, "ぱ"
+	jr nc, .HiraganaHandakuten
+	add a, $59
+	jr .KatakanaHandakuten
+.HiraganaHandakuten
+	add a, $86
+.KatakanaHandakuten
+	push af
+	ld a, $E4
+	push hl
+	ld bc, -SCREEN_WIDTH ; one tile up
+	add hl, bc
+	ld [hl], a
+	pop hl
+	pop af
+
+.Apostrophe::
 	ld [hli], a
 	call PrintLetterDelay
 
@@ -124,8 +172,9 @@ NullChar::
 	ret
 
 TextIDErrorText:: ; "[hTextID] ERROR."
-	text_far _TextIDErrorText
-	text_end
+	text_decimal hTextID, 1, 2
+	text "エラー"
+	done
 
 MACRO print_name
 	push de
@@ -142,7 +191,6 @@ PCChar::      print_name PCCharText
 RocketChar::  print_name RocketCharText
 PlacePOKe::   print_name PlacePOKeText
 SixDotsChar:: print_name SixDotsCharText
-PlacePKMN::   print_name PlacePKMNText
 
 PlaceMoveTargetsName::
 	ldh a, [hWhoseTurn]
@@ -176,14 +224,13 @@ PlaceCommandCharacter::
 	inc de
 	jp PlaceNextChar
 
-TMCharText::      db "TM@"
-TrainerCharText:: db "TRAINER@"
-PCCharText::      db "PC@"
-RocketCharText::  db "ROCKET@"
-PlacePOKeText::   db "POKé@"
-SixDotsCharText:: db "……@"
-EnemyText::       db "Enemy @"
-PlacePKMNText::   db "<PK><MN>@"
+TMCharText::      db "わざマシン@"
+TrainerCharText:: db "トレーナー@"
+PCCharText::      db "パソコン@"
+RocketCharText::  db "ロケットだん@"
+PlacePOKeText::   db "ポケモン@"
+SixDotsCharText:: db "⋯⋯@"
+EnemyText::       db "てきの　@"
 
 ContText::
 	push de
@@ -198,13 +245,8 @@ ContText::
 	jp PlaceNextChar
 
 ContCharText::
-	text_far _ContCharText
+	text "<_CONT>@"
 	text_end
-
-PlaceDexEnd::
-	ld [hl], "."
-	pop hl
-	ret
 
 PromptText::
 	ld a, [wLinkState]
@@ -240,23 +282,6 @@ Paragraph::
 	call DelayFrames
 	pop de
 	hlcoord 1, 14
-	jp NextChar
-
-PageChar::
-	push de
-	ld a, "▼"
-	ldcoord_a 18, 16
-	call ProtectedDelay3
-	call ManualTextScroll
-	hlcoord 1, 10
-	lb bc, 7, 18
-	call ClearScreenArea
-	ld c, 20
-	call DelayFrames
-	pop de
-	pop hl
-	hlcoord 1, 11
-	push hl
 	jp NextChar
 
 _ContText::
@@ -316,9 +341,6 @@ TextCommandProcessor::
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	set BIT_TEXT_DELAY, a
-	ld e, a
-	ldh a, [hClearLetterPrintingDelayFlags]
-	xor e
 	ld [wLetterPrintingDelayFlags], a
 	ld a, c
 	ld [wTextDest], a
@@ -335,10 +357,6 @@ NextTextCommand::
 
 .TextCommand:
 	push hl
-	cp TX_FAR
-	jp z, TextCommand_FAR
-	cp TX_SOUND_POKEDEX_RATING
-	jp nc, TextCommand_SOUND
 	ld hl, TextCommandJumpTable
 	push bc
 	add a
@@ -591,32 +609,6 @@ TextCommand_WAIT_BUTTON::
 	pop hl
 	jp NextTextCommand
 
-TextCommand_FAR::
-; write text from a different bank (little endian)
-	pop hl
-	ldh a, [hLoadedROMBank]
-	push af
-
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-
-	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
-
-	push hl
-	ld l, e
-	ld h, d
-	call TextCommandProcessor
-	pop hl
-
-	pop af
-	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
-	jp NextTextCommand
-
 TextCommandJumpTable::
 ; entries correspond to TX_* constants (see macros/scripts/text.asm)
 	dw TextCommand_START         ; TX_START
@@ -637,4 +629,7 @@ ENDC
 	dw TextCommand_SOUND         ; TX_SOUND_GET_ITEM_1 (also handles other TX_SOUND_* commands)
 	dw TextCommand_DOTS          ; TX_DOTS
 	dw TextCommand_WAIT_BUTTON   ; TX_WAIT_BUTTON
+REPT 9
+	dw TextCommand_SOUND         ; TX_SOUND_GET_ITEM
+ENDR
 	; greater TX_* constants are handled directly by NextTextCommand

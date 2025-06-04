@@ -104,16 +104,7 @@ TransformEffect_:
 	inc de
 	dec b
 	jr nz, .copyPPLoop
-	jr .copyStats
 .lessThanFourMoves
-; 0 PP for blank moves
-	xor a
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .lessThanFourMoves
-.copyStats
-; original (unmodified) stats and stat mods
 	pop hl
 	ld a, [hl]
 	ld [wNamedObjectIndex], a
@@ -144,5 +135,8 @@ TransformEffect_:
 	jp EffectCallBattleCore
 
 TransformedText:
-	text_far _TransformedText
-	text_end
+	text "<USER>は"
+	line "@"
+	text_ram wNameBuffer
+	text "に　へんしんした！"
+	prompt

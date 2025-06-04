@@ -15,7 +15,7 @@ _AddPartyMon::
 	ret nc ; return if the party is already full
 	ld [de], a
 	ld a, [de]
-	ldh [hNewPartyLength], a
+	ld [hNewPartyLength], a
 	add e
 	ld e, a
 	jr nc, .noCarry
@@ -32,7 +32,7 @@ _AddPartyMon::
 	jr z, .next2
 	ld hl, wEnemyMonOT
 .next2
-	ldh a, [hNewPartyLength]
+	ld a, [hNewPartyLength]
 	dec a
 	call SkipFixedLengthTextEntries
 	ld d, h
@@ -44,7 +44,7 @@ _AddPartyMon::
 	and a
 	jr nz, .skipNaming
 	ld hl, wPartyMonNicks
-	ldh a, [hNewPartyLength]
+	ld a, [hNewPartyLength]
 	dec a
 	call SkipFixedLengthTextEntries
 	ld a, NAME_MON_SCREEN
@@ -57,7 +57,7 @@ _AddPartyMon::
 	jr z, .next3
 	ld hl, wEnemyMons
 .next3
-	ldh a, [hNewPartyLength]
+	ld a, [hNewPartyLength]
 	dec a
 	ld bc, wPartyMon2 - wPartyMon1
 	call AddNTimes

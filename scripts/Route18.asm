@@ -38,16 +38,19 @@ Route18CooltrainerM1Text:
 	jp TextScriptEnd
 
 Route18CooltrainerM1BattleText:
-	text_far _Route18CooltrainerM1BattleText
-	text_end
+	text "こういう　くさむらを　みつけては"
+	line "あたらしい　#　いないか"
+	cont "さがしてるのさ！"
+	done
 
 Route18CooltrainerM1EndBattleText:
-	text_far _Route18CooltrainerM1EndBattleText
-	text_end
+	text "あう<……>！"
+	prompt
 
 Route18CooltrainerM1AfterBattleText:
-	text_far _Route18CooltrainerM1AfterBattleText
-	text_end
+	text "じてんしゃ　もって　いたら"
+	line "ぼくも　サイクりング　したい"
+	done
 
 Route18CooltrainerM2Text:
 	text_asm
@@ -56,16 +59,20 @@ Route18CooltrainerM2Text:
 	jp TextScriptEnd
 
 Route18CooltrainerM2BattleText:
-	text_far _Route18CooltrainerM2BattleText
-	text_end
+	text "クルック<……>ッ！"
+	line "どう？　ぼくの　ゆびぶえ！"
+	done
 
 Route18CooltrainerM2EndBattleText:
-	text_far _Route18CooltrainerM2EndBattleText
-	text_end
+	text "きじも　なかずば"
+	line "うたれまいに　って　ことか"
+	prompt
 
 Route18CooltrainerM2AfterBattleText:
-	text_far _Route18CooltrainerM2AfterBattleText
-	text_end
+	text "うみが　ちかい　から"
+	line "しゅうまつは　うみどり　#"
+	cont "つかまえに　くるよ"
+	done
 
 Route18CooltrainerM3Text:
 	text_asm
@@ -74,21 +81,27 @@ Route18CooltrainerM3Text:
 	jp TextScriptEnd
 
 Route18CooltrainerM3BattleText:
-	text_far _Route18CooltrainerM3BattleText
-	text_end
+	text "この　あたりは"
+	line "ぼくらの　なわばりだ！"
+	cont "ちかよらないで　ほしいな！"
+	done
 
 Route18CooltrainerM3EndBattleText:
-	text_far _Route18CooltrainerM3EndBattleText
-	text_end
+	text "<……>　ふう！"
+	prompt
 
 Route18CooltrainerM3AfterBattleText:
-	text_far _Route18CooltrainerM3AfterBattleText
-	text_end
+	text "だれでも　おきにいりの"
+	line "#を　とりに　いく"
+	cont "ばしょが　あるだろ！"
+	done
 
 Route18SignText:
-	text_far _Route18SignText
-	text_end
+	text "ここは　１８ばん　どうろ"
+	line "タマムシ　<……>　セキチク"
+	done
 
 Route18CyclingRoadSignText:
-	text_far _Route18CyclingRoadSignText
-	text_end
+	text "ここは　サイクりング　ロード"
+	line "あるいての　つうこう　きんし"
+	done

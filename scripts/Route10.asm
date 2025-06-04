@@ -49,16 +49,20 @@ Route10SuperNerd1Text:
 	jp TextScriptEnd
 
 Route10SuperNerd1BattleText:
-	text_far _Route10SuperNerd1BattleText
-	text_end
+	text "こんな　とこ　まで　くる　とは"
+	line "きみも　マニア？　<……>　じゃ"
+	cont "ぼくの　コレクション　みる？"
+	done
 
 Route10SuperNerd1EndBattleText:
-	text_far _Route10SuperNerd1EndBattleText
-	text_end
+	text "へーん<……>！"
+	line "くやしく　ないよ！"
+	prompt
 
 Route10SuperNerd1AfterBattleText:
-	text_far _Route10SuperNerd1AfterBattleText
-	text_end
+	text "うちに　かえれば　もっと"
+	line "めずらしい　#　あるもん"
+	done
 
 Route10Hiker1Text:
 	text_asm
@@ -67,16 +71,20 @@ Route10Hiker1Text:
 	jp TextScriptEnd
 
 Route10Hiker1BattleText:
-	text_far _Route10Hiker1BattleText
-	text_end
+	text "はーッ　はっはッ！"
+	done
 
 Route10Hiker1EndBattleText:
-	text_far _Route10Hiker1EndBattleText
-	text_end
+	text "はッ！"
+	line "はーッ　ははッ<……>！　じつは<……>"
+	cont "わらい　キノコ　たべて　しまってな"
+	prompt
 
 Route10Hiker1AfterBattleText:
-	text_far _Route10Hiker1AfterBattleText
-	text_end
+	text "はっはッ！"
+	line "はーッ　はっ　はッ！"
+	cont "<……>　はァ　はァ<……>"
+	done
 
 Route10SuperNerd2Text:
 	text_asm
@@ -85,16 +93,19 @@ Route10SuperNerd2Text:
 	jp TextScriptEnd
 
 Route10SuperNerd2BattleText:
-	text_far _Route10SuperNerd2BattleText
-	text_end
+	text "ねー　ねー！"
+	line "おたく　ぼくの　#　みる？"
+	done
 
 Route10SuperNerd2EndBattleText:
-	text_far _Route10SuperNerd2EndBattleText
-	text_end
+	text "ああー！"
+	line "だいじな　#　ちゃんが！"
+	prompt
 
 Route10SuperNerd2AfterBattleText:
-	text_far _Route10SuperNerd2AfterBattleText
-	text_end
+	text "<……>　ぼく　より"
+	line "つよい　ヤツは　キライ　だもん"
+	done
 
 Route10CooltrainerF1Text:
 	text_asm
@@ -103,16 +114,21 @@ Route10CooltrainerF1Text:
 	jp TextScriptEnd
 
 Route10CooltrainerF1BattleText:
-	text_far _Route10CooltrainerF1BattleText
-	text_end
+	text "わたしも　たまに"
+	line "#　ジムに　いくの！"
+	cont "<……>　<……>　まけちゃう　けどね"
+	done
 
 Route10CooltrainerF1EndBattleText:
-	text_far _Route10CooltrainerF1EndBattleText
-	text_end
+	text "もお<……>！"
+	line "とっくん　したのに"
+	prompt
 
 Route10CooltrainerF1AfterBattleText:
-	text_far _Route10CooltrainerF1AfterBattleText
-	text_end
+	text "ねえ<……>！"
+	line "こんな　やま　みちに"
+	cont "マニアが　いる　のよ<……>　みた？"
+	done
 
 Route10Hiker2Text:
 	text_asm
@@ -121,16 +137,19 @@ Route10Hiker2Text:
 	jp TextScriptEnd
 
 Route10Hiker2BattleText:
-	text_far _Route10Hiker2BattleText
-	text_end
+	text "すーはー　すーはー！"
+	line "やまの　くうきは　うまいッ！"
+	done
 
 Route10Hiker2EndBattleText:
-	text_far _Route10Hiker2EndBattleText
-	text_end
+	text "すーはーッ！"
+	line "あー　まけたわい！"
+	prompt
 
 Route10Hiker2AfterBattleText:
-	text_far _Route10Hiker2AfterBattleText
-	text_end
+	text "やまの　くうき"
+	line "すい　すぎて　はらが　ふくれた！"
+	done
 
 Route10CooltrainerF2Text:
 	text_asm
@@ -139,21 +158,27 @@ Route10CooltrainerF2Text:
 	jp TextScriptEnd
 
 Route10CooltrainerF2BattleText:
-	text_far _Route10CooltrainerF2BattleText
-	text_end
+	text "はァ<……>！"
+	line "やまみち　ひさしぶりに　あるいて"
+	cont "ひんけつ　ぎみ　なの"
+	done
 
 Route10CooltrainerF2EndBattleText:
-	text_far _Route10CooltrainerF2EndBattleText
-	text_end
+	text "<……>　<……>　たいちょうが"
+	line "わるいから　しかた　ないわ"
+	prompt
 
 Route10CooltrainerF2AfterBattleText:
-	text_far _Route10CooltrainerF2AfterBattleText
-	text_end
+	text "やまの　#って"
+	line "ごついの　ばっかり<……>"
+	cont "ピンクの　はながらの"
+	cont "#が　いれば　いいのに"
+	done
 
 Route10RockTunnelSignText:
-	text_far _Route10RockTunnelSignText
-	text_end
+	text "ここは　イワヤマ　トンネル"
+	done
 
 Route10PowerPlantSignText:
-	text_far _Route10PowerPlantSignText
-	text_end
+	text "ここは　むじん　はつでんしょ"
+	done

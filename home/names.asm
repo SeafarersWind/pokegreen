@@ -8,9 +8,13 @@ GetMonName::
 	ld a, [wNamedObjectIndex]
 	dec a
 	ld hl, MonsterNames
-	ld c, NAME_LENGTH - 1
-	ld b, 0
-	call AddNTimes
+	ld e, a
+	ld d, $00
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
 	ld de, wNameBuffer
 	push de
 	ld bc, NAME_LENGTH - 1
@@ -62,11 +66,11 @@ GetMachineName::
 	add NUM_HMS
 	ld [wNamedObjectIndex], a
 	ld hl, HiddenPrefix ; points to "HM"
-	ld bc, 2
+	ld bc, 6
 	jr .WriteMachinePrefix
 .WriteTM
 	ld hl, TechnicalPrefix ; points to "TM"
-	ld bc, 2
+	ld bc, 5
 .WriteMachinePrefix
 	ld de, wNameBuffer
 	call CopyData
@@ -101,9 +105,9 @@ GetMachineName::
 	ret
 
 TechnicalPrefix::
-	db "TM"
+	db "わざマシン"
 HiddenPrefix::
-	db "HM"
+	db "ひでんマシン"
 
 ; sets carry if item is HM, clears carry if item is not HM
 ; Input: a = item ID

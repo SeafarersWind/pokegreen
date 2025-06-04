@@ -117,6 +117,12 @@ INCLUDE "audio/sfx/cry20_1.asm"
 INCLUDE "audio/sfx/cry21_1.asm"
 INCLUDE "audio/sfx/cry22_1.asm"
 
+; padding
+IF DEF(_GREEN)
+	db $b0, $05, $ff, $22, $92, $49, $27, $b5, $29, $21, $a2, $39, $28, $91, $49, $ff
+ENDC
+	db $53, $0d, $33, $2f, $8f, $45, $29, $e1, $55, $2d, $75, $5f
+
 
 SECTION "Sound Effects 2", ROMX
 
@@ -351,12 +357,22 @@ INCLUDE "audio/sfx/cry20_3.asm"
 INCLUDE "audio/sfx/cry21_3.asm"
 INCLUDE "audio/sfx/cry22_3.asm"
 
+; padding
+IF DEF(_GREEN)
+	db $b0, $05, $ff, $22, $92, $49, $27, $b5, $29, $21, $a2, $39, $28, $91, $49, $ff
+ENDC
+	db $0a, $83, $00, $00
 
-SECTION "Audio Engine 1", ROMX
 
-INCLUDE "audio/play_battle_music.asm"
+SECTION "Audio Engine 1a", ROMX
+
 INCLUDE "audio/engine_1.asm"
 INCLUDE "audio/alternate_tempo.asm"
+
+
+SECTION "Audio Engine 1b", ROMX
+
+INCLUDE "audio/play_battle_music.asm"
 
 
 SECTION "Low Health Alarm (Audio Engine 2)", ROMX
@@ -421,7 +437,12 @@ INCLUDE "audio/music/defeatedwildmon.asm"
 INCLUDE "audio/music/defeatedgymleader.asm"
 
 
-SECTION "Music 3", ROMX
+SECTION "Music 3a", ROMX
+
+INCLUDE "audio/music/credits.asm"
+
+
+SECTION "Music 3b", ROMX
 
 INCLUDE "audio/music/bikeriding.asm"
 INCLUDE "audio/music/dungeon1.asm"
@@ -444,4 +465,3 @@ INCLUDE "audio/music/introbattle.asm"
 INCLUDE "audio/music/surfing.asm"
 INCLUDE "audio/music/jigglypuffsong.asm"
 INCLUDE "audio/music/halloffame.asm"
-INCLUDE "audio/music/credits.asm"

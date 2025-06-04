@@ -212,11 +212,62 @@ MtMoonB2FSuperNerdText:
 .done
 	jp TextScriptEnd
 
+MtMoonB2FSuperNerdTheyreBothMineText:
+	text "こら　まてよ！"
+
+	para "この　カセキは"
+	line "ぼくが　みつけたんだ"
+	cont "ふたつ　とも　ぼくのだ！"
+	done
+
+MtMoonB2FSuperNerdOkIllShareText:
+	text "わかった！"
+	line "おまえにも　わけて　やるよ"
+	prompt
+
+MtMoonB2fSuperNerdEachTakeOneText:
+	text "ぼくと　おまえで"
+	line "カセキを　１こ　ずつ　だ！"
+	cont "ひとり　じめは　ダメだぞ！"
+	done
+
+MtMoonB2FSuperNerdTheresAPokemonLabText:
+	text "ここから　すごく　とおいけど"
+	line "グレン　タウンに"
+	cont "#　けんきゅうじょが　ある"
+
+	para "カセキを　よみがえらせる"
+	line "けんきゅうも　してる　らしいぜ"
+	done
+
+MtMoonB2FSuperNerdThenThisIsMineText:
+	text "それじゃ"
+	line "これは　ぼくの　ものだ！@"
+	sound_get_key_item
+	text_end
+
 MtMoonB2FRocket1Text:
 	text_asm
 	ld hl, MtMoon3TrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
+
+MtMoonB2FRocket1BattleText:
+	text "カセキは"
+	line "<ROCKET>が　みつけるのだ！"
+	cont "ふっかつ　させれば"
+	cont "いい　かねもうけに　なる！"
+	done
+
+MtMoonB2FRocket1EndBattleText:
+	text "うー　おこったぞ！"
+	prompt
+
+MtMoonB2FRocket1AfterBattleText:
+	text "おれを　おこらせた"
+	line "おまえは　<ROCKET>の"
+	cont "ブラック　りストに　のるぜ"
+	done
 
 MtMoonB2FRocket2Text:
 	text_asm
@@ -224,17 +275,64 @@ MtMoonB2FRocket2Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+MtMoonB2FRocket2BattleText:
+	text "#　マフィア"
+	line "<ROCKET>は"
+	cont "こわくて　つよい　のだ！"
+	done
+
+MtMoonB2FRocket2EndBattleText:
+	text "しくじったか！"
+	prompt
+
+MtMoonB2FRocket2AfterBattleText:
+	text "くそ！"
+	line "なかまが　だまっちゃ　いねえぞ"
+	done
+
 MtMoonB2FRocket3Text:
 	text_asm
 	ld hl, MtMoon3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
+MtMoonB2FRocket3BattleText:
+	text "おれたちは"
+	line "だいじな　しごとを　してるんだ！"
+	cont "こどもは　おうちへ　かえりな"
+	done
+
+MtMoonB2FRocket3EndBattleText:
+	text "なかなか　やるな"
+	prompt
+
+MtMoonB2FRocket3AfterBattleText:
+	text "カセキを　みつけたら"
+	line "ばしょだけ　おしえて"
+	cont "さっさと　かえるんだな！"
+	done
+
 MtMoonB2FRocket4Text:
 	text_asm
 	ld hl, MtMoon3TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
+
+MtMoonB2FRocket4BattleText:
+	text "おうっ！"
+	line "おとなの　せかいに"
+	cont "くびを　つっこむと　あぶないぜ！"
+	done
+
+MtMoonB2FRocket4EndBattleText:
+	text "あたま　くるぜ"
+	prompt
+
+MtMoonB2FRocket4AfterBattleText:
+	text "にんげんが　うまれる　まえから"
+	line "この　あたりには"
+	cont "#が　すんでた　らしいぜ"
+	done
 
 MtMoonB2FDomeFossilText:
 	text_asm
@@ -261,8 +359,8 @@ MtMoonB2FDomeFossilText:
 	jp TextScriptEnd
 
 .YouWantText:
-	text_far _MtMoonB2FDomeFossilYouWantText
-	text_end
+	text "こうらの　カセキに　する？"
+	done
 
 MtMoonB2FHelixFossilText:
 	text_asm
@@ -289,15 +387,18 @@ MtMoonB2FHelixFossilText:
 	jp TextScriptEnd
 
 .YouWantText:
-	text_far _MtMoonB2FHelixFossilYouWantText
-	text_end
+	text "かいの　カセキに　する？"
+	done
 
 MtMoonB2FReceivedFossilText:
 	ld hl, .Text
 	jp PrintText
 
 .Text:
-	text_far _MtMoonB2FReceivedFossilText
+	text "<PLAYER>は"
+	line "@"
+	text_ram wStringBuffer
+	text "を　てにいれた！@"
 	sound_get_key_item
 	text_waitbutton
 	text_end
@@ -308,75 +409,6 @@ MtMoonB2FYouHaveNoRoomText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _MtMoonB2FYouHaveNoRoomText
+	text "なーんだ　もう　もてないじゃん@"
 	text_waitbutton
-	text_end
-
-MtMoonB2FSuperNerdTheyreBothMineText:
-	text_far _MtMoonB2FSuperNerdTheyreBothMineText
-	text_end
-
-MtMoonB2FSuperNerdOkIllShareText:
-	text_far _MtMoonB2FSuperNerdOkIllShareText
-	text_end
-
-MtMoonB2fSuperNerdEachTakeOneText:
-	text_far _MtMoonB2fSuperNerdEachTakeOneText
-	text_end
-
-MtMoonB2FSuperNerdTheresAPokemonLabText:
-	text_far _MtMoonB2FSuperNerdTheresAPokemonLabText
-	text_end
-
-MtMoonB2FSuperNerdThenThisIsMineText:
-	text_far _MtMoonB2FSuperNerdThenThisIsMineText
-	sound_get_key_item
-	text_end
-
-MtMoonB2FRocket1BattleText:
-	text_far _MtMoonB2FRocket1BattleText
-	text_end
-
-MtMoonB2FRocket1EndBattleText:
-	text_far _MtMoonB2FRocket1EndBattleText
-	text_end
-
-MtMoonB2FRocket1AfterBattleText:
-	text_far _MtMoonB2FRocket1AfterBattleText
-	text_end
-
-MtMoonB2FRocket2BattleText:
-	text_far _MtMoonB2FRocket2BattleText
-	text_end
-
-MtMoonB2FRocket2EndBattleText:
-	text_far _MtMoonB2FRocket2EndBattleText
-	text_end
-
-MtMoonB2FRocket2AfterBattleText:
-	text_far _MtMoonB2FRocket2AfterBattleText
-	text_end
-
-MtMoonB2FRocket3BattleText:
-	text_far _MtMoonB2FRocket3BattleText
-	text_end
-
-MtMoonB2FRocket3EndBattleText:
-	text_far _MtMoonB2FRocket3EndBattleText
-	text_end
-
-MtMoonB2FRocket3AfterBattleText:
-	text_far _MtMoonB2FRocket3AfterBattleText
-	text_end
-
-MtMoonB2FRocket4BattleText:
-	text_far _MtMoonB2FRocket4BattleText
-	text_end
-
-MtMoonB2FRocket4EndBattleText:
-	text_far _MtMoonB2FRocket4EndBattleText
-	text_end
-
-MtMoonB2FRocket4AfterBattleText:
-	text_far _MtMoonB2FRocket4AfterBattleText
 	text_end

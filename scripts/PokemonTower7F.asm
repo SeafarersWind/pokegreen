@@ -210,17 +210,68 @@ PokemonTower7FRocket1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonTower7FRocket1BattleText:
+	text "む！　なんだ　おまえは？"
+	line "なにしに　ここへ　きた？"
+	done
+
+PokemonTower7FRocket1EndBattleText:
+	text "ま　まいった！"
+	prompt
+
+PokemonTower7FRocket1AfterBattleText:
+	text "お！　おぼえて　やがれ！"
+	done
+
 PokemonTower7FRocket2Text:
 	text_asm
 	ld hl, PokemonTower7TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonTower7FRocket2BattleText:
+	text "この　じいさん"
+	line "<ROCKET>　アジトに　くるなり"
+
+	para "#を　いじめたり"
+	line "ころしたり　するなって　うるさくて"
+
+	para "ここで　おとなの　はなし　あいを"
+	line "してた　ところだ！"
+	done
+
+PokemonTower7FRocket2EndBattleText:
+	text "かんべん　してくれ<……>"
+	prompt
+
+PokemonTower7FRocket2AfterBattleText:
+	text "#なんて"
+	line "しょうばい　どうぐに　すぎない！"
+
+	para "おれたちの"
+	line "じゃま　するんじゃ　ないぜ！"
+	done
+
 PokemonTower7FRocket3Text:
 	text_asm
 	ld hl, PokemonTower7TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
+
+PokemonTower7FRocket3BattleText:
+	text "おれたちを　たおさなきゃ"
+	line "じいさんは　たすけられないぜ！"
+	done
+
+PokemonTower7FRocket3EndBattleText:
+	text "<ROCKET>に"
+	line "はむかう　とはな！"
+	prompt
+
+PokemonTower7FRocket3AfterBattleText:
+	text "くそー<……>！"
+	line "このままで　すむと　おもうなよ！"
+	done
 
 PokemonTower7FMrFujiText:
 	text_asm
@@ -243,41 +294,25 @@ PokemonTower7FMrFujiText:
 	jp TextScriptEnd
 
 .RescueText:
-	text_far _PokemonTower7FMrFujiRescueText
-	text_end
+	text "フジ<BOLD_P>え<……>　わたしを"
+	line "たすけに　きたんですか？"
 
-PokemonTower7FRocket1BattleText:
-	text_far _PokemonTower7FRocket1BattleText
-	text_end
+	para "<……>　どうも　ありがとう"
+	line "でも<……>　わたしは<……>"
 
-PokemonTower7FRocket1EndBattleText:
-	text_far _PokemonTower7FRocket1EndBattleText
-	text_end
+	para "カラカラの　おかあさん　ガラガラの"
+	line "たましいを　なぐさめる　ために"
+	cont "すすんで　ここまで　きたのです"
 
-PokemonTower7FRocket1AfterBattleText:
-	text_far _PokemonTower7FRocket1AfterBattleText
-	text_end
+	para "<……>ああ　どうやら　ガラガラも"
+	line "てんごくへ　むかった　ようですね"
 
-PokemonTower7FRocket2BattleText:
-	text_far _PokemonTower7FRocket2BattleText
-	text_end
+	para "せっかく　ここまで　きてくれた"
+	line "きみにも　おれいを　しなきゃね！"
 
-PokemonTower7FRocket2EndBattleText:
-	text_far _PokemonTower7FRocket2EndBattleText
-	text_end
+	para "では　これから"
+	line "いっしょに　うちへ　いきましょう"
 
-PokemonTower7FRocket2AfterBattleText:
-	text_far _PokemonTower7FRocket2AfterBattleText
-	text_end
-
-PokemonTower7FRocket3BattleText:
-	text_far _PokemonTower7FRocket3BattleText
-	text_end
-
-PokemonTower7FRocket3EndBattleText:
-	text_far _PokemonTower7FRocket3EndBattleText
-	text_end
-
-PokemonTower7FRocket3AfterBattleText:
-	text_far _PokemonTower7FRocket3AfterBattleText
-	text_end
+	para "#ハウスは"
+	line "この　タワーの　ふもとです！"
+	done

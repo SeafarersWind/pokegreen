@@ -66,11 +66,39 @@ RocketHideoutB1FRocket1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+RocketHideoutB1FRocket1BattleText:
+	text "<……>　おまえは　だれだ？"
+	line "どうやって　ここに　はいった"
+	done
+
+RocketHideoutB1FRocket1EndBattleText:
+	text "あう！　やられた"
+	prompt
+
+RocketHideoutB1FRocket1AfterBattleText:
+	text "くそう<……>　おまえ"
+	line "<ROCKET>を　なめてるな！"
+	done
+
 RocketHideoutB1FRocket2Text:
 	text_asm
 	ld hl, RocketHideout1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+RocketHideoutB1FRocket2BattleText:
+	text "<ROCKET>に"
+	line "しのび　こむ　とは　なんて　やつ"
+	done
+
+RocketHideoutB1FRocket2EndBattleText:
+	text "ばったり<……>！"
+	prompt
+
+RocketHideoutB1FRocket2AfterBattleText:
+	text "くそう！　このまま　らくに"
+	line "すすめると　おもうな！"
+	done
 
 RocketHideoutB1FRocket3Text:
 	text_asm
@@ -78,11 +106,39 @@ RocketHideoutB1FRocket3Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+RocketHideoutB1FRocket3BattleText:
+	text "しんにゅうしゃを　はっけん！"
+	done
+
+RocketHideoutB1FRocket3EndBattleText:
+	text "ああ！　だめか"
+	prompt
+
+RocketHideoutB1FRocket3AfterBattleText:
+	text "ふん<……>！"
+	line "シルフスコープを　さがしてる？"
+	cont "<……>　おれは　しらねえよ"
+	done
+
 RocketHideoutB1FRocket4Text:
 	text_asm
 	ld hl, RocketHideout1TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
+
+RocketHideoutB1FRocket4BattleText:
+	text "ここに　きた　ねらいは　なんだ？"
+	done
+
+RocketHideoutB1FRocket4EndBattleText:
+	text "こりゃ　イカン"
+	prompt
+
+RocketHideoutB1FRocket4AfterBattleText:
+	text "わかった　いう<……>"
+	line "ボスに　あいたい　なら"
+	cont "エレべータに　のるんだな"
+	done
 
 RocketHideoutB1FRocket5Text:
 	text_asm
@@ -90,8 +146,13 @@ RocketHideoutB1FRocket5Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+RocketHideoutB1FRocket5BattleText:
+	text "まいごの　まいごの<……>"
+	line "ぼうや　かな？"
+	done
+
 RocketHideoutB1FRocket5EndBattleText:
-	text_far _RocketHideoutB1FRocket5EndBattleText
+	text "なんで　じゃ@"
 	text_asm
 	SetEvent EVENT_BEAT_ROCKET_HIDEOUT_1_TRAINER_4
 	ld hl, .prompt_end
@@ -101,58 +162,7 @@ RocketHideoutB1FRocket5EndBattleText:
 	text_promptbutton
 	text_end
 
-RocketHideoutB1FRocket1BattleText:
-	text_far _RocketHideoutB1FRocket1BattleText
-	text_end
-
-RocketHideoutB1FRocket1EndBattleText:
-	text_far _RocketHideoutB1FRocket1EndBattleText
-	text_end
-
-RocketHideoutB1FRocket1AfterBattleText:
-	text_far _RocketHideoutB1FRocket1AfterBattleText
-	text_end
-
-RocketHideoutB1FRocket2BattleText:
-	text_far _RocketHideoutB1FRocket2BattleText
-	text_end
-
-RocketHideoutB1FRocket2EndBattleText:
-	text_far _RocketHideoutB1FRocket2EndBattleText
-	text_end
-
-RocketHideoutB1FRocket2AfterBattleText:
-	text_far _RocketHideoutB1FRocket2AfterBattleText
-	text_end
-
-RocketHideoutB1FRocket3BattleText:
-	text_far _RocketHideoutB1FRocket3BattleText
-	text_end
-
-RocketHideoutB1FRocket3EndBattleText:
-	text_far _RocketHideoutB1FRocket3EndBattleText
-	text_end
-
-RocketHideoutB1FRocket3AfterBattleText:
-	text_far _RocketHideoutB1FRocket3AfterBattleText
-	text_end
-
-RocketHideoutB1FRocket4BattleText:
-	text_far _RocketHideoutB1FRocket4BattleText
-	text_end
-
-RocketHideoutB1FRocket4EndBattleText:
-	text_far _RocketHideoutB1FRocket4EndBattleText
-	text_end
-
-RocketHideoutB1FRocket4AfterBattleText:
-	text_far _RocketHideoutB1FRocket4AfterBattleText
-	text_end
-
-RocketHideoutB1FRocket5BattleText:
-	text_far _RocketHideoutB1FRocket5BattleText
-	text_end
-
 RocketHideoutB1FRocket5AfterBattleText:
-	text_far _RocketHideoutB1FRocket5AfterBattleText
-	text_end
+	text "あれ？　いまの　さわぎで"
+	line "とびらが　あいた　しまった"
+	done

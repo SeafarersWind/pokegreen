@@ -662,6 +662,7 @@ CanWalkOntoTile:
 	jr nz, .left
 	add e
 	cp $5              ; compare, but no conditional jump like in the vertical check above (bug?)
+	jr c, .impassable
 	jr .passable
 .left
 	sub $1

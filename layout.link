@@ -36,17 +36,20 @@ ROM0
 ROMX $1
 	"bank1"
 ROMX $2
+	"Audio Engine 1a"
+	"Music 1"
+	"Audio Engine 1b"
 	"Sound Effect Headers 1"
 	"Music Headers 1"
 	"Sound Effects 1"
-	"Audio Engine 1"
-	"Music 1"
 ROMX $3
 	"bank3"
 ROMX $4
-	"NPC Sprites 1"
+	"Move Names"
 	"Font Graphics"
-	"Battle Engine 1"
+	"Battle Engine 1a"
+	"NPC Sprites 1"
+	"Battle Engine 1b"
 ROMX $5
 	"NPC Sprites 2"
 	"Battle Engine 2"
@@ -61,13 +64,13 @@ ROMX $7
 	"Maps 4"
 	"Hidden Objects 1"
 ROMX $8
-	"Sound Effect Headers 2"
-	"Music Headers 2"
-	"Sound Effects 2"
-	"Low Health Alarm (Audio Engine 2)"
 	"Bill's PC"
 	"Audio Engine 2"
 	"Music 2"
+	"Low Health Alarm (Audio Engine 2)"
+	"Sound Effect Headers 2"
+	"Music Headers 2"
+	"Sound Effects 2"
 ROMX $9
 	"Pics 1"
 	"Battle Engine 3"
@@ -108,8 +111,8 @@ ROMX $14
 	"Hidden Objects 2"
 ROMX $15
 	"Maps 11"
-	"Battle Engine 9"
 	"Maps 12"
+	"Battle Engine 9"
 	"Diploma"
 	"Trainer Sight"
 ROMX $16
@@ -130,8 +133,9 @@ ROMX $18
 ROMX $19
 	"Tilesets 1"
 ROMX $1A
-	"Battle Engine 11"
+	"Battle Engine 11a"
 	"Tilesets 2"
+	"Battle Engine 11b"
 ROMX $1B
 	"Tilesets 3"
 ROMX $1C
@@ -146,37 +150,12 @@ ROMX $1D
 ROMX $1E
 	"bank1E"
 ROMX $1F
+	"Music 3a"
+	"Audio Engine 3"
+	"Music 3b"
 	"Sound Effect Headers 3"
 	"Music Headers 3"
 	"Sound Effects 3"
-	"Audio Engine 3"
-	"Music 3"
-ROMX $20
-	"Text 1"
-ROMX $21
-	"Text 2"
-ROMX $22
-	"Text 3"
-ROMX $23
-	"Text 4"
-ROMX $24
-	"Text 5"
-ROMX $25
-	"Text 6"
-ROMX $26
-	"Text 7"
-ROMX $27
-	"Text 8"
-ROMX $28
-	"Text 9"
-ROMX $29
-	"Text 10"
-ROMX $2A
-	"Text 11"
-ROMX $2B
-	"Pokédex Text"
-ROMX $2C
-	"Move Names"
 WRAM0
 	"Audio RAM"
 	org $c100
@@ -188,7 +167,7 @@ WRAM0
 	"Party Data"
 	"Main Data"
 	"Current Box Data"
-	org $df00
+	org $df18
 	"Stack"
 VRAM
 	"VRAM"

@@ -3,8 +3,9 @@ PrintTrashText:
 	tx_pre_jump VermilionGymTrashText
 
 VermilionGymTrashText::
-	text_far _VermilionGymTrashText
-	text_end
+	text "ガサゴソ<……>！"
+	line "なかは　ゴミ　ばっかり！"
+	done
 
 GymTrashScript:
 	call EnableAutoTextBoxDrawing
@@ -128,7 +129,13 @@ GymTrashCans:
 	db 2, 11, 13,  0,  0 ; 14
 
 VermilionGymTrashSuccessText1::
-	text_far _VermilionGymTrashSuccessText1
+	text "ガサゴソ<……>！"
+	line "おっと！　ゴミばこの　そこに"
+	cont "スイッチが　あった！"
+	cont "おして　みよう！　<……>　ポチッとな"
+
+	para "でんどうドアの"
+	line "だい１　ロックが　はずれた！@"
 	text_asm
 	call WaitForSoundToFinish
 	ld a, SFX_SWITCH
@@ -138,8 +145,11 @@ VermilionGymTrashSuccessText1::
 
 ; unused
 VermilionGymTrashSuccessText2::
-	text_far _VermilionGymTrashSuccessText2
-	text_end
+	text "ガサゴソ<……>！"
+	line "おっと！　ゴミばこの　そこに"
+	cont "また　スイッチが　あった！"
+	cont "おして　みよう！　<……>　ポチッとな"
+	prompt
 
 ; unused
 VermilionGymTrashSuccesPlaySfx:
@@ -151,7 +161,11 @@ VermilionGymTrashSuccesPlaySfx:
 	jp TextScriptEnd
 
 VermilionGymTrashSuccessText3::
-	text_far _VermilionGymTrashSuccessText3
+	text "でんどうドアの"
+	line "だい２　ロックが　はずれた！"
+
+	para "おおきな　でんどうドアが"
+	line "かんぜんに　ひらいた！@"
 	text_asm
 	call WaitForSoundToFinish
 	ld a, SFX_GO_INSIDE
@@ -160,7 +174,10 @@ VermilionGymTrashSuccessText3::
 	jp TextScriptEnd
 
 VermilionGymTrashFailText::
-	text_far _VermilionGymTrashFailText
+	text "ガサゴソ<……>！"
+	line "なかは　ゴミ　ばっかり！"
+	cont "あッ！　でんどうドアの"
+	cont "ロックが　もどって　しまった！@"
 	text_asm
 	call WaitForSoundToFinish
 	ld a, SFX_DENIED

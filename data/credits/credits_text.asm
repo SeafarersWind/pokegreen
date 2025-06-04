@@ -43,160 +43,137 @@ CreditsTextPointers:
 	dw CredTest
 	dw CredSpecial
 	dw CredProducers
-	dw CredProducer
 	dw CredExecutive
-	dw CredTamada
-	dw CredSaOota
-	dw CredYoshikawa
-	dw CredToOota
-	dw CredUSStaff
-	dw CredUSCoord
-	dw CredTilden
-	dw CredKawakami
-	dw CredHiNakamura
-	dw CredGiese
-	dw CredOsborne
-	dw CredTrans
-	dw CredOgasawara
-	dw CredIwata
-	dw CredIzushi
-	dw CredHarada
-	dw CredMurakawa
-	dw CredFukui
-	dw CredClub
-	dw CredPAAD
 	assert_table_length NUM_CRED_STRINGS
 
 CredVersion:
-IF DEF(_RED)
-	db -8, "RED VERSION STAFF@"
-ENDC
-IF DEF(_BLUE)
-	db -8, "BLUE VERSION STAFF@"
-ENDC
+	db "スタッフ@"
 CredTajiri:
-	db -6, "SATOSHI TAJIRI@"
+	db "たじり　さとし@"
 CredTaOota:
-	db -6, "TAKENORI OOTA@"
+	db "おおた　たけのり@"
 CredMorimoto:
-	db -7, "SHIGEKI MORIMOTO@"
+	db "もりもと　しげき@"
 CredWatanabe:
-	db -7, "TETSUYA WATANABE@"
+	db "わたなべ　てつや@"
 CredMasuda:
-	db -6, "JUNICHI MASUDA@"
+	db "ますだ　じゅんいち@"
 CredNisino:
-	db -5, "KOHJI NISINO@"
+	db "にしの　こうじ@"
 CredSugimori:
-	db -5, "KEN SUGIMORI@"
+	db "すぎもり　けん@"
 CredNishida:
-	db -6, "ATSUKO NISHIDA@"
+	db "にしだ　あつこ@"
 CredMiyamoto:
-	db -7, "SHIGERU MIYAMOTO@"
+	db "みやもと　しげる@"
 CredKawaguchi:
-	db -8, "TAKASHI KAWAGUCHI@"
+	db "かわぐち　たかし@"
 CredIshihara:
-	db -8, "TSUNEKAZU ISHIHARA@"
+	db "いしはら　つねかず@"
 CredYamauchi:
-	db -7, "HIROSHI YAMAUCHI@"
+	db "やまうち　ひろし@"
 CredZinnai:
-	db -7, "HIROYUKI ZINNAI@"
+	db "じんない　ひろゆき@"
 CredHishida:
-	db -7, "TATSUYA HISHIDA@"
+	db "ひしだ　たつや@"
 CredSakai:
-	db -6, "YASUHIRO SAKAI@"
+	db "さかい　やすひろ@"
 CredYamaguchi:
-	db -7, "WATARU YAMAGUCHI@"
+	db "やまぐち　わたる@"
 CredYamamoto:
-	db -8, "KAZUYUKI YAMAMOTO@"
+	db "やまもと　かずゆき@"
 CredTaniguchi:
-	db -8, "RYOHSUKE TANIGUCHI@"
+	db "たにぐち　りょうすけ@"
 CredNonomura:
-	db -8, "FUMIHIRO NONOMURA@"
+	db "ののむら　ふみひろ@"
 CredFuziwara:
-	db -7, "MOTOFUMI FUZIWARA@"
+	db "ふじわら　もとふみ@"
 CredMatsusima:
-	db -7, "KENJI MATSUSIMA@"
+	db "まつしま　けんじ@"
 CredTomisawa:
-	db -7, "AKIHITO TOMISAWA@"
+	db "とみさわ　あきひと@"
 CredKawamoto:
-	db -7, "HIROSHI KAWAMOTO@"
+	db "かわもと　ひろし@"
 CredKakei:
-	db -6, "AKIYOSHI KAKEI@"
+	db "かけい　あきよし@"
 CredTsuchiya:
-	db -7, "KAZUKI TSUCHIYA@"
+	db "つちや　かづき@"
 CredTaNakamura:
-	db -6, "TAKEO NAKAMURA@"
+	db "なかむら　たけお@"
 CredYuda:
-	db -6, "MASAMITSU YUDA@"
+	db "ゆだ　まさみつ@"
 CredMon:
-	db -3, "#MON@"
+	db "ポケットモンスター@"
 CredDirector:
-	db -3, "DIRECTOR@"
+	db "ディレクター@"
 CredProgrammers:
-	db -5, "PROGRAMMERS@"
+	db "プログラム@"
 CredCharDesign:
-	db -7, "CHARACTER DESIGN@"
+	db "キャラクターデザイン@"
 CredMusic:
-	db -2, "MUSIC@"
+	db "おんがく@"
 CredSoundEffects:
-	db -6, "SOUND EFFECTS@"
+	db "サウンド　エフェクト@"
 CredGameDesign:
-	db -5, "GAME DESIGN@"
+	db "ゲームデザイン@"
 CredMonsterDesign:
-	db -6, "MONSTER DESIGN@"
+	db "モンスター　デザイン@"
 CredGameScene:
-	db -6, "GAME SCENARIO@"
+	db "シナりオ@"
 CredParam:
-	db -8, "PARAMETRIC DESIGN@"
+	db "パラメータ　せってい@"
 CredMap:
-	db -4, "MAP DESIGN@"
+	db "マップ　デザイン@"
 CredTest:
-	db -7, "PRODUCT TESTING@"
+	db "デバッグ　プレイ@"
 CredSpecial:
-	db -6, "SPECIAL THANKS@"
+	db "スぺシャル№サンクス@"
 CredProducers:
-	db -4, "PRODUCERS@"
-CredProducer:
-	db -4, "PRODUCER@"
+	db "プロデューサー@"
 CredExecutive:
-	db -8, "EXECUTIVE PRODUCER@"
-CredTamada:
-	db -6, "SOUSUKE TAMADA@"
-CredSaOota:
-	db -5, "SATOSHI OOTA@"
-CredYoshikawa:
-	db -6, "RENA YOSHIKAWA@"
-CredToOota:
-	db -6, "TOMOMICHI OOTA@"
-CredUSStaff:
-	db -7, "US VERSION STAFF@"
-CredUSCoord:
-	db -7, "US COORDINATION@"
-CredTilden:
-	db -5, "GAIL TILDEN@"
-CredKawakami:
-	db -6, "NAOKO KAWAKAMI@"
-CredHiNakamura:
-	db -6, "HIRO NAKAMURA@"
-CredGiese:
-	db -6, "WILLIAM GIESE@"
-CredOsborne:
-	db -5, "SARA OSBORNE@"
-CredTrans:
-	db -7, "TEXT TRANSLATION@"
-CredOgasawara:
-	db -6, "NOB OGASAWARA@"
-CredIwata:
-	db -5, "SATORU IWATA@"
-CredIzushi:
-	db -7, "TAKEHIRO IZUSHI@"
-CredHarada:
-	db -7, "TAKAHIRO HARADA@"
-CredMurakawa:
-	db -7, "TERUKI MURAKAWA@"
-CredFukui:
-	db -5, "KOHTA FUKUI@"
-CredClub:
-	db -9, "NCL SUPER MARIO CLUB@"
-CredPAAD:
-	db -5, "PAAD TESTING@"
+	db "エグゼクティブ　プロデューサー@"
+
+CreditsTextAlign:
+	db -1
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -4
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -3
+	db -2
+	db -4
+	db -1
+	db -4
+	db -3
+	db -4
+	db -2
+	db -4
+	db -3
+	db -3
+	db -4
+	db -3
+	db -6

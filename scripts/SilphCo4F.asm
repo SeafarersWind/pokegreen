@@ -120,12 +120,14 @@ SilphCo4FSilphWorkerMText:
 	jp TextScriptEnd
 
 .ImHidingText:
-	text_far _SilphCo4FSilphWorkerMImHidingText
-	text_end
+	text "びくびく<……>　こわくて"
+	line "ここに　かくれてるんだ<……>"
+	done
 
 .TeamRocketIsGoneText:
-	text_far _SilphCo4FSilphWorkerMTeamRocketIsGoneText
-	text_end
+	text "え<……>"
+	line "<ROCKET>　もう　いないの？"
+	done
 
 SilphCo4FRocket1Text:
 	text_asm
@@ -134,16 +136,19 @@ SilphCo4FRocket1Text:
 	jp TextScriptEnd
 
 SilphCo4FRocket1BattleText:
-	text_far _SilphCo4FRocket1BattleText
-	text_end
+	text "シルフ　カンパニーは"
+	line "<ROCKET>が　せんきょした！"
+	done
 
 SilphCo4FRocket1EndBattleText:
-	text_far _SilphCo4FRocket1EndBattleText
-	text_end
+	text "ぐぐぐ<……>"
+	prompt
 
 SilphCo4FRocket1AfterBattleText:
-	text_far _SilphCo4FRocket1AfterBattleText
-	text_end
+	text "がはは！"
+	line "ボスは　まえから"
+	cont "ここを　ねらってたのだ"
+	done
 
 SilphCo4FScientistText:
 	text_asm
@@ -152,16 +157,20 @@ SilphCo4FScientistText:
 	jp TextScriptEnd
 
 SilphCo4FScientistBattleText:
-	text_far _SilphCo4FScientistBattleText
-	text_end
+	text "#は"
+	line "おれの　ちゅうじつな　こぶんだぜ！"
+	done
 
 SilphCo4FScientistEndBattleText:
-	text_far _SilphCo4FScientistEndBattleText
-	text_end
+	text "くそ！"
+	line "なさけない　#め"
+	prompt
 
 SilphCo4FScientistAfterBattleText:
-	text_far _SilphCo4FScientistAfterBattleText
-	text_end
+	text "この　ビルの　ドアは　ぜんぶ"
+	line "でんし　ロック　されてるぜ！"
+	cont "カードキーが　ないと　あかないぜ！"
+	done
 
 SilphCo4FRocket2Text:
 	text_asm
@@ -170,13 +179,14 @@ SilphCo4FRocket2Text:
 	jp TextScriptEnd
 
 SilphCo4FRocket2BattleText:
-	text_far _SilphCo4FRocket2BattleText
-	text_end
+	text "ふしんな　やつを　はっけん！"
+	done
 
 SilphCo4FRocket2EndBattleText:
-	text_far _SilphCo4FRocket2EndBattleText
-	text_end
+	text "おまえ　なにものだ"
+	prompt
 
 SilphCo4FRocket2AfterBattleText:
-	text_far _SilphCo4FRocket2AfterBattleText
-	text_end
+	text "１１かいに　いる"
+	line "ボスに　れんらく　しなくては！"
+	done

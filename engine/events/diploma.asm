@@ -36,7 +36,9 @@ DisplayDiploma::
 	pop bc
 	dec c
 	jr nz, .placeTextLoop
-	hlcoord 10, 4
+	call UnusedPlayerNameLengthFunc
+	hlcoord 14, 4
+	add hl, bc
 	ld de, wPlayerName
 	call PlaceString
 	farcall DrawPlayerCharacter
@@ -47,7 +49,7 @@ DisplayDiploma::
 	lb bc, $80, $28
 .adjustPlayerGfxLoop
 	ld a, [hl] ; X
-	add 33
+	add 75
 	ld [hli], a
 	inc hl
 	ld a, b
@@ -73,8 +75,8 @@ DisplayDiploma::
 	jp GBPalNormal
 
 UnusedPlayerNameLengthFunc:
-; Unused function that does a calculation involving the length of the player's
-; name.
+; Does a calculation involving the length of the player's name.
+; Unused in the international versions
 	ld hl, wPlayerName
 	lb bc, $ff, $00
 .loop
@@ -91,27 +93,26 @@ ENDM
 
 DiplomaTextPointersAndCoords:
 	; x, y, text
-	diploma_text  5,  2, DiplomaText
+	diploma_text  6,  2, DiplomaText
 	diploma_text  3,  4, DiplomaPlayer
 	diploma_text 15,  4, DiplomaEmptyText
-	diploma_text  2,  6, DiplomaCongrats
-	diploma_text  9, 16, DiplomaGameFreak
+	diploma_text  2,  7, DiplomaCongrats
+	diploma_text 11, 15, DiplomaGameFreak
 
 DiplomaText:
-	db CIRCLE_TILE_ID, "Diploma", CIRCLE_TILE_ID, "@"
+	db CIRCLE_TILE_ID, "しょうじ", "ょう「", "@"
 
 DiplomaPlayer:
-	db "Player@"
+	db "プレーヤー@"
 
 DiplomaEmptyText:
-	db "@"
+	db "さま@"
 
 DiplomaCongrats:
-	db   "Congrats! This"
-	next "diploma certifies"
-	next "that you have"
-	next "completed your"
-	next "#DEX.@"
+	db   "あなたは　#ずかんを"
+	next "みごと　かんせい　させました！"
+	next "その　いだいな　こうせきを"
+	next "しょうめい　します@"
 
 DiplomaGameFreak:
-	db "GAME FREAK@"
+	db "ゲームフりーク@"

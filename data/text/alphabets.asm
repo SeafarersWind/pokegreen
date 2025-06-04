@@ -1,15 +1,20 @@
-LowerCaseAlphabet:
-	db "abcdefghi"
-	db "jklmnopqr"
-	db "stuvwxyz "
-	db "×():;[]<PK><MN>"
-	db "-?!♂♀/<DOT>,<ED>"
-	db "UPPER CASE@"
+Hiragana:
+	db "あかさたなはまやら"
+	db "いきしちにひみゆり"
+	db "うくすつぬふむよる"
+	db "えけせてねへめわれ"
+	db "おこそとのほもんろ"
+	db "ゃゅょっﾞﾟー　"
+	db "円カナ@"
 
-UpperCaseAlphabet:
-	db "ABCDEFGHI"
-	db "JKLMNOPQR"
-	db "STUVWXYZ "
-	db "×():;[]<PK><MN>"
-	db "-?!♂♀/<DOT>,<ED>"
-	db "lower case@"
+Katakana:
+	db "アカサタナハマヤラ"
+	db "イキシチニヒミユり"
+	db "ウクスツヌフムヨル"
+	db "エケセテネへメワレ"
+	db "オコソトノホモンロ"
+	db "ャュョッﾞﾟー　"
+	db "円かな@"
+
+NameEntry:
+	db "にゅうりょく@"

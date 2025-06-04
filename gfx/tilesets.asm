@@ -1,6 +1,6 @@
 SECTION "Tilesets 1", ROMX
 
-Overworld_GFX::     INCBIN "gfx/tilesets/overworld.2bpp"
+Overworld_GFX::     INCBIN "gfx/tilesets/tilesets_rg/overworld.2bpp", 0, $5e0
 Overworld_Block::   INCBIN "gfx/blocksets/overworld.bst"
 
 RedsHouse1_GFX::
@@ -18,6 +18,10 @@ Interior_GFX::      INCBIN "gfx/tilesets/interior.2bpp"
 Interior_Block::    INCBIN "gfx/blocksets/interior.bst"
 Plateau_GFX::       INCBIN "gfx/tilesets/plateau.2bpp"
 Plateau_Block::     INCBIN "gfx/blocksets/plateau.bst"
+
+; padding
+	db $8c, $d3, $0d, $07, $a3, $9b, $6f, $a0, $63, $cf, $37, $c7, $25, $07, $c9, $e5
+	db $e8, $55, $4f, $ad, $08, $49, $22, $9b, $63, $9b, $8b, $cb, $af, $8f, $c3, $ee
 
 
 SECTION "Tilesets 2", ROMX
@@ -39,7 +43,7 @@ ForestGate_Block::
 Museum_Block::
 Gate_Block::        INCBIN "gfx/blocksets/gate.bst"
 
-Forest_GFX::        INCBIN "gfx/tilesets/forest.2bpp"
+Forest_GFX::        INCBIN "gfx/tilesets/tilesets_rg/forest.2bpp"
 Forest_Block::      INCBIN "gfx/blocksets/forest.bst"
 Facility_GFX::      INCBIN "gfx/tilesets/facility.2bpp"
 Facility_Block::    INCBIN "gfx/blocksets/facility.bst"

@@ -96,9 +96,11 @@ DrainHPEffect_:
 	jp PrintText
 
 SuckedHealthText:
-	text_far _SuckedHealthText
-	text_end
+	text "<TARGET>から"
+	line "たいりょくを　すいとった！"
+	prompt
 
 DreamWasEatenText:
-	text_far _DreamWasEatenText
-	text_end
+	text "<TARGET>の"
+	line "ゆめを　くった！"
+	prompt

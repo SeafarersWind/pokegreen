@@ -281,6 +281,10 @@ INCLUDE "data/trainers/names.asm"
 
 INCLUDE "engine/battle/misc.asm"
 
+INCLUDE "engine/battle/unused_stats_functions.asm"
+
+INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
+
 INCLUDE "engine/battle/read_trainer_party.asm"
 
 INCLUDE "data/trainers/special_moves.asm"
@@ -613,8 +617,12 @@ SwitchEnemyMon:
 	ret
 
 AIBattleWithdrawText:
-	text_far _AIBattleWithdrawText
-	text_end
+	text_ram wTrainerName
+	text "は"
+	line "@"
+	text_ram wEnemyMonNick
+	text "をひっこめた！"
+	prompt
 
 AIUseFullHeal:
 	call AIPlayRestoringSFX
@@ -738,5 +746,11 @@ AIPrintItemUse_:
 	jp PrintText
 
 AIBattleUseItemText:
-	text_far _AIBattleUseItemText
-	text_end
+	text_ram wTrainerName
+	text "は　@"
+	text_ram wEnemyMonNick
+	text "に"
+	line "@"
+	text_ram wNameBuffer
+	text "を　つかった"
+	prompt

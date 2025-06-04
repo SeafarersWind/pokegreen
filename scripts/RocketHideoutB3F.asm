@@ -147,16 +147,21 @@ RocketHideoutB3FRocket1Text:
 	jp TextScriptEnd
 
 RocketHideoutB3FRocket1BattleText:
-	text_far _RocketHideoutB3FRocket1BattleText
-	text_end
+	text "あまり　<ROCKET>の"
+	line "じゃまを　しない　ほうが"
+	cont "みの　ため　だぜ！"
+	done
 
 RocketHideoutB3FRocket1EndBattleText:
-	text_far _RocketHideoutB3FRocket1EndBattleText
-	text_end
+	text "くッ　やられた！"
+	prompt
 
 RocketHideoutB3FRocket1AfterBattleText:
-	text_far _RocketHideoutB3FRocket1AfterBattleText
-	text_end
+	text "<……>　シルフスコープ？　ああ！"
+	line "ボスが　シルフ　カンパニーで"
+	cont "ぬすんで　きた　マシンの　ことか！"
+	cont "<……>　どこかに　ある　はず　だぜ"
+	done
 
 RocketHideoutB3FRocket2Text:
 	text_asm
@@ -165,13 +170,17 @@ RocketHideoutB3FRocket2Text:
 	jp TextScriptEnd
 
 RocketHideoutB3FRocket2BattleText:
-	text_far _RocketHideout3BattleText
-	text_end
+	text "<……>　きたな？"
+	line "うえの　フロア　から"
+	cont "れんらくが　きてるぜ！"
+	done
 
 RocketHideoutB3FRocket2EndBattleText:
-	text_far _RocketHideout3EndBattleText3
-	text_end
+	text "まけた<……>　ばかな！"
+	prompt
 
 RocketHideoutB3FRocket2AfterBattleText:
-	text_far _RocketHide3AfterBattleText3
-	text_end
+	text "いく　なら　いって　みろ！"
+	line "しかし　エレべータは"
+	cont "カギが　ないと　つかえないぜ！"
+	done

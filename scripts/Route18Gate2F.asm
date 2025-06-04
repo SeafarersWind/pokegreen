@@ -20,8 +20,10 @@ Route18Gate2FLeftBinocularsText:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 .Text:
-	text_far _Route18Gate2FLeftBinocularsText
-	text_end
+	text "ぼうえんきょうを　のぞいた！"
+
+	para "にしに　マサラ　タウンが　みえる"
+	done
 
 Route18Gate2FRightBinocularsText:
 	text_asm
@@ -29,5 +31,7 @@ Route18Gate2FRightBinocularsText:
 	jp GateUpstairsScript_PrintIfFacingUp
 
 .Text:
-	text_far _Route18Gate2FRightBinocularsText
-	text_end
+	text "ぼうえんきょうを　のぞいた！"
+
+	para "およいでる　ひとが　みえる！"
+	done

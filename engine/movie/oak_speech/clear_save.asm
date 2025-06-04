@@ -19,5 +19,6 @@ DoClearSaveDialogue:
 	jp Init
 
 ClearSaveDataText:
-	text_far _ClearSaveDataText
-	text_end
+	text "すべての　セーブデータエりアを"
+	line "クりア　しますか？"
+	done

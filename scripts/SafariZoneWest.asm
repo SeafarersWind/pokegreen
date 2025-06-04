@@ -13,17 +13,28 @@ SafariZoneWest_TextPointers:
 	dw_const SafariZoneWestSignText,                 TEXT_SAFARIZONEWEST_SIGN
 
 SafariZoneWestRestHouseSignText:
-	text_far _SafariZoneWestRestHouseSignText
-	text_end
+	text "きゅうけい　ハウス　<……>　いこい"
+	done
 
 SafariZoneWestFindWardensTeethSignText:
-	text_far _SafariZoneWestFindWardensTeethSignText
-	text_end
+	text "<……>　おねがいの　けいじばん！"
+
+	para "サファり　ゾーンの　えんちょうが"
+	line "この　あたりで"
+	cont "いればを　なくし　ました！"
+
+	para "みつけた　かたに　おれい　します"
+	line "<……>　サファり　ゾーン　じむ　きょく"
+	done
 
 SafariZoneWestTrainerTipsText:
-	text_far _SafariZoneWestTrainerTipsText
-	text_end
+	text "<……>　おとくな　けいじばん！"
+
+	para "ゾーン　たんけん　キャンぺーン！"
+	line "トレジャー　ハウスを　さがそう！"
+	done
 
 SafariZoneWestSignText:
-	text_far _SafariZoneWestSignText
-	text_end
+	text "ここは　だい３　エりア"
+	line "ひがし　<……>　ちゅうおう　ひろば"
+	done

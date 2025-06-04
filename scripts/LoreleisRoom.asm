@@ -134,17 +134,39 @@ LoreleisRoomLoreleiText:
 	jp TextScriptEnd
 
 LoreleisRoomLoreleiBeforeBattleText:
-	text_far _LoreleisRoomLoreleiBeforeBattleText
-	text_end
+	text "#　りーグへ　ようこそ！"
+
+	para "わたしが　してんのうの　カンナ！"
+
+	para "こおり　#　つかわせたら"
+	line "みぎに　でる　ものは　いないわ"
+
+	para "あいてを　こおらせるって"
+	line "とっても　きょうりょくよ！"
+
+	para "だって　こおっちゃったら"
+	line "あんたの　#"
+	cont "ぜんぜん　うごけ　ないんだから"
+
+	para "<……>　あははッ！"
+	line "じゃ　かくごは　いいかしら！"
+	done
 
 LoreleisRoomLoreleiEndBattleText:
-	text_far _LoreleisRoomLoreleiEndBattleText
-	text_end
+	text "<……>　なんて　やつなの！"
+	prompt
 
 LoreleisRoomLoreleiAfterBattleText:
-	text_far _LoreleisRoomLoreleiAfterBattleText
-	text_end
+	text "すこしは　できる　みたいね！"
+	line "わかった<……>！"
+	cont "つぎの　へやに　すすむと　いいわ！"
+
+	para "#　りーグ　しんの　パワーは"
+	line "まだまだ<……>！"
+	cont "こんな　ものじゃ　ないわよ！"
+	done
 
 LoreleisRoomLoreleiDontRunAwayText:
-	text_far _LoreleisRoomLoreleiDontRunAwayText
-	text_end
+	text "だれかの　こえが　きこえる<……>"
+	line "「にげては　ならん！」"
+	done

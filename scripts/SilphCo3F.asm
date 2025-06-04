@@ -82,12 +82,15 @@ SilphCo3FSilphWorkerMText:
 	jp TextScriptEnd
 
 .WhatShouldIDoText:
-	text_far _SilphCo3FSilphWorkerMWhatShouldIDoText
-	text_end
+	text "ぼく　シルフ　カンパニーの"
+	line "しゃいんです<……>　おろおろ"
+	done
 
 .YouSavedUsText:
-	text_far _SilphCo3FSilphWorkerMYouSavedUsText
-	text_end
+	text "<PLAYER>くんと"
+	line "#の　おかげで"
+	cont "ほんと　たすかったよ"
+	done
 
 SilphCo3FRocketText:
 	text_asm
@@ -96,16 +99,19 @@ SilphCo3FRocketText:
 	jp TextScriptEnd
 
 SilphCo3FRocketBattleText:
-	text_far _SilphCo3FRocketBattleText
-	text_end
+	text "おれたちの　じゃまを　する"
+	line "やつは　じゃま　なのだ！"
+	done
 
 SilphCo3FRocketEndBattleText:
-	text_far _SilphCo3FRocketEndBattleText
-	text_end
+	text "まいった！"
+	prompt
 
 SilphCo3FRocketAfterBattleText:
-	text_far _SilphCo3FRocketAfterBattleText
-	text_end
+	text "<……>　では　ヒントだ！"
+	line "しまってる　ドアの　カギは"
+	cont "カード　キーで　あけられる"
+	done
 
 SilphCo3FScientistText:
 	text_asm
@@ -114,13 +120,20 @@ SilphCo3FScientistText:
 	jp TextScriptEnd
 
 SilphCo3FScientistBattleText:
-	text_far _SilphCo3FScientistBattleText
-	text_end
+	text "わたしは"
+	line "シルフ　カンパニーより"
+	cont "<ROCKET>に　みかた　する！"
+	done
 
 SilphCo3FScientistEndBattleText:
-	text_far _SilphCo3FScientistEndBattleText
-	text_end
+	text "やるねえ！"
+	prompt
 
 SilphCo3FScientistAfterBattleText:
-	text_far _SilphCo3FScientistAfterBattleText
-	text_end
+	text "<……>　なに"
+
+	para "<ROCKET>の　れんちゅうが"
+	line "おもう　ぞんぶん"
+	cont "#の　けんきゅうを"
+	cont "させて　くれるって　いったんでね"
+	done

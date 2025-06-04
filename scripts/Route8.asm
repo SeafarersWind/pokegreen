@@ -55,16 +55,18 @@ Route8SuperNerd1Text:
 	jp TextScriptEnd
 
 Route8SuperNerd1BattleText:
-	text_far _Route8SuperNerd1BattleText
-	text_end
+	text "きみ　#　つよそう　だけど"
+	line "りかは　とくい　なのかい？"
+	done
 
 Route8SuperNerd1EndBattleText:
-	text_far _Route8SuperNerd1EndBattleText
-	text_end
+	text "がーん！　ばったり"
+	prompt
 
 Route8SuperNerd1AfterBattleText:
-	text_far _Route8SuperNerd1AfterBattleText
-	text_end
+	text "ぼくは　やっぱり"
+	line "べんきょうの　ほうが　あってる"
+	done
 
 Route8Gambler1Text:
 	text_asm
@@ -73,16 +75,19 @@ Route8Gambler1Text:
 	jp TextScriptEnd
 
 Route8Gambler1BattleText:
-	text_far _Route8Gambler1BattleText
-	text_end
+	text "よっしゃ！"
+	line "たたかって　うんだめし　するか"
+	done
 
 Route8Gambler1EndBattleText:
-	text_far _Route8Gambler1EndBattleText
-	text_end
+	text "<……>　きょうは"
+	line "しょうぶ　うん　わるし！"
+	prompt
 
 Route8Gambler1AfterBattleText:
-	text_far _Route8Gambler1AfterBattleText
-	text_end
+	text "どうも　きょうは　ついてねえ"
+	line "じっと　してよう"
+	done
 
 Route8SuperNerd2Text:
 	text_asm
@@ -91,16 +96,20 @@ Route8SuperNerd2Text:
 	jp TextScriptEnd
 
 Route8SuperNerd2BattleText:
-	text_far _Route8SuperNerd2BattleText
-	text_end
+	text "あのね"
+	line "たたかい　には　せんりゃくが"
+	cont "ひつよう　なんだ"
+	done
 
 Route8SuperNerd2EndBattleText:
-	text_far _Route8SuperNerd2EndBattleText
-	text_end
+	text "りかい　できない！"
+	prompt
 
 Route8SuperNerd2AfterBattleText:
-	text_far _Route8SuperNerd2AfterBattleText
-	text_end
+	text "はじめに　べトべター　だして<……>"
+	line "いいや　ほかので　いっきに<……>"
+	cont "<……>　うーん　ブツ　ブツ<……>"
+	done
 
 Route8CooltrainerF1Text:
 	text_asm
@@ -109,16 +118,19 @@ Route8CooltrainerF1Text:
 	jp TextScriptEnd
 
 Route8CooltrainerF1BattleText:
-	text_far _Route8CooltrainerF1BattleText
-	text_end
+	text "あたし　ニドラン　すき　だから"
+	line "たくさん　あつめてるの"
+	done
 
 Route8CooltrainerF1EndBattleText:
-	text_far _Route8CooltrainerF1EndBattleText
-	text_end
+	text "なんで　なんでー"
+	prompt
 
 Route8CooltrainerF1AfterBattleText:
-	text_far _Route8CooltrainerF1AfterBattleText
-	text_end
+	text "#って　そだって　くると"
+	line "かわいく　なくなって　きちゃう"
+	cont "しんか　しないほうが　かわいいわ！"
+	done
 
 Route8SuperNerd3Text:
 	text_asm
@@ -127,16 +139,21 @@ Route8SuperNerd3Text:
 	jp TextScriptEnd
 
 Route8SuperNerd3BattleText:
-	text_far _Route8SuperNerd3BattleText
-	text_end
+	text "べんきょうも　いいけど<……>"
+	line "#も　いいね"
+	done
 
 Route8SuperNerd3EndBattleText:
-	text_far _Route8SuperNerd3EndBattleText
-	text_end
+	text "<……>　わかった"
+	line "ぼくには　べんきょう　しか　ない"
+	prompt
 
 Route8SuperNerd3AfterBattleText:
-	text_far _Route8SuperNerd3AfterBattleText
-	text_end
+	text "たまには　そとの　くうき　すいに"
+	line "いこうと　おもったのに"
+	cont "ヤマブキの　ゲートの　せいで"
+	cont "みんな　ここで　あしどめだ"
+	done
 
 Route8CooltrainerF2Text:
 	text_asm
@@ -145,16 +162,20 @@ Route8CooltrainerF2Text:
 	jp TextScriptEnd
 
 Route8CooltrainerF2BattleText:
-	text_far _Route8CooltrainerF2BattleText
-	text_end
+	text "ニャース　って"
+	line "ちょー　かわいーの！"
+	cont "にゃー　にゃー　にゃー！"
+	done
 
 Route8CooltrainerF2EndBattleText:
-	text_far _Route8CooltrainerF2EndBattleText
-	text_end
+	text "そんにゃー！"
+	prompt
 
 Route8CooltrainerF2AfterBattleText:
-	text_far _Route8CooltrainerF2AfterBattleText
-	text_end
+	text "やーん！"
+	line "ポッポも　コラッタも　かわいー"
+	cont "あたし　まよっちゃう！"
+	done
 
 Route8CooltrainerF3Text:
 	text_asm
@@ -163,16 +184,20 @@ Route8CooltrainerF3Text:
 	jp TextScriptEnd
 
 Route8CooltrainerF3BattleText:
-	text_far _Route8CooltrainerF3BattleText
-	text_end
+	text "こうして　ならんでると"
+	line "はないち　もんめ　してる　みたい"
+	done
 
 Route8CooltrainerF3EndBattleText:
-	text_far _Route8CooltrainerF3EndBattleText
-	text_end
+	text "ひどーい！"
+	line "みんな　かわいい　#　なのに"
+	prompt
 
 Route8CooltrainerF3AfterBattleText:
-	text_far _Route8CooltrainerF3AfterBattleText
-	text_end
+	text "ヤマブキ　シティの　けいびいん"
+	line "ゲート　とおらせて　くれないの"
+	cont "まじめ　だけど<……>　いじわるね"
+	done
 
 Route8Gambler2Text:
 	text_asm
@@ -181,16 +206,20 @@ Route8Gambler2Text:
 	jp TextScriptEnd
 
 Route8Gambler2BattleText:
-	text_far _Route8Gambler2BattleText
-	text_end
+	text "おれは　いまどき"
+	line "さすらいの　ギャンブラー！"
+	done
 
 Route8Gambler2EndBattleText:
-	text_far _Route8Gambler2EndBattleText
-	text_end
+	text "<……>！"
+	line "ここ　いちばんを　のがす　とは！"
+	prompt
 
 Route8Gambler2AfterBattleText:
-	text_far _Route8Gambler2AfterBattleText
-	text_end
+	text "ギャンブルも　#も"
+	line "しょうぶには　かわりない！"
+	cont "はじめたら　やめられ　ないのさ"
+	done
 
 Route8CooltrainerF4Text:
 	text_asm
@@ -199,17 +228,26 @@ Route8CooltrainerF4Text:
 	jp TextScriptEnd
 
 Route8CooltrainerF4BattleText:
-	text_far _Route8CooltrainerF4BattleText
-	text_end
+	text "まるくって　ふわふわで"
+	line "ぬいぐるみ　みたいな　#！"
+	cont "<……>　なーんだ？"
+	done
 
 Route8CooltrainerF4EndBattleText:
-	text_far _Route8CooltrainerF4EndBattleText
-	text_end
+	text "やめてー！"
+
+	para "わたしの　ピッピに"
+	line "らんぼう　しないでよう！"
+	prompt
 
 Route8CooltrainerF4AfterBattleText:
-	text_far _Route8CooltrainerF4AfterBattleText
-	text_end
+	text "つきのいしで　ピッピが　なんかに"
+	line "しんか　するって"
+	cont "#　ジャーナルで　よんだの"
+	cont "<……>　ほんと　かしら？"
+	done
 
 Route8UndergroundSignText:
-	text_far _Route8UndergroundSignText
-	text_end
+	text "ここから　ちかつうろ"
+	line "タマムシ　<……>　シオン"
+	done

@@ -97,113 +97,146 @@ Route9TalkToTrainer:
 	jp TextScriptEnd
 
 Route9CooltrainerF1BattleText:
-	text_far _Route9CooltrainerF1BattleText
-	text_end
+	text "あら　#　もってるわね"
+	line "<……>　カモ　だわ！"
+	done
 
 Route9CooltrainerF1EndBattleText:
-	text_far _Route9CooltrainerF1EndBattleText
-	text_end
+	text "あら？　つよいわね"
+	prompt
 
 Route9CooltrainerF1AfterBattleText:
-	text_far _Route9CooltrainerF1AfterBattleText
-	text_end
+	text "この　さきの　トンネル"
+	line "なかは　まっくら　だから"
+	cont "あかりが　ないと　すすめ　ないわ"
+	done
 
 Route9CooltrainerM1BattleText:
-	text_far _Route9CooltrainerM1BattleText
-	text_end
+	text "だれだ？"
+	line "よさげな　#　もって"
+	cont "ふらふら　あるいとる　おまえは？"
+	done
 
 Route9CooltrainerM1EndBattleText:
-	text_far _Route9CooltrainerM1EndBattleText
-	text_end
+	text "まけよった"
+	prompt
 
 Route9CooltrainerM1AfterBattleText:
-	text_far _Route9CooltrainerM1AfterBattleText
-	text_end
+	text "くやしくて　なみだも　でん"
+	done
 
 Route9CooltrainerM2BattleText:
-	text_far _Route9CooltrainerM2BattleText
-	text_end
+	text "イワヤマ　トンネル　ぬけて"
+	line "シオン　タウンに"
+	cont "いく　ところ　なんだ　けど<……>"
+	done
 
 Route9CooltrainerM2EndBattleText:
-	text_far _Route9CooltrainerM2EndBattleText
-	text_end
+	text "どうも　だめだな"
+	prompt
 
 Route9CooltrainerM2AfterBattleText:
-	text_far _Route9CooltrainerM2AfterBattleText
-	text_end
+	text "なんだい　きみも"
+	line "イワヤマ　トンネル　いくのか"
+	done
 
 Route9CooltrainerF2BattleText:
-	text_far _Route9CooltrainerF2BattleText
-	text_end
+	text "おんなのこ　だからって"
+	line "てかげんは　なしね！"
+	done
 
 Route9CooltrainerF2EndBattleText:
-	text_far _Route9CooltrainerF2EndBattleText
-	text_end
+	text "だめ！　かなわないわ"
+	prompt
 
 Route9CooltrainerF2AfterBattleText:
-	text_far _Route9CooltrainerF2AfterBattleText
-	text_end
+	text "あなた　きっと"
+	line "#の　さいのう　あるのよ"
+	cont "がんばってね！"
+	done
 
 Route9Hiker1BattleText:
-	text_far _Route9Hiker1BattleText
-	text_end
+	text "がはは！"
+	line "ちょうど　いい！"
+	cont "たいくつ　してた　とこだ"
+	done
 
 Route9Hiker1EndBattleText:
-	text_far _Route9Hiker1EndBattleText
-	text_end
+	text "まだまだ！"
+	line "<……>　と　おもったら"
+	cont "もう　#が　ない"
+	prompt
 
 Route9Hiker1AfterBattleText:
-	text_far _Route9Hiker1AfterBattleText
-	text_end
+	text "やまおとこに"
+	line "びびらずに　たたかうとは"
+	cont "たいした　もんだ！"
+	done
 
 Route9Hiker2BattleText:
-	text_far _Route9Hiker2BattleText
-	text_end
+	text "はーっはっはッ！"
+	line "げんきな　ぼうず　だ！"
+	cont "いっちょう　やったるか！"
+	done
 
 Route9Hiker2EndBattleText:
-	text_far _Route9Hiker2EndBattleText
-	text_end
+	text "おっとっと！"
+	prompt
 
 Route9Hiker2AfterBattleText:
-	text_far _Route9Hiker2AfterBattleText
-	text_end
+	text "はーっはっはッ！"
+	line "げんきで　けっこう！"
+	done
 
 Route9Youngster1BattleText:
-	text_far _Route9Youngster1BattleText
-	text_end
+	text "まいあさ　はやおき　して"
+	line "そだてた　さなぎが！"
+	cont "やっと　かえったんだ！"
+	done
 
 Route9Youngster1EndBattleText:
-	text_far _Route9Youngster1EndBattleText
-	text_end
+	text "えーッ！"
+
+	para "ぼくの　はやおきは"
+	line "いったい　なんだったんだあ"
+	prompt
 
 Route9Youngster1AfterBattleText:
-	text_far _Route9Youngster1AfterBattleText
-	text_end
+	text "つよく　なるには　むし　#の"
+	line "ほかも　さがさないと　ダメ　だな"
+	done
 
 Route9Hiker3BattleText:
-	text_far _Route9Hiker3BattleText
-	text_end
+	text "はっはっはーッ！"
+	line "かかって　こーい！"
+	done
 
 Route9Hiker3EndBattleText:
-	text_far _Route9Hiker3EndBattleText
-	text_end
+	text "はーっはっはッ！"
+	line "ありゃ　まけた　ようだな"
+	prompt
 
 Route9Hiker3AfterBattleText:
-	text_far _Route9Hiker3AfterBattleText
-	text_end
+	text "はっはっはーッ！"
+	line "やまおとこは　こころが　ひろいから"
+	cont "まけても　わらってるのだ！"
+	done
 
 Route9Youngster2BattleText:
-	text_far _Route9Youngster2BattleText
-	text_end
+	text "おいらの　かわいい　むし　ポケ！"
+	line "それいけー！"
+	done
 
 Route9Youngster2EndBattleText:
-	text_far _Route9Youngster2EndBattleText
-	text_end
+	text "おいらの　むし<……>"
+	prompt
 
 Route9Youngster2AfterBattleText:
-	text_far _Route9Youngster2AfterBattleText
-	text_end
+	text "むし　#の　よさが"
+	line "わからない　やつは　むし！"
+	done
 
 Route9SignText:
-	text_far _Route9SignText
-	text_end
+	text "ここは　９ばん　どうろ"
+	line "ハナダ　<……>　イワヤマ　トンネル"
+	done

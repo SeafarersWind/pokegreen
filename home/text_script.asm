@@ -13,7 +13,7 @@ DisplayTextID::
 	call SwitchToMapRomBank
 .skipSwitchToMapBank
 	ld a, 30 ; half a second
-	ldh [hFrameCounter], a ; used as joypad poll timer
+	ld [hFrameCounter], a ; used as joypad poll timer
 	ld hl, wCurMapTextPtr
 	ld a, [hli]
 	ld h, [hl]
@@ -151,8 +151,9 @@ DisplayPokemartDialogue::
 	jp AfterDisplayingTextID
 
 PokemartGreetingText::
-	text_far _PokemartGreetingText
-	text_end
+	text "ようこそ！"
+	next "おさがしものですか？"
+	done
 
 LoadItemList::
 	ld a, 1
@@ -191,20 +192,22 @@ DisplayPokemonFaintedText::
 	jp AfterDisplayingTextID
 
 PokemonFaintedText::
-	text_far _PokemonFaintedText
-	text_end
+	text_ram wNameBuffer
+	text "は　ちからつきた"
+	done
 
 DisplayPlayerBlackedOutText::
 	ld hl, PlayerBlackedOutText
 	call PrintText
-	ld a, [wStatusFlags6]
-	res BIT_ALWAYS_ON_BIKE, a
-	ld [wStatusFlags6], a
 	jp HoldTextDisplayOpen
 
 PlayerBlackedOutText::
-	text_far _PlayerBlackedOutText
-	text_end
+	text "<PLAYER>の　てもとには"
+	line "たたかえる#が　もういない！"
+
+	para "<PLAYER>は"
+	line "めのまえが　まっくらに　なった！"
+	prompt
 
 DisplayRepelWoreOffText::
 	ld hl, RepelWoreOffText
@@ -212,5 +215,5 @@ DisplayRepelWoreOffText::
 	jp AfterDisplayingTextID
 
 RepelWoreOffText::
-	text_far _RepelWoreOffText
-	text_end
+	text "スプレーの　こうかがきれた"
+	done

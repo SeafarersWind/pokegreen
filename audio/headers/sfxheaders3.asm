@@ -469,11 +469,11 @@ SFX_Intro_Lunge::
 
 SFX_Intro_Hip::
 	channel_count 1
-	channel 5, SFX_Intro_Hip_Ch5
+	channel 8, SFX_Intro_Hip_Ch5
 
 SFX_Intro_Hop::
 	channel_count 1
-	channel 5, SFX_Intro_Hop_Ch5
+	channel 8, SFX_Intro_Hop_Ch5
 
 SFX_Intro_Raise::
 	channel_count 1

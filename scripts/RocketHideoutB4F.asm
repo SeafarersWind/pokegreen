@@ -125,16 +125,39 @@ RocketHideoutB4FGiovanniText:
 	jp TextScriptEnd
 
 .ImpressedYouGotHereText:
-	text_far _RocketHideoutB4FGiovanniImpressedYouGotHereText
-	text_end
+	text "ほほうッ！"
+	line "こんな　ところ　まで　よくきた"
+
+	para "せかい　じゅうの　#を"
+	line "わるだくみに　つかい　まくって"
+	cont "かねもうけ　する　<ROCKET>！"
+
+	para "わたしが"
+	line "その　りーダー　サカキだ！"
+
+	para "わたしに　はむかう　なら"
+	line "いたい　めに　あって　もらう！"
+	done
 
 .WhatCannotBeText:
-	text_far _RocketHideoutB4FGiovanniWhatCannotBeText
-	text_end
+	text "ぐ　ぐーッ！"
+	line "そんな　ばかなーッ！"
+	prompt
 
 RocketHideoutB4FGiovanniHopeWeMeetAgainText:
-	text_far _RocketHideoutB4FGiovanniHopeWeMeetAgainText
-	text_end
+	text "<……>　きみは　とても　だいじに"
+	line "#を　そだてて　いるな"
+
+	para "そんな　こどもに"
+	line "わたしの　かんがえは"
+	cont "とても　りかい　できないだろう"
+
+	para "　<……>！"
+	line "ここは　いちど　みを　ひこう！"
+
+	para "きみとは　また　どこかで"
+	line "たたかいたい　ものだ<……>！"
+	done
 
 RocketHideoutB4FRocket1Text:
 	text_asm
@@ -143,16 +166,19 @@ RocketHideoutB4FRocket1Text:
 	jp TextScriptEnd
 
 RocketHideoutB4FRocket1BattleText:
-	text_far _RocketHideoutB4FRocket1BattleText
-	text_end
+	text "あーッ　おまえ！"
+	line "オツキミやまで　カセキ　さがしの"
+	cont "じゃま　した　やつだ！"
+	done
 
 RocketHideoutB4FRocket1EndBattleText:
-	text_far _RocketHideoutB4FRocket1EndBattleText
-	text_end
+	text "くやしいが　やられた！"
+	prompt
 
 RocketHideoutB4FRocket1AfterBattleText:
-	text_far _RocketHideoutB4FRocket1AfterBattleText
-	text_end
+	text "<ROCKET>の"
+	line "じゃま　ばかり　しやがって<……>！"
+	done
 
 RocketHideoutB4FRocket2Text:
 	text_asm
@@ -161,16 +187,18 @@ RocketHideoutB4FRocket2Text:
 	jp TextScriptEnd
 
 RocketHideoutB4FRocket2BattleText:
-	text_far _RocketHideoutB4FRocket2BattleText
-	text_end
+	text "<ROCKET>の　あくじの"
+	line "すばらしさが　わからん　こどもめ！"
+	done
 
 RocketHideoutB4FRocket2EndBattleText:
-	text_far _RocketHideoutB4FRocket2EndBattleText
-	text_end
+	text "あぎゃぎゃ！"
+	prompt
 
 RocketHideoutB4FRocket2AfterBattleText:
-	text_far _RocketHideoutB4FRocket2AfterBattleText
-	text_end
+	text "ボス<……>！"
+	line "ちから　および　ません　でした"
+	done
 
 RocketHideoutB4FRocket3Text:
 	text_asm
@@ -179,12 +207,14 @@ RocketHideoutB4FRocket3Text:
 	jp TextScriptEnd
 
 RocketHideoutB4FRocket3BattleText:
-	text_far _RocketHideoutB4FRocket3BattleText
-	text_end
+	text "はははーッ！"
+	line "エレべータが　つかえないって？"
+	cont "カギは　だれが　もってるのかなー？"
+	done
 
 RocketHideoutB4FRocket3EndBattleText:
-	text_far _RocketHideoutB4FRocket3EndBattleText
-	text_end
+	text "そんな<……>！"
+	prompt
 
 RocketHideoutB4FRocket3AfterBattleText:
 	text_asm
@@ -199,5 +229,7 @@ RocketHideoutB4FRocket3AfterBattleText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _RocketHideoutB4FRocket3AfterBattleText
-	text_end
+	text "しまった<……>！"
+	line "せっかく　かくして　おいた"
+	cont "エレべータの　カギが<……>！"
+	done

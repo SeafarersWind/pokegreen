@@ -43,27 +43,6 @@
 	const CRED_SPECIAL        ; $28
 	const CRED_PRODUCERS      ; $29
 	const CRED_PRODUCER       ; $2A
-	const CRED_EXECUTIVE      ; $2B
-	const CRED_TAMADA         ; $2C
-	const CRED_SA_OOTA        ; $2D
-	const CRED_YOSHIKAWA      ; $2E
-	const CRED_TO_OOTA        ; $2F
-	const CRED_US_STAFF       ; $30
-	const CRED_US_COORD       ; $31
-	const CRED_TILDEN         ; $32
-	const CRED_KAWAKAMI       ; $33
-	const CRED_HI_NAKAMURA    ; $34
-	const CRED_GIESE          ; $35
-	const CRED_OSBORNE        ; $36
-	const CRED_TRANS          ; $37
-	const CRED_OGASAWARA      ; $38
-	const CRED_IWATA          ; $39
-	const CRED_IZUSHI         ; $3A
-	const CRED_HARADA         ; $3B
-	const CRED_MURAKAWA       ; $3C
-	const CRED_FUKUI          ; $3D
-	const CRED_CLUB           ; $3E
-	const CRED_PAAD           ; $3F
 DEF NUM_CRED_STRINGS EQU const_value
 
 	const_def -1, -1

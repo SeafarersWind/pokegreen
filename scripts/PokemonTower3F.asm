@@ -36,11 +36,42 @@ PokemonTower3FChanneler1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonTower3FChanneler1BattleText:
+	text "<……>　<……>　ギ<……>"
+	line "<……>　グググッ<……>！"
+	done
+
+PokemonTower3FChanneler1EndBattleText:
+	text "むう<……>！"
+	line "たすかった！"
+	prompt
+
+PokemonTower3FChanneler1AfterBattleText:
+	text "シルフ　スコープなる　マシンなら"
+	line "ゆうれい　#の"
+	cont "しょうたいを　みやぶる　というが<……>"
+	done
+
 PokemonTower3FChanneler2Text:
 	text_asm
 	ld hl, PokemonTower3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+PokemonTower3FChanneler2BattleText:
+	text "<……>　<……>　<……>"
+	line "<……>　ケケーッ！"
+	done
+
+PokemonTower3FChanneler2EndBattleText:
+	text "<……>あれ？"
+	line "わしは　なに　してたのじゃ"
+	prompt
+
+PokemonTower3FChanneler2AfterBattleText:
+	text "すまぬ！　あくりょうが"
+	line "のりうつって　あばれてるのじゃ！"
+	done
 
 PokemonTower3FChanneler3Text:
 	text_asm
@@ -48,38 +79,17 @@ PokemonTower3FChanneler3Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower3FChanneler1BattleText:
-	text_far _PokemonTower3FChanneler1BattleText
-	text_end
-
-PokemonTower3FChanneler1EndBattleText:
-	text_far _PokemonTower3FChanneler1EndBattleText
-	text_end
-
-PokemonTower3FChanneler1AfterBattleText:
-	text_far _PokemonTower3FChanneler1AfterBattleText
-	text_end
-
-PokemonTower3FChanneler2BattleText:
-	text_far _PokemonTower3FChanneler2BattleText
-	text_end
-
-PokemonTower3FChanneler2EndBattleText:
-	text_far _PokemonTower3FChanneler2EndBattleText
-	text_end
-
-PokemonTower3FChanneler2AfterBattleText:
-	text_far _PokemonTower3FChanneler2AfterBattleText
-	text_end
-
 PokemonTower3FChanneler3BattleText:
-	text_far _PokemonTower3FChanneler3BattleText
-	text_end
+	text "ええい　あくりょうめ！"
+	line "<……>うわっ！　へゲ<……>ケケーッ！"
+	done
 
 PokemonTower3FChanneler3EndBattleText:
-	text_far _PokemonTower3FChanneler3EndBattleText
-	text_end
+	text "ふう！<……>"
+	line "<……>あくりょうは　にげたか"
+	prompt
 
 PokemonTower3FChanneler3AfterBattleText:
-	text_far _PokemonTower3FChanneler3AfterBattleText
-	text_end
+	text "く！　うえに　いる　なかまも"
+	line "あくりょうに　おそわれた　ようだ！"
+	done

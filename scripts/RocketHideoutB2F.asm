@@ -291,13 +291,17 @@ RocketHideoutB2FRocketText:
 	jp TextScriptEnd
 
 RocketHideoutB2FRocketBattleText:
-	text_far _RocketHideoutB2FRocketBattleText
-	text_end
+	text "シルフスコープを　つかうと"
+	line "みえない　ゆうれいも　みえるって"
+	cont "ボスが　いってたぞ"
+	done
 
 RocketHideoutB2FRocketEndBattleText:
-	text_far _RocketHideoutB2FRocketEndBattleText
-	text_end
+	text "まいった！"
+	prompt
 
 RocketHideoutB2FRocketAfterBattleText:
-	text_far _RocketHideoutB2FRocketAfterBattleText
-	text_end
+	text "<ROCKET>の　ほんぶは"
+	line "ちか　４かい　まで　ある"
+	cont "ボスまで　たどり　つけるかな？"
+	done

@@ -16,9 +16,10 @@ CableClub_DoBattleOrTrade:
 	hlcoord 4, 10
 	ld de, PleaseWaitString
 	call PlaceString
-	ld hl, wPlayerNumHits
 	xor a
+	ld hl, wPlayerNumHits
 	ld [hli], a
+	ld [wUnusedLinkByte], a
 	ld [hl], $50
 	; fall through
 
@@ -58,7 +59,7 @@ CableClub_DoBattleOrTradeAgain:
 	dec b
 	jr nz, .zeroPlayerDataPatchListLoop
 	ld hl, wLinkEnemyTrainerName
-	ld bc, wTrainerHeaderPtr - wLinkEnemyTrainerName
+	ld bc, wEnemyMon4OT+4 - wLinkEnemyTrainerName
 .zeroEnemyPartyLoop
 	xor a
 	ld [hli], a
@@ -101,6 +102,7 @@ CableClub_DoBattleOrTradeAgain:
 .finishedPatchingPlayerData
 	ld a, SERIAL_PATCH_LIST_PART_TERMINATOR
 	ld [de], a ; end of part 2
+	xor a
 	call Serial_SyncAndExchangeNybble
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
@@ -108,12 +110,12 @@ CableClub_DoBattleOrTradeAgain:
 ; if using internal clock
 ; send two zero bytes for syncing purposes?
 	call Delay3
-	xor a
+	ld a, [wUnusedLinkByte]
 	ldh [hSerialSendData], a
 	ld a, START_TRANSFER_INTERNAL_CLOCK
 	ldh [rSC], a
 	call DelayFrame
-	xor a
+	ld a, [wUnusedLinkByte]
 	ldh [hSerialSendData], a
 	ld a, START_TRANSFER_INTERNAL_CLOCK
 	ldh [rSC], a
@@ -258,6 +260,23 @@ CableClub_DoBattleOrTradeAgain:
 	ld hl, wEnemyMons + (SERIAL_PREAMBLE_BYTE - 1)
 	dec c
 	jr nz, .unpatchEnemyMonsLoop
+	ld a, [wPlayerName]
+	cp $60
+	jr nz, .enemyError
+	ld de, PlayerPartyString
+	jr .playerError
+.enemyError
+	ld a, [wLinkEnemyTrainerName]
+	cp $60
+	jr nz, .noError
+	ld de, EnemyPartyString
+.playerError
+	call CopyToStringBuffer
+	ld hl, CorruptDataString
+	call PrintText
+.errorloop
+	jr .errorloop
+.noError
 	ld a, LOW(wEnemyMonOT)
 	ld [wUnusedNamePointer], a
 	ld a, HIGH(wEnemyMonOT)
@@ -292,8 +311,19 @@ CableClub_DoBattleOrTradeAgain:
 	call PlayMusic
 	jr CallCurrentTradeCenterFunction
 
+CorruptDataString:
+	text_ram wStringBuffer
+	text "の　データが"
+	line "こわれています！"
+	db "<_CONT>でんげんを　きって"
+	db "<SCROLL>やりなおしてください。"
+	done
+PlayerPartyString:
+	db "じぶん@"
+EnemyPartyString:
+	db "あいて@"
 PleaseWaitString:
-	db "PLEASE WAIT!@"
+	db "つうしんじゅんびちゅう！@"
 
 CallCurrentTradeCenterFunction:
 	ld hl, TradeCenterPointerTable
@@ -336,29 +366,17 @@ TradeCenter_SelectMon:
 	ld [wMenuWatchedKeys], a
 	ld a, [wEnemyPartyCount]
 	ld [wMaxMenuItem], a
-	ld a, 9
+	ld a, 3
 	ld [wTopMenuItemY], a
-	ld a, 1
+	ld a, 12
 	ld [wTopMenuItemX], a
 .enemyMonMenu_HandleInput
-	ld hl, hUILayoutFlags
-	set BIT_DOUBLE_SPACED_MENU, [hl]
 	call HandleMenuInput
-	ld hl, hUILayoutFlags
-	res BIT_DOUBLE_SPACED_MENU, [hl]
 	and a
 	jp z, .getNewInput
 	bit BIT_A_BUTTON, a
 	jr z, .enemyMonMenu_ANotPressed
 ; if A button pressed
-	ld a, [wMaxMenuItem]
-	ld c, a
-	ld a, [wCurrentMenuItem]
-	cp c
-	jr c, .displayEnemyMonStats
-	ld a, [wMaxMenuItem]
-	dec a
-	ld [wCurrentMenuItem], a
 .displayEnemyMonStats
 	ld a, INIT_ENEMYOT_LIST
 	ld [wInitListType], a
@@ -398,19 +416,12 @@ TradeCenter_SelectMon:
 	ld [wMenuWatchedKeys], a
 	ld a, [wPartyCount]
 	ld [wMaxMenuItem], a
-	ld a, 1
+	ld a, 3
 	ld [wTopMenuItemY], a
-	ld a, 1
+	ld a, 2
 	ld [wTopMenuItemX], a
-	hlcoord 1, 1
-	lb bc, 6, 1
-	call ClearScreenArea
 .playerMonMenu_HandleInput
-	ld hl, hUILayoutFlags
-	set BIT_DOUBLE_SPACED_MENU, [hl]
 	call HandleMenuInput
-	ld hl, hUILayoutFlags
-	res BIT_DOUBLE_SPACED_MENU, [hl]
 	and a ; was anything pressed?
 	jr nz, .playerMonMenu_SomethingPressed
 	jp .getNewInput
@@ -458,13 +469,7 @@ TradeCenter_SelectMon:
 .chosePlayerMon
 	call SaveScreenTilesToBuffer1
 	call PlaceUnfilledArrowMenuCursor
-	ld a, [wMaxMenuItem]
-	ld c, a
 	ld a, [wCurrentMenuItem]
-	cp c
-	jr c, .displayStatsTradeMenu
-	ld a, [wMaxMenuItem]
-	dec a
 .displayStatsTradeMenu
 	push af
 	hlcoord 0, 14
@@ -536,7 +541,7 @@ TradeCenter_SelectMon:
 	ld [wTradeCenterPointerTableIndex], a
 	jp CallCurrentTradeCenterFunction
 .statsTrade
-	db "STATS     TRADE@"
+	db "ステイタスをみる　　こうかんにだす@"
 .selectedCancelMenuItem
 	ld a, [wCurrentMenuItem]
 	ld b, a
@@ -554,7 +559,7 @@ TradeCenter_SelectMon:
 	ldcoord_a 1, 16
 .cancelMenuItem_JoypadLoop
 	call JoypadLowSensitivity
-	ldh a, [hJoy5]
+	ld a, [hJoy5]
 	and a ; pressed anything?
 	jr z, .cancelMenuItem_JoypadLoop
 	bit BIT_A_BUTTON, a
@@ -612,12 +617,12 @@ TradeCenter_DrawCancelBox:
 	jp PlaceString
 
 CancelTextString:
-	db "CANCEL@"
+	db "こうかんちゅうし@"
 
 TradeCenter_PlaceSelectedEnemyMonMenuCursor:
 	ld a, [wSerialSyncAndExchangeNybbleReceiveData]
-	hlcoord 1, 9
-	ld bc, SCREEN_WIDTH
+	hlcoord 12, 3
+	ld bc, SCREEN_WIDTH * 2
 	call AddNTimes
 	ld [hl], "▷" ; cursor
 	ret
@@ -633,24 +638,24 @@ TradeCenter_DisplayStats:
 	jp TradeCenter_DrawCancelBox
 
 TradeCenter_DrawPartyLists:
-	hlcoord 0, 0
-	ld b, 6
-	ld c, 18
+	hlcoord 0, 1
+	ld b, 12
+	ld c, 8
 	call CableClub_TextBoxBorder
-	hlcoord 0, 8
-	ld b, 6
-	ld c, 18
+	hlcoord 10, 1
+	ld b, 12
+	ld c, 8
 	call CableClub_TextBoxBorder
-	hlcoord 5, 0
+	hlcoord 3, 1
 	ld de, wPlayerName
 	call PlaceString
-	hlcoord 5, 8
+	hlcoord 13, 1
 	ld de, wLinkEnemyTrainerName
 	call PlaceString
-	hlcoord 2, 1
+	hlcoord 3, 3
 	ld de, wPartySpecies
 	call TradeCenter_PrintPartyListNames
-	hlcoord 2, 9
+	hlcoord 13, 3
 	ld de, wEnemyPartySpecies
 	; fall through
 
@@ -673,7 +678,7 @@ TradeCenter_PrintPartyListNames:
 	pop de
 	inc de
 	pop hl
-	ld bc, 20
+	ld bc, 40
 	add hl, bc
 	pop bc
 	inc c
@@ -840,7 +845,7 @@ TradeCenter_Trade:
 	call LoadHpBarAndStatusTilePatterns
 	xor a
 	ld [wUnusedFlag], a
-	ldh a, [hSerialConnectionStatus]
+	ld a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	jr z, .usingExternalClock
 	predef InternalClockTradeAnim
@@ -876,15 +881,19 @@ TradeCenter_Trade:
 	jp CallCurrentTradeCenterFunction
 
 WillBeTradedText:
-	text_far _WillBeTradedText
-	text_end
+	text_ram wNameOfPlayerMonToBeTraded
+	text "　と　@"
+	text_ram wNameBuffer
+	text "　を"
+	line "こうかんします"
+	done
 
 TradeCompleted:
-	db "Trade completed!@"
+	db "こうかんしゅうりょう！@"
 
 TradeCanceled:
-	db   "Too bad! The trade"
-	next "was canceled!@"
+	db   "ざんねんながら"
+	next "こうかんは　キャンセルされました@"
 
 TradeCenterPointerTable:
 	dw TradeCenter_SelectMon
@@ -918,7 +927,7 @@ CableClub_Run:
 	ld [wGrassRate], a
 	inc a ; LINK_STATE_IN_CABLE_CLUB
 	ld [wLinkState], a
-	ldh [hJoy5], a
+	ld [hJoy5], a
 	ld a, 10
 	ld [wAudioFadeOutControl], a
 	ld a, BANK(Music_Celadon)

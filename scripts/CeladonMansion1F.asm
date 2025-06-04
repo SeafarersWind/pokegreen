@@ -14,27 +14,32 @@ CeladonMansion1_PlayCryScript:
 	jp TextScriptEnd
 
 CeladonMansion1FMeowthText:
-	text_far _CeladonMansion1FMeowthText
+	text "ニャース<BOLD_P>にゃーご！@"
 	text_asm
 	ld a, MEOWTH
 	jp CeladonMansion1_PlayCryScript
 
 CeladonMansion1FGrannyText:
-	text_far _CeladonMansion1FGrannyText
-	text_end
+	text "#に　かこまれてると"
+	line "ひとり　ぐらしも　さびしく　ないわ"
+
+	para "うちの　ニャース　なんか"
+	line "たまに　おかね　ひろって　くるの"
+	done
 
 CeladonMansion1FClefairyText:
-	text_far _CeladonMansion1FClefairyText
+	text "ピッピ<BOLD_P>ぴ　ぴっぴ！@"
 	text_asm
 	ld a, CLEFAIRY
 	jp CeladonMansion1_PlayCryScript
 
 CeladonMansion1FNidoranFText:
-	text_far _CeladonMansion1FNidoranFText
+	text "ニドラン<BOLD_P>きゃ　きゃう！@"
 	text_asm
 	ld a, NIDORAN_F
 	jp CeladonMansion1_PlayCryScript
 
 CeladonMansion1FManagersSuiteSignText:
-	text_far _CeladonMansion1FManagersSuiteSignText
-	text_end
+	text "タマムシ　マンション"
+	line "<……>　かんりにん　しつ"
+	done

@@ -108,5 +108,25 @@ HallOfFame_TextPointers:
 	dw_const HallOfFameOakText, TEXT_HALLOFFAME_OAK
 
 HallOfFameOakText:
-	text_far _HallOfFameOakText
-	text_end
+	text "オーキド<BOLD_P><……>　おほんッ！"
+	line "おめでとう！　<PLAYER>！"
+
+	para "ここは<……>"
+	line "れきだいの　#　りーグ"
+	cont "<TRAINER>の　もとで<……>"
+
+	para "かつやく　した　#　たちを"
+	line "えいえんに　きろく　して"
+	cont "たたえる　フロア　である！"
+
+	para "#　<TRAINER>は　ここに"
+	line "きろく　される　よろこびを"
+	cont "でんどういり　と　よんで　いる！"
+
+	para "<PLAYER>！　おまえは"
+	line "はげしい　たたかいの　すえ"
+	cont "りーグ　チャンピオンと　なった！"
+
+	para "ここに　<PLAYER>の　なまえと"
+	line "#　たちを　きろく　しよう！"
+	done

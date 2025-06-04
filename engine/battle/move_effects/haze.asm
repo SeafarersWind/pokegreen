@@ -24,7 +24,7 @@ HazeEffect_:
 .cureStatuses
 	ld a, [hl]
 	ld [hl], $0
-	and (1 << FRZ) | SLP_MASK
+	and SLP_MASK
 	jr z, .cureVolatileStatuses
 ; prevent the Pokemon from executing a move if it was asleep or frozen
 	ld a, $ff
@@ -38,15 +38,6 @@ HazeEffect_:
 	ld [hli], a
 	ld [hl], a
 	ld hl, wPlayerBattleStatus1
-	call CureVolatileStatuses
-	ld hl, wEnemyBattleStatus1
-	call CureVolatileStatuses
-	ld hl, PlayCurrentMoveAnimation
-	call CallBankF
-	ld hl, StatusChangesEliminatedText
-	jp PrintText
-
-CureVolatileStatuses:
 	res CONFUSED, [hl]
 	inc hl ; BATTSTATUS2
 	ld a, [hl]
@@ -56,7 +47,21 @@ CureVolatileStatuses:
 	ld a, [hl]
 	and %11110000 | (1 << TRANSFORMED) ; clear Bad Poison, Reflect and Light Screen statuses
 	ld [hl], a
-	ret
+	ld hl, wEnemyBattleStatus1
+	res CONFUSED, [hl]
+	inc hl ; BATTSTATUS2
+	ld a, [hl]
+	; clear USING_X_ACCURACY, PROTECTED_BY_MIST, GETTING_PUMPED, and SEEDED statuses
+	and ~((1 << USING_X_ACCURACY) | (1 << PROTECTED_BY_MIST) | (1 << GETTING_PUMPED) | (1 << SEEDED))
+	ld [hli], a ; BATTSTATUS3
+	ld a, [hl]
+	and %11110000 | (1 << TRANSFORMED) ; clear Bad Poison, Reflect and Light Screen statuses
+	ld [hl], a
+	ld hl, PlayCurrentMoveAnimation
+	ld b, BANK(PrintButItFailedText_)
+	call Bankswitch
+	ld hl, StatusChangesEliminatedText
+	jp PrintText
 
 ResetStatMods:
 	ld b, $8
@@ -77,5 +82,6 @@ ResetStats:
 	ret
 
 StatusChangesEliminatedText:
-	text_far _StatusChangesEliminatedText
-	text_end
+	text "すべての　ステータスが"
+	line "もとに　もどった！"
+	prompt

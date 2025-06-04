@@ -81,16 +81,20 @@ PokemonMansion1FScientistText:
 	jp TextScriptEnd
 
 PokemonMansion1FScientistBattleText:
-	text_far _PokemonMansion1FScientistBattleText
-	text_end
+	text "だれも　いない　はずの"
+	line "いえを　あるき　まわる"
+	cont "きみは　だれだね？"
+	done
 
 PokemonMansion1FScientistEndBattleText:
-	text_far _PokemonMansion1FScientistEndBattleText
-	text_end
+	text "まいったな"
+	prompt
 
 PokemonMansion1FScientistAfterBattleText:
-	text_far _PokemonMansion1FScientistAfterBattleText
-	text_end
+	text "<……>　なに？"
+	line "カギを　さがして　いるのか"
+	cont "さあ　しらないねえ<……>"
+	done
 
 PokemonMansion1FSwitchText:
 	text_asm
@@ -119,13 +123,15 @@ PokemonMansion1FSwitchText:
 	jp TextScriptEnd
 
 .Text:
-	text_far _PokemonMansion1FSwitchText
-	text_end
+	text "ひみつの　スイッチが　ある！"
+
+	para "おして　みますか？"
+	done
 
 .PressedText:
-	text_far _PokemonMansion1FSwitchPressedText
-	text_end
+	text "おしてみよう！　<……>ポチッとな"
+	prompt
 
 .NotPressedText:
-	text_far _PokemonMansion1FSwitchNotPressedText
-	text_end
+	text "おすのは　あきらめた"
+	done

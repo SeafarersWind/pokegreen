@@ -80,6 +80,6 @@ RocketHideoutElevatorText:
 	jp TextScriptEnd
 
 .AppearsToNeedKeyText:
-	text_far _RocketHideoutElevatorAppearsToNeedKeyText
+	text "カギが　ひつよう　みたいだな@"
 	text_waitbutton
 	text_end

@@ -72,8 +72,11 @@ PokemonTower5TrainerHeader3:
 	db -1 ; end
 
 PokemonTower5FChanneler1Text:
-	text_far _PokemonTower5FChanneler1Text
-	text_end
+	text "さあ　こっちへ　きなさい！"
+	line "ここには　けっかいを　はってある"
+
+	para "やすんで　いくが　よい！"
+	done
 
 PokemonTower5FChanneler2Text:
 	text_asm
@@ -82,16 +85,18 @@ PokemonTower5FChanneler2Text:
 	jp TextScriptEnd
 
 PokemonTower5FChanneler2BattleText:
-	text_far _PokemonTower5FChanneler2BattleText
-	text_end
+	text "<……>　タマ<……>　シ<……>　イ"
+	line "<……>　ヨ<……>　コセッ！"
+	done
 
 PokemonTower5FChanneler2EndBattleText:
-	text_far _PokemonTower5FChanneler2EndBattleText
-	text_end
+	text "ハア　ハア<……>！"
+	prompt
 
 PokemonTower5FChanneler2AfterBattleText:
-	text_far _PokemonTower5FChanneler2AfterBattleText
-	text_end
+	text "わたしは<……>"
+	line "とり　つかれて　おったか"
+	done
 
 PokemonTower5FChanneler3Text:
 	text_asm
@@ -100,16 +105,18 @@ PokemonTower5FChanneler3Text:
 	jp TextScriptEnd
 
 PokemonTower5FChanneler3BattleText:
-	text_far _PokemonTower5FChanneler3BattleText
-	text_end
+	text "オ<……>　マ<……>　エモ<……>"
+	line "<……>　ナカ<……>マニッ！"
+	done
 
 PokemonTower5FChanneler3EndBattleText:
-	text_far _PokemonTower5FChanneler3EndBattleText
-	text_end
+	text "なんとした　ことじゃ"
+	prompt
 
 PokemonTower5FChanneler3AfterBattleText:
-	text_far _PokemonTower5FChanneler3AfterBattleText
-	text_end
+	text "とり　つかれるとは"
+	line "わしも　まだまだ<……>"
+	done
 
 PokemonTower5FChanneler4Text:
 	text_asm
@@ -118,16 +125,18 @@ PokemonTower5FChanneler4Text:
 	jp TextScriptEnd
 
 PokemonTower5FChanneler4BattleText:
-	text_far _PokemonTower5FChanneler4BattleText
-	text_end
+	text "<……>　ぞ<……>　ゾゾ<……>"
+	line "<……>　ンビーッ<……>！"
+	done
 
 PokemonTower5FChanneler4EndBattleText:
-	text_far _PokemonTower5FChanneler4EndBattleText
-	text_end
+	text "<……>ゾ　ぞぞ？"
+	prompt
 
 PokemonTower5FChanneler4AfterBattleText:
-	text_far _PokemonTower5FChanneler4AfterBattleText
-	text_end
+	text "うう"
+	line "しょうきに　もどった！"
+	done
 
 PokemonTower5FChanneler5Text:
 	text_asm
@@ -136,17 +145,23 @@ PokemonTower5FChanneler5Text:
 	jp TextScriptEnd
 
 PokemonTower5FChanneler5BattleText:
-	text_far _PokemonTower5FChanneler5BattleText
-	text_end
+	text "<……>　ド<……>　ギャ"
+	line "<……>　ギ<……>　ギャ<……>ーン！"
+	done
 
 PokemonTower5FChanneler5EndBattleText:
-	text_far _PokemonTower5FChanneler5EndBattleText
-	text_end
+	text "ぶるぶる<……>"
+	prompt
 
 PokemonTower5FChanneler5AfterBattleText:
-	text_far _PokemonTower5FChanneler5AfterBattleText
-	text_end
+	text "やまおくで　しゅぎょう　したのに"
+	line "<……>　なさけない"
+	done
 
 PokemonTower5FPurifiedZoneText:
-	text_far _PokemonTower5FPurifiedZoneText
-	text_end
+	text "せいなる　いのりに　まもられた"
+	line "けっかいへ　はいった！"
+
+	para "<PLAYER>と　#は"
+	line "ひと　やすみして　げんきに　なった！"
+	done

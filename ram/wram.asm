@@ -462,7 +462,12 @@ wLinkBattleRandomNumberListIndex:: db
 ; number of times remaining that AI action can occur
 wAICount:: db
 
-	ds 2
+; Removed in the international versions
+; Set to $10 by the cable club receptionist, and set to 0 by the GameBoy
+; Always contains 0 when read
+wUnusedLinkByte:: db
+
+	ds 1
 
 wEnemyMoveListIndex:: db
 
@@ -798,7 +803,8 @@ wBadgeOrFaceTiles:: ds NUM_BADGES + 1
 wTempObtainedBadgesBooleans:: ds NUM_BADGES
 
 NEXTU
-wUnusedCreditsByte:: db
+; unused in the international versions
+wNumCreditsDisplayed:: db
 ; the number of credits mons that have been displayed so far
 wNumCreditsMonsDisplayed:: db
 
@@ -856,6 +862,8 @@ wOAMBaseTile::
 wGymTrashCanIndex:: db
 
 wSymmetricSpriteOAMAttributes:: db
+
+	ds 5
 
 wMonPartySpriteSpecies:: db
 
@@ -1029,9 +1037,6 @@ wScriptedNPCWalkCounter:: db
 
 	ds 1
 
-; always 0 since full CGB support was not implemented
-wOnCGB:: db
-
 ; if running on SGB, it's 1, else it's 0
 wOnSGB:: db
 
@@ -1077,9 +1082,9 @@ wExpAmountGained:: dw
 wGainBoostedExp:: db
 ENDU
 
-wGymCityName:: ds 17
+wGymCityName:: ds 5
 
-wGymLeaderName:: ds NAME_LENGTH
+wGymLeaderName:: ds 4
 
 wItemList:: ds 16
 
@@ -1185,7 +1190,7 @@ wPlayerMoveMaxPP:: db
 wEnemyMonSpecies2:: db
 wBattleMonSpecies2:: db
 
-wEnemyMonNick:: ds NAME_LENGTH
+wEnemyMonNick:: ds TRAINER_NAME_LENGTH
 
 wEnemyMon:: battle_struct wEnemyMon
 
@@ -1193,7 +1198,7 @@ wEnemyMonBaseStats:: ds NUM_STATS
 wEnemyMonActualCatchRate:: db
 wEnemyMonBaseExp:: db
 
-wBattleMonNick:: ds NAME_LENGTH
+wBattleMonNick:: ds TRAINER_NAME_LENGTH
 wBattleMon:: battle_struct wBattleMon
 
 
@@ -1206,7 +1211,7 @@ wTrainerPicPointer:: dw
 	ds 1
 
 UNION
-wTempMoveNameBuffer:: ds 14
+wTempMoveNameBuffer:: ds NAME_LENGTH
 
 NEXTU
 ; The name of the mon that is learning a move.
@@ -1225,7 +1230,7 @@ wMissableObjectCounter:: db
 ; 13 bytes for the letters of the opposing trainer
 ; the name is terminated with $50 with possible
 ; unused trailing letters
-wTrainerName:: ds 13
+wTrainerName:: ds TRAINER_NAME_LENGTH
 
 ; lost battle, this is -1
 ; no battle, this is 0
@@ -1554,7 +1559,7 @@ wMoves:: ds NUM_MOVES
 
 wMoveNum:: db
 
-wMovesString:: ds 56
+wMovesString:: ds 32
 
 wUnusedCurMapTilesetCopy:: db
 
@@ -2145,7 +2150,7 @@ wWaterMons:: ds 10 * 2
 
 NEXTU
 ; linked game's trainer name
-wLinkEnemyTrainerName:: ds NAME_LENGTH
+wLinkEnemyTrainerName:: ds TRAINER_NAME_LENGTH
 
 	ds 1
 
@@ -2188,8 +2193,6 @@ wOpponentAfterWrongAnswer:: db
 ; index of current map script, mostly used as index for function pointer array
 ; mostly copied from map-specific map script pointer and written back later
 wCurMapScript:: db
-
-	ds 7
 
 wPlayTimeHours:: db
 wPlayTimeMaxed:: db
@@ -2246,7 +2249,7 @@ wBoxDataEnd::
 SECTION "Stack", WRAM0
 
 ; the stack grows downward
-	ds $100 - 1
+	ds $100 - $18 - 1
 wStack:: db
 
 ENDSECTION

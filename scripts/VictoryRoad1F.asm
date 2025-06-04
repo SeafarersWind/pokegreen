@@ -63,32 +63,36 @@ VictoryRoad1FCooltrainerFText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+VictoryRoad1FCooltrainerFBattleText:
+	text "ふふ　あたし　じしん　あるわよ"
+	line "あなたの　てに　おえるかな？"
+	done
+
+VictoryRoad1FCooltrainerFEndBattleText:
+	text "まけたわ<……>"
+	prompt
+
+VictoryRoad1FCooltrainerFAfterBattleText:
+	text "おとこに　まけるの　だけは"
+	line "いや　だったのに！"
+	done
+
 VictoryRoad1FCooltrainerMText:
 	text_asm
 	ld hl, VictoryRoad1TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-VictoryRoad1FCooltrainerFBattleText:
-	text_far _VictoryRoad1FCooltrainerFBattleText
-	text_end
-
-VictoryRoad1FCooltrainerFEndBattleText:
-	text_far _VictoryRoad1FCooltrainerFEndBattleText
-	text_end
-
-VictoryRoad1FCooltrainerFAfterBattleText:
-	text_far _VictoryRoad1FCooltrainerFAfterBattleText
-	text_end
-
 VictoryRoad1FCooltrainerMBattleText:
-	text_far _VictoryRoad1FCooltrainerMBattleText
-	text_end
+	text "なかなか　やりての　ようだな"
+	line "おて　あわせ　ねがおうか！"
+	done
 
 VictoryRoad1FCooltrainerMEndBattleText:
-	text_far _VictoryRoad1FCooltrainerMEndBattleText
-	text_end
+	text "じしん　あったんだが"
+	prompt
 
 VictoryRoad1FCooltrainerMAfterBattleText:
-	text_far _VictoryRoad1FCooltrainerMAfterBattleText
-	text_end
+	text "ちっ！　うえには"
+	line "うえが　いたって　ことか<……>"
+	done

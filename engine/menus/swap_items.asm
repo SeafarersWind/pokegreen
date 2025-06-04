@@ -1,7 +1,7 @@
 HandleItemListSwapping::
 	ld a, [wListMenuID]
 	cp ITEMLISTMENU
-	jp nz, DisplayListMenuIDLoop ; only rearrange item list menus
+	jp c, DisplayListMenuIDLoop ; only rearrange item list menus
 	push hl
 	ld hl, wListPointer
 	ld a, [hli]

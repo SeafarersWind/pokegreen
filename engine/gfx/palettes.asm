@@ -334,9 +334,6 @@ SendSGBPacket:
 .loop2
 ; save B for later use
 	push bc
-; disable ReadJoypad to prevent it from interfering with sending the packet
-	ld a, 1
-	ldh [hDisableJoypadPolling], a
 ; send RESET signal (P14=LOW, P15=LOW)
 	xor a
 	ldh [rJOYP], a
@@ -377,8 +374,6 @@ SendSGBPacket:
 ; set P14=HIGH,P15=HIGH
 	ld a, $30
 	ldh [rJOYP], a
-	xor a
-	ldh [hDisableJoypadPolling], a
 ; wait for about 70000 cycles
 	call Wait7000
 ; restore (previously pushed) number of packets
@@ -396,14 +391,7 @@ LoadSGB:
 	ret nc
 	ld a, 1
 	ld [wOnSGB], a
-	ld a, [wOnCGB]
-	and a
-	jr z, .notCGB
-	ret
-.notCGB
-	di
 	call PrepareSuperNintendoVRAMTransfer
-	ei
 	ld a, 1
 	ld [wCopyingSGBTileData], a
 	ld de, ChrTrnPacket
@@ -455,11 +443,7 @@ PrepareSuperNintendoVRAMTransfer:
 CheckSGB:
 ; Returns whether the game is running on an SGB in carry.
 	ld hl, MltReq2Packet
-	di
 	call SendSGBPacket
-	ld a, 1
-	ldh [hDisableJoypadPolling], a
-	ei
 	call Wait7000
 	ldh a, [rJOYP]
 	and $3
@@ -563,44 +547,10 @@ Wait7000:
 	ret
 
 SendSGBPackets:
-	ld a, [wOnCGB]
-	and a
-	jr z, .notCGB
-	push de
-	call InitCGBPalettes
-	pop hl
-	call EmptyFunc3
-	ret
-.notCGB
 	push de
 	call SendSGBPacket
 	pop hl
 	jp SendSGBPacket
-
-InitCGBPalettes:
-	ld a, $80 ; index 0 with auto-increment
-	ldh [rBGPI], a
-	inc hl
-	ld c, $20
-.loop
-	ld a, [hli]
-	inc hl
-	add a
-	add a
-	add a
-	ld de, SuperPalettes
-	add e
-	jr nc, .noCarry
-	inc d
-.noCarry
-	ld a, [de]
-	ldh [rBGPD], a
-	dec c
-	jr nz, .loop
-	ret
-
-EmptyFunc3:
-	ret
 
 CopySGBBorderTiles:
 ; SGB tile data is stored in a 4BPP planar format.

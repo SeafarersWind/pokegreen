@@ -85,36 +85,45 @@ PokemonMansionB1FBurglarText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonMansionB1FBurglarBattleText:
+	text "<……>　ありゃ　こまった"
+	line "みちに　まよったぞ"
+	done
+
+PokemonMansionB1FBurglarEndBattleText:
+	text "ひゅー　どろどろ"
+	prompt
+
+PokemonMansionB1FBurglarAfterBattleText:
+	text "まえに　すんでた　ひとの"
+	line "どうぐが　けっこう　おちてるぜ"
+	done
+
 PokemonMansionB1FScientistText:
 	text_asm
 	ld hl, Mansion4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonMansionB1FBurglarBattleText:
-	text_far _PokemonMansionB1FBurglarBattleText
-	text_end
-
-PokemonMansionB1FBurglarEndBattleText:
-	text_far _PokemonMansionB1FBurglarEndBattleText
-	text_end
-
-PokemonMansionB1FBurglarAfterBattleText:
-	text_far _PokemonMansionB1FBurglarAfterBattleText
-	text_end
-
 PokemonMansionB1FScientistBattleText:
-	text_far _PokemonMansionB1FScientistBattleText
-	text_end
+	text "ここは　ひろくて"
+	line "けんきゅうするには　いい　ばしょだ"
+	done
 
 PokemonMansionB1FScientistEndBattleText:
-	text_far _PokemonMansionB1FScientistEndBattleText
-	text_end
+	text "なにを　するのかね"
+	prompt
 
 PokemonMansionB1FScientistAfterBattleText:
-	text_far _PokemonMansionB1FScientistAfterBattleText
-	text_end
+	text "きに　いったよ！"
+	line "ここに　すめば"
+	cont "けんきゅうも　はかどるな<……>"
+	done
 
 PokemonMansionB1FDiaryText:
-	text_far _PokemonMansionB1FDiaryText
-	text_end
+	text "にっき　９がつ１にち"
+	line "#　ミュウツーは　つよすぎる"
+
+	para "ダメだ<……>"
+	line "わたしの　てには　おえない！"
+	done

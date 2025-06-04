@@ -22,10 +22,10 @@ VermilionGym_Script:
 	jp LoadGymLeaderAndCityName
 
 .CityName:
-	db "VERMILION CITY@"
+	db "クチバ@"
 
 .LeaderName:
-	db "LT.SURGE@"
+	db "マチス@"
 
 VermilionGymSetDoorTile:
 	CheckEvent EVENT_2ND_LOCK_OPENED
@@ -148,30 +148,76 @@ VermilionGymLTSurgeText:
 	jp TextScriptEnd
 
 .PreBattleText:
-	text_far _VermilionGymLTSurgePreBattleText
-	text_end
+	text "へーイ！"
+	line "プア　りトル　ボーイ！"
+
+	para "ユーの　ハンパな　パワーでは"
+	line "せんじょうじゃ　いき　のこれないネ"
+
+	para "ミーは　せんそうで"
+	line "エレクトりック　#　つかって"
+	cont "いき　のびたネ！"
+
+	para "みんな　ビりビり　シビレて"
+	line "うごけナーイ！"
+
+	para "ユーも　おなじ　みち　たどる"
+	line "ちがい　ナーイ！"
+	done
 
 .PostBattleAdviceText:
-	text_far _VermilionGymLTSurgePostBattleAdviceText
-	text_end
+	text "へイ！"
+	line "それから　ユーに　アドバイス！"
+
+	para "エレクトりック　パワー"
+	line "ビりビり　つよいネー！"
+
+	para "でも　じめん　タイプには"
+	line "パワー　すいとられて　しまって"
+	cont "ぜんぜん　きかないヨー！"
+	done
 
 VermilionGymLTSurgeThunderBadgeInfoText:
-	text_far _VermilionGymLTSurgeThunderBadgeInfoText
-	text_end
+	text "オレンジ　バッジ　もってる　だけで"
+	line "ユーの　#　スピード　アップ"
+
+	para "アーンド！　そらをとぶ　わざは"
+	line "ファイト　ない　ときも"
+	cont "つかえる　ように　なるヨ！"
+
+	para "ユーは　スぺシャル！"
+	line "これは　ミーの　きもちネ！"
+	done
 
 VermilionGymLTSurgeReceivedTM24Text:
-	text_far _VermilionGymLTSurgeReceivedTM24Text
+	text "<PLAYER>は　マチスから"
+	line "@"
+	text_ram wStringBuffer
+	text "を　もらった！@"
 	sound_get_key_item
-	text_far _TM24ExplanationText
-	text_end
+	text_start
+
+	para "<TM>２４は"
+	line "でんき　ビりビり　１０まんボルト"
+
+	para "エレクトりック　#に"
+	line "おしえて　くだサーイ！"
+	done
 
 VermilionGymLTSurgeTM24NoRoomText:
-	text_far _VermilionGymLTSurgeTM24NoRoomText
-	text_end
+	text "フル　オブ　ユア　りュック！"
+	line "あなた　もてませーん！"
+	done
 
 VermilionGymLTSurgeReceivedThunderBadgeText:
-	text_far _VermilionGymLTSurgeReceivedThunderBadgeText
-	text_end
+	text "オー　ノー！"
+
+	para "ユーの　つよさ　トゥルース！"
+	line "つまり　ほんもの　ネー！"
+
+	para "オッケー！"
+	line "オレンジ　バッジ　やるヨ！"
+	prompt
 
 VermilionGymGentlemanText:
 	text_asm
@@ -180,16 +226,22 @@ VermilionGymGentlemanText:
 	jp TextScriptEnd
 
 VermilionGymGentlemanBattleText:
-	text_far _VermilionGymGentlemanBattleText
-	text_end
+	text "ぐんたいに　いた　ころは"
+	line "マチス　しょうさに"
+	cont "ビシ！ビシ！　きたえられたぜ！"
+	done
 
 VermilionGymGentlemanEndBattleText:
-	text_far _VermilionGymGentlemanEndBattleText
-	text_end
+	text "うむ！"
+	line "なかなかの　うでまえだ"
+	prompt
 
 VermilionGymGentlemanAfterBattleText:
-	text_far _VermilionGymGentlemanAfterBattleText
-	text_end
+	text "へやが　あかないのか？"
+
+	para "マチス　の　ようじん　ぶかさは"
+	line "ぐんたいでも　ゆうめい　だったぜ！"
+	done
 
 VermilionGymSuperNerdText:
 	text_asm
@@ -198,16 +250,22 @@ VermilionGymSuperNerdText:
 	jp TextScriptEnd
 
 VermilionGymSuperNerdBattleText:
-	text_far _VermilionGymSuperNerdBattleText
-	text_end
+	text "おれは　たいりょく　ないけど"
+	line "でんきの　あつかいを　かわれて"
+	cont "ここに　きたのだ！"
+	done
 
 VermilionGymSuperNerdEndBattleText:
-	text_far _VermilionGymSuperNerdEndBattleText
-	text_end
+	text "ひゅー！　しびれた！"
+	prompt
 
 VermilionGymSuperNerdAfterBattleText:
-	text_far _VermilionGymSuperNerdAfterBattleText
-	text_end
+	text "わかった　いうよー！"
+
+	para "マチスは　へやの　スイッチを"
+	line "なにかの<……>"
+	cont "そこに　かくしたと　いってたな"
+	done
 
 VermilionGymSailorText:
 	text_asm
@@ -216,16 +274,25 @@ VermilionGymSailorText:
 	jp TextScriptEnd
 
 VermilionGymSailorBattleText:
-	text_far _VermilionGymSailorBattleText
-	text_end
+	text "いくら　#　うまい　からって"
+	line "ここは　こどもが"
+	cont "くる　ところ　じゃないぜ！"
+	done
 
 VermilionGymSailorEndBattleText:
-	text_far _VermilionGymSailorEndBattleText
-	text_end
+	text "ほー　おどろきだ！"
+	prompt
 
 VermilionGymSailorAfterBattleText:
-	text_far _VermilionGymSailorAfterBattleText
-	text_end
+	text "マチス　しょうさは"
+	line "へやを　２じゅう　ロック　してるぜ"
+	cont "<……>　ヒントを　あげよう！"
+
+	para "だい１　ロックを　はずしたら"
+	line "だい２　ロックは　すぐ　そばだ"
+	cont "ふたつの　ロックは"
+	cont "となりあわせに　あるぜ"
+	done
 
 VermilionGymGymGuideText:
 	text_asm
@@ -242,9 +309,27 @@ VermilionGymGymGuideText:
 	jp TextScriptEnd
 
 .ChampInMakingText:
-	text_far _VermilionGymGymGuideChampInMakingText
-	text_end
+	text "おーす！"
+	line "みらいの　チャンピオン！"
+
+	para "マチス　しょうさの　あだなは"
+	line "イナズマ　アメりカン！"
+
+	para "でんき　#　つかわせたら"
+	line "アメりカ　ナンバー１　らしいぜ！"
+
+	para "ひこう　タイプ　みず　タイプは"
+	line "あいしょうが　わるいぜ！"
+
+	para "マヒ　させられないよう"
+	line "きを　つけな！"
+
+	para "それと　マチスは　ようじん　ぶかい！"
+	line "かれの　へやは　ロック　されて"
+	cont "かんたんには　はいれないぜ！"
+	done
 
 .BeatLTSurgeText:
-	text_far _VermilionGymGymGuideBeatLTSurgeText
-	text_end
+	text "ふー　こくさい　じあいに"
+	line "きんちょー　したぜ"
+	done

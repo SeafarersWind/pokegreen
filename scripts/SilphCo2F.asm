@@ -132,21 +132,38 @@ SilphCo2FSilphWorkerFText:
 	jp TextScriptEnd
 
 .PleaseTakeThisText:
-	text_far SilphCo2FSilphWorkerFPleaseTakeThisText
-	text_end
+	text "きゃあ！"
+	line "だめよ　たすけてー！"
+
+	para "<……>　あら？"
+	line "<ROCKET>　じゃない"
+	cont "ごめんなさい"
+	cont "あたし　てっきり<……>"
+	cont "これ　うちの　せいひん　なの"
+	cont "あげる　から　ゆるしてね"
+	prompt
 
 .ReceivedTM36Text:
-	text_far _SilphCo2FSilphWorkerFReceivedTM36Text
+	text "<PLAYER>は　おねえさんから"
+	line "@"
+	text_ram wStringBuffer
+	text "を　もらった！@"
 	sound_get_item_1
 	text_end
 
 .TM36ExplanationText:
-	text_far _SilphCo2FSilphWorkerFTM36ExplanationText
-	text_end
+	text "<TM>３６は　じばく！"
+
+	para "この　わざは　きょうりょく　だけど"
+	line "#は　わざの　あと"
+
+	para "ひんしじょうたいに　なるわ"
+	line "きを　つけて　つかって"
+	done
 
 .TM36NoRoomText:
-	text_far _SilphCo2FSilphWorkerFTM36NoRoomText
-	text_end
+	text "いっぱいで　もてないわ"
+	done
 
 SilphCo2FScientist1Text:
 	text_asm
@@ -154,11 +171,40 @@ SilphCo2FScientist1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+SilphCo2FScientist1BattleText:
+	text "た　たすけて！"
+	line "わたしは　シルフ　しゃいん　です"
+	done
+
+SilphCo2FScientist1EndBattleText:
+	text "く！　ばれたか"
+	prompt
+
+SilphCo2FScientist1AfterBattleText:
+	text "わたしは　シルフの　しゃいん"
+	line "であると　どうじに"
+	cont "<ROCKET>いん　でも　あるのさ"
+	done
+
 SilphCo2FScientist2Text:
 	text_asm
 	ld hl, SilphCo2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+SilphCo2FScientist2BattleText:
+	text "ここは　たちいり　きんしだ"
+	line "かえりなさい！"
+	done
+
+SilphCo2FScientist2EndBattleText:
+	text "なかなか<……>"
+	prompt
+
+SilphCo2FScientist2AfterBattleText:
+	text "ビルの　なかは　ふくざつだぞ"
+	line "きみに　こうりゃく　できるかな？"
+	done
 
 SilphCo2FRocket1Text:
 	text_asm
@@ -166,56 +212,40 @@ SilphCo2FRocket1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+SilphCo2FRocket1BattleText:
+	text "ここは　こどもの"
+	line "くる　ところ　じゃない！"
+	done
+
+SilphCo2FRocket1EndBattleText:
+	text "つよい！"
+	prompt
+
+SilphCo2FRocket1AfterBattleText:
+	text "ひしがた　デザインの　ゆかは"
+	line "テレポート　ブロックだ！"
+
+	para "ハイテクな　ビルの　なかでの"
+	line "いどう　しゅだんだぜ"
+	done
+
 SilphCo2FRocket2Text:
 	text_asm
 	ld hl, SilphCo2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SilphCo2FScientist1BattleText:
-	text_far _SilphCo2FScientist1BattleText
-	text_end
-
-SilphCo2FScientist1EndBattleText:
-	text_far _SilphCo2FScientist1EndBattleText
-	text_end
-
-SilphCo2FScientist1AfterBattleText:
-	text_far _SilphCo2FScientist1AfterBattleText
-	text_end
-
-SilphCo2FScientist2BattleText:
-	text_far _SilphCo2FScientist2BattleText
-	text_end
-
-SilphCo2FScientist2EndBattleText:
-	text_far _SilphCo2FScientist2EndBattleText
-	text_end
-
-SilphCo2FScientist2AfterBattleText:
-	text_far _SilphCo2FScientist2AfterBattleText
-	text_end
-
-SilphCo2FRocket1BattleText:
-	text_far _SilphCo2FRocket1BattleText
-	text_end
-
-SilphCo2FRocket1EndBattleText:
-	text_far _SilphCo2FRocket1EndBattleText
-	text_end
-
-SilphCo2FRocket1AfterBattleText:
-	text_far _SilphCo2FRocket1AfterBattleText
-	text_end
-
 SilphCo2FRocket2BattleText:
-	text_far _SilphCo2FRocket2BattleText
-	text_end
+	text "そこの　こども！"
+	line "うろうろ　するんじゃない！"
+	done
 
 SilphCo2FRocket2EndBattleText:
-	text_far _SilphCo2FRocket2EndBattleText
-	text_end
+	text "ぐ！　しくじった"
+	prompt
 
 SilphCo2FRocket2AfterBattleText:
-	text_far _SilphCo2FRocket2AfterBattleText
-	text_end
+	text "<ROCKET>は"
+	line "シルフ　カンパニーと"
+	cont "ていけい　するのだ！"
+	done

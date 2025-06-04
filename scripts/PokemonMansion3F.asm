@@ -106,36 +106,45 @@ PokemonMansion3FSuperNerdText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonMansion3FSuperNerdBattleText:
+	text "それに　しても"
+	line "でっけー　やしき　だねえ！"
+	done
+
+PokemonMansion3FSuperNerdEndBattleText:
+	text "どろどろ　ぼーん！"
+	prompt
+
+PokemonMansion3FSuperNerdAfterBattleText:
+	text "<……>　あいぼうが　いたんだ"
+	line "どこ　いったんだろ？"
+	done
+
 PokemonMansion3FScientistText:
 	text_asm
 	ld hl, Mansion3TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonMansion3FSuperNerdBattleText:
-	text_far _PokemonMansion3FSuperNerdBattleText
-	text_end
-
-PokemonMansion3FSuperNerdEndBattleText:
-	text_far _PokemonMansion3FSuperNerdEndBattleText
-	text_end
-
-PokemonMansion3FSuperNerdAfterBattleText:
-	text_far _PokemonMansion3FSuperNerdAfterBattleText
-	text_end
-
 PokemonMansion3FScientistBattleText:
-	text_far _PokemonMansion3FScientistBattleText
-	text_end
+	text "ここは　かつて"
+	line "わたしの　せんせいが　すんでいた"
+	done
 
 PokemonMansion3FScientistEndBattleText:
-	text_far _PokemonMansion3FScientistEndBattleText
-	text_end
+	text "なんと　つよい"
+	prompt
 
 PokemonMansion3FScientistAfterBattleText:
-	text_far _PokemonMansion3FScientistAfterBattleText
-	text_end
+	text "いきたい　ばしょに　いけなくて"
+	line "こまってるのか<……>　そこから"
+	cont "おもいきって　とびおりて　みろ！"
+	done
 
 PokemonMansion3FDiaryText:
-	text_far _PokemonMansion3FDiaryText
-	text_end
+	text "にっき　２がつ６か"
+	line "ミュウが　こどもを　うむ"
+
+	para "うまれた　ばかりの　ジュニアを"
+	line "ミュウツーと　よぶことに<……>"
+	done

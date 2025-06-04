@@ -10,7 +10,7 @@ ShowPokedexMenu:
 	ld [wLastMenuItem], a
 	inc a
 	ld [wPokedexNum], a
-	ldh [hJoy7], a
+	ld [hJoy7], a
 .setUpGraphics
 	ld b, SET_PAL_GENERIC
 	call RunPaletteCommand
@@ -35,7 +35,7 @@ ShowPokedexMenu:
 	ld [wMenuWatchMovingOutOfBounds], a
 	ld [wCurrentMenuItem], a
 	ld [wLastMenuItem], a
-	ldh [hJoy7], a
+	ld [hJoy7], a
 	ld [wUnusedOverrideSimulatedJoypadStatesIndex], a
 	ld [wOverrideSimulatedJoypadStatesMask], a
 	pop af
@@ -81,7 +81,7 @@ HandlePokedexSideMenu:
 	ld hl, wTopMenuItemY
 	ld a, 10
 	ld [hli], a ; top menu item Y
-	ld a, 15
+	ld a, 12
 	ld [hli], a ; top menu item X
 	xor a
 	ld [hli], a ; current menu item ID
@@ -97,7 +97,7 @@ HandlePokedexSideMenu:
 	call HandleMenuInput
 	bit BIT_B_BUTTON, a
 	ld b, 2
-	jr nz, .buttonBPressed
+	jr nz, .exitSideMenu
 	ld a, [wCurrentMenuItem]
 	and a
 	jr z, .choseData
@@ -126,15 +126,6 @@ HandlePokedexSideMenu:
 	pop bc
 	ret
 
-.buttonBPressed
-	push bc
-	hlcoord 15, 10
-	ld de, 20
-	lb bc, " ", 7
-	call DrawTileLine ; cover up the menu cursor in the side menu
-	pop bc
-	jr .exitSideMenu
-
 .choseData
 	call ShowPokedexDataInternal
 	ld b, 0
@@ -158,18 +149,15 @@ HandlePokedexListMenu:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
 ; draw the horizontal line separating the seen and owned amounts from the menu
-	hlcoord 15, 8
-	ld a, "─"
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	hlcoord 14, 0
+	hlcoord 11, 8
+	ld b, 8
+	ld c, 7
+	call TextBoxBorder
+	hlcoord 10, 0
 	ld [hl], $71 ; vertical line tile
-	hlcoord 14, 1
+	hlcoord 10, 1
 	call DrawPokedexVerticalLine
-	hlcoord 14, 9
+	hlcoord 10, 9
 	call DrawPokedexVerticalLine
 	ld hl, wPokedexSeen
 	ld b, wPokedexSeenEnd - wPokedexSeen
@@ -185,16 +173,16 @@ HandlePokedexListMenu:
 	hlcoord 16, 6
 	lb bc, 1, 3
 	call PrintNumber ; print number of owned pokemon
-	hlcoord 16, 2
+	hlcoord 12, 2
 	ld de, PokedexSeenText
 	call PlaceString
-	hlcoord 16, 5
+	hlcoord 12, 5
 	ld de, PokedexOwnText
 	call PlaceString
 	hlcoord 1, 1
 	ld de, PokedexContentsText
 	call PlaceString
-	hlcoord 16, 10
+	hlcoord 13, 10
 	ld de, PokedexMenuItemsText
 	call PlaceString
 ; find the highest pokedex number among the pokemon the player has seen
@@ -217,8 +205,8 @@ HandlePokedexListMenu:
 .loop
 	xor a
 	ldh [hAutoBGTransferEnabled], a
-	hlcoord 4, 2
-	lb bc, 14, 10
+	hlcoord 5, 2
+	lb bc, 14, 5
 	call ClearScreenArea
 	hlcoord 1, 3
 	ld a, [wListScrollOffset]
@@ -239,14 +227,9 @@ HandlePokedexListMenu:
 	push af
 	push de
 	push hl
-	ld de, -SCREEN_WIDTH
-	add hl, de
 	ld de, wPokedexNum
 	lb bc, LEADING_ZEROES | 1, 3
 	call PrintNumber
-	ld de, SCREEN_WIDTH
-	add hl, de
-	dec hl
 	push hl
 	ld hl, wPokedexOwned
 	call IsPokemonBitSet
@@ -263,7 +246,7 @@ HandlePokedexListMenu:
 	ld de, .dashedLine ; print a dashed line in place of the name if the player hasn't seen the pokemon
 	jr .skipGettingName
 .dashedLine ; for unseen pokemon in the list
-	db "----------@"
+	db "ーーーーー@"
 .getPokemonName
 	call PokedexToIndex
 	call GetMonName
@@ -360,19 +343,19 @@ DrawPokedexVerticalLine:
 	ret
 
 PokedexSeenText:
-	db "SEEN@"
+	db "みつけたかず@"
 
 PokedexOwnText:
-	db "OWN@"
+	db "つかまえたかず@"
 
 PokedexContentsText:
-	db "CONTENTS@"
+	db "もくじ@"
 
 PokedexMenuItemsText:
-	db   "DATA"
-	next "CRY"
-	next "AREA"
-	next "QUIT@"
+	db   "データをみる"
+	next "なきごえ"
+	next "ぶんぷをみる"
+	next "やめる@"
 
 ; tests if a pokemon's bit is set in the seen or owned pokemon bit fields
 ; INPUT:
@@ -471,6 +454,8 @@ ShowPokedexDataInternal:
 	ld h, b
 	ld l, c
 	push de
+	ld de, PokeText
+	call PlaceString
 	ld a, [wPokedexNum]
 	push af
 	call IndexToPokedex
@@ -492,41 +477,25 @@ ShowPokedexDataInternal:
 	ld [wCurSpecies], a
 	pop de
 
-	push af
-	push bc
-	push de
-	push hl
-
-	call Delay3
-	call GBPalNormal
-	call GetMonHeader ; load pokemon picture location
-	hlcoord 1, 1
-	call LoadFlippedFrontSpriteByMonIndex ; draw pokemon picture
-	ld a, [wCurPartySpecies]
-	call PlayCry
-
-	pop hl
-	pop de
-	pop bc
-	pop af
-
 	ld a, c
 	and a
-	jp z, .waitForButtonPress ; if the pokemon has not been owned, don't print the height, weight, or description
+	jp z, .playcry ; if the pokemon has not been owned, don't print the height, weight, or description
 	inc de ; de = address of feet (height)
-	ld a, [de] ; reads feet, but a is overwritten without being used
-	hlcoord 12, 6
-	lb bc, 1, 2
+	ld a, [de] ; reads feet
+	push af
+	hlcoord 13, 6
+	lb bc, 1, 3
 	call PrintNumber ; print feet (height)
-	ld a, "′"
-	ld [hl], a
-	inc de
-	inc de ; de = address of inches (height)
-	hlcoord 15, 6
-	lb bc, LEADING_ZEROES | 1, 2
-	call PrintNumber ; print inches (height)
-	ld a, "″"
-	ld [hl], a
+	hlcoord 14, 6
+	pop af
+	cp 10
+	jr nc, .wholekilogram
+	ld [hl], "０" ; if the weight is less than 10, put a 0 before the decimal point
+.wholekilogram
+	inc hl
+	ld a, [hli]
+	ld [hld], a ; make space for the decimal point by moving the last digit forward one tile
+	ld [hl], "．" ; decimal point 
 ; now print the weight (note that weight is stored in tenths of pounds internally)
 	inc de
 	inc de
@@ -544,8 +513,8 @@ ShowPokedexDataInternal:
 	ld a, [de] ; a = lower byte of weight
 	ld [hl], a ; store lower byte of weight in [hDexWeight + 1]
 	ld de, hDexWeight
-	hlcoord 11, 8
-	lb bc, 2, 5 ; 2 bytes, 5 digits
+	hlcoord 12, 8
+	lb bc, 2, 4 ; 2 bytes, 4 digits
 	call PrintNumber ; print weight
 	hlcoord 14, 8
 	ldh a, [hDexWeight + 1]
@@ -563,17 +532,21 @@ ShowPokedexDataInternal:
 	ldh [hDexWeight + 1], a ; restore original value of [hDexWeight + 1]
 	pop af
 	ldh [hDexWeight], a ; restore original value of [hDexWeight]
-	pop hl
-	inc hl ; hl = address of pokedex description text
-	bccoord 1, 11
-	ld a, %10
-	ldh [hClearLetterPrintingDelayFlags], a
-	call TextCommandProcessor ; print pokedex description text
-	xor a
-	ldh [hClearLetterPrintingDelayFlags], a
+	pop de
+	inc de ; de = address of pokedex description text
+	hlcoord 1, 11
+	call PlaceString
+.playcry
+	call Delay3
+	call GBPalNormal
+	call GetMonHeader
+	hlcoord 1, 1
+	call LoadFlippedFrontSpriteByMonIndex
+	ld a, [wCurPartySpecies]
+	call PlayCry
 .waitForButtonPress
 	call JoypadLowSensitivity
-	ldh a, [hJoy5]
+	ld a, [hJoy5]
 	and A_BUTTON | B_BUTTON
 	jr z, .waitForButtonPress
 	pop af
@@ -590,8 +563,8 @@ ShowPokedexDataInternal:
 	ret
 
 HeightWeightText:
-	db   "HT  ?′??″"
-	next "WT   ???lb@"
+	db   "たかさ　　？？？′"
+	next "おもさ　　？？？″<BOLD_C>@"
 
 ; XXX does anything point to this?
 PokeText:

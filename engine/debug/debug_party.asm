@@ -21,11 +21,9 @@ DebugNewGameParty: ; unreferenced except in _DEBUG
 IF DEF(_DEBUG)
 	db MEW, 5
 ELSE
-	db MEW, 20
+	db EKANS, 90
 ENDC
-	db JOLTEON, 56
-	db DUGTRIO, 56
-	db ARTICUNO, 57
+	db RHYDON, 5
 IF DEF(_DEBUG)
 	db PIKACHU, 5
 ENDC

@@ -78,12 +78,109 @@ Serial_ExchangeBytes::
 	ldh [hSerialIgnoringInitialData], a
 	jr .loop
 .storeReceivedByte
+	push af
+	ld a, [wLinkState]
+	cp a, LINK_STATE_RESET
+	jr nz, .next
+	ldh a, [hSerialConnectionStatus]
+	cp a, LINK_STATE_START_TRADE
+	jr nz, .next
+	ld de, wNameBuffer
+.next
+	pop af
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
 	jr nz, .loop
+	ret
+
+; This is used to exchange the button press and selected menu item on the link menu.
+; The data is sent thrice and read twice to increase reliability.
+Serial_ExchangeLinkMenuSelection::
+	ld hl, wLinkMenuSelectionSendBuffer
+	ld de, wLinkMenuSelectionReceiveBuffer
+	ld c, 2 ; number of bytes to save
+	ld a, 1
+	ldh [hSerialIgnoringInitialData], a
+.loop
+	call DelayFrame
+	ld a, [hl]
+	ldh [hSerialSendData], a
+	call Serial_ExchangeByte
+	ld b, a
+	inc hl
+	ldh a, [hSerialIgnoringInitialData]
+	and a
+	ld a, 0
+	ldh [hSerialIgnoringInitialData], a
+	jr nz, .loop
+	ld a, b
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	ret
+
+Serial_PrintWaitingTextAndSyncAndExchangeNybble::
+	call SaveScreenTilesToBuffer1
+	callfar PrintWaitingText
+	call Serial_SyncAndExchangeNybble
+	jp LoadScreenTilesFromBuffer1
+
+Serial_SyncAndExchangeNybble::
+	vc_hook Wireless_WaitLinkTransfer
+	ld a, $ff
+	ld [wSerialExchangeNybbleReceiveData], a
+.loop1
+	call Serial_ExchangeNybble
+	call DelayFrame
+	call IsUnknownCounterZero
+	jr z, .next1
+	push hl
+	ld hl, wUnknownSerialCounter + 1
+	dec [hl]
+	jr nz, .next2
+	dec hl
+	dec [hl]
+	jr nz, .next2
+	pop hl
+	xor a
+	jp SetUnknownCounterToFFFF
+.next2
+	pop hl
+.next1
+	ld a, [wSerialExchangeNybbleReceiveData]
+	inc a
+	jr z, .loop1
+	vc_patch Wireless_net_delay_3
+IF DEF(_RED_VC) || DEF(_BLUE_VC)
+	ld b, 26
+ELSE
+	ld b, 10
+ENDC
+	vc_patch_end
+.loop2
+	call DelayFrame
+	call Serial_ExchangeNybble
+	dec b
+	jr nz, .loop2
+	vc_patch Wireless_net_delay_4
+IF DEF(_RED_VC) || DEF(_BLUE_VC)
+	ld b, 26
+ELSE
+	ld b, 10
+ENDC
+	vc_patch_end
+.loop3
+	call DelayFrame
+	call Serial_SendZeroByte
+	dec b
+	jr nz, .loop3
+	ld a, [wSerialExchangeNybbleReceiveData]
+	ld [wSerialSyncAndExchangeNybbleReceiveData], a
+	vc_hook Wireless_WaitLinkTransfer_ret
 	ret
 
 Serial_ExchangeByte::
@@ -194,93 +291,6 @@ SetUnknownCounterToFFFF::
 	dec a
 	ld [wUnknownSerialCounter], a
 	ld [wUnknownSerialCounter + 1], a
-	ret
-
-; This is used to exchange the button press and selected menu item on the link menu.
-; The data is sent thrice and read twice to increase reliability.
-Serial_ExchangeLinkMenuSelection::
-	ld hl, wLinkMenuSelectionSendBuffer
-	ld de, wLinkMenuSelectionReceiveBuffer
-	ld c, 2 ; number of bytes to save
-	ld a, 1
-	ldh [hSerialIgnoringInitialData], a
-.loop
-	call DelayFrame
-	ld a, [hl]
-	ldh [hSerialSendData], a
-	call Serial_ExchangeByte
-	ld b, a
-	inc hl
-	ldh a, [hSerialIgnoringInitialData]
-	and a
-	ld a, 0
-	ldh [hSerialIgnoringInitialData], a
-	jr nz, .loop
-	ld a, b
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop
-	ret
-
-Serial_PrintWaitingTextAndSyncAndExchangeNybble::
-	call SaveScreenTilesToBuffer1
-	callfar PrintWaitingText
-	call Serial_SyncAndExchangeNybble
-	jp LoadScreenTilesFromBuffer1
-
-Serial_SyncAndExchangeNybble::
-	vc_hook Wireless_WaitLinkTransfer
-	ld a, $ff
-	ld [wSerialExchangeNybbleReceiveData], a
-.loop1
-	call Serial_ExchangeNybble
-	call DelayFrame
-	call IsUnknownCounterZero
-	jr z, .next1
-	push hl
-	ld hl, wUnknownSerialCounter + 1
-	dec [hl]
-	jr nz, .next2
-	dec hl
-	dec [hl]
-	jr nz, .next2
-	pop hl
-	xor a
-	jp SetUnknownCounterToFFFF
-.next2
-	pop hl
-.next1
-	ld a, [wSerialExchangeNybbleReceiveData]
-	inc a
-	jr z, .loop1
-	vc_patch Wireless_net_delay_3
-IF DEF(_RED_VC) || DEF(_BLUE_VC)
-	ld b, 26
-ELSE
-	ld b, 10
-ENDC
-	vc_patch_end
-.loop2
-	call DelayFrame
-	call Serial_ExchangeNybble
-	dec b
-	jr nz, .loop2
-	vc_patch Wireless_net_delay_4
-IF DEF(_RED_VC) || DEF(_BLUE_VC)
-	ld b, 26
-ELSE
-	ld b, 10
-ENDC
-	vc_patch_end
-.loop3
-	call DelayFrame
-	call Serial_SendZeroByte
-	dec b
-	jr nz, .loop3
-	ld a, [wSerialExchangeNybbleReceiveData]
-	ld [wSerialSyncAndExchangeNybbleReceiveData], a
-	vc_hook Wireless_WaitLinkTransfer_ret
 	ret
 
 Serial_ExchangeNybble::

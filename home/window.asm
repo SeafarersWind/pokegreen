@@ -135,16 +135,7 @@ PlaceMenuCursor::
 	ld a, [wLastMenuItem]
 	and a ; was the previous menu id 0?
 	jr z, .checkForArrow1
-	push af
-	ldh a, [hUILayoutFlags]
-	bit BIT_DOUBLE_SPACED_MENU, a
-	jr z, .doubleSpaced1
-	ld bc, SCREEN_WIDTH
-	jr .getOldMenuItemScreenPosition
-.doubleSpaced1
 	ld bc, SCREEN_WIDTH * 2
-.getOldMenuItemScreenPosition
-	pop af
 .oldMenuItemLoop
 	add hl, bc
 	dec a
@@ -161,16 +152,7 @@ PlaceMenuCursor::
 	ld a, [wCurrentMenuItem]
 	and a
 	jr z, .checkForArrow2
-	push af
-	ldh a, [hUILayoutFlags]
-	bit BIT_DOUBLE_SPACED_MENU, a
-	jr z, .doubleSpaced2
-	ld bc, SCREEN_WIDTH
-	jr .getCurrentMenuItemScreenPosition
-.doubleSpaced2
 	ld bc, SCREEN_WIDTH * 2
-.getCurrentMenuItemScreenPosition
-	pop af
 .currentMenuItemLoop
 	add hl, bc
 	dec a

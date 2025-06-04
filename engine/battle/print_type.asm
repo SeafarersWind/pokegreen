@@ -1,3 +1,21 @@
+	ld a, [wLinkState]
+	bit 7, a
+	ret z
+	ld a, [wSerialPlayerDataBlock]
+	dec a
+	ld [wSerialPlayerDataBlock], a
+	ret nz
+	ld a, [wUnusedAlreadyOwnedFlag]
+	dec a
+	ld [wUnusedAlreadyOwnedFlag], a
+	ret nz
+	ld a, $0A
+	ld [wUnusedAlreadyOwnedFlag], a
+	ld a, [wUnusedAlreadyOwnedFlag+1]
+	xor a, 1
+	ld [wUnusedAlreadyOwnedFlag+1], a
+	jp z, LoadScreenTilesFromBuffer1
+
 ; [wCurSpecies] = pokemon ID
 ; hl = dest addr
 PrintMonType:
@@ -26,9 +44,12 @@ PrintType:
 ; erase "TYPE2/" if the mon only has 1 type
 EraseType2Text:
 	ld a, " "
-	ld bc, $13
+	ld bc, $11
 	add hl, bc
-	ld bc, $6
+	ld [hl], a
+	inc bc
+	add hl, bc
+	ld bc, $5
 	jp FillMemory
 
 PrintMoveType:

@@ -1,3 +1,52 @@
+; loads tile patterns for battle animations
+LoadMoveAnimationTiles:
+	ld a, [wWhichBattleAnimTileset]
+	add a
+	add a
+	ld hl, MoveAnimationTilesPointers
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld [wTempTilesetNumTiles], a ; number of tiles
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld d, a ; de = address of tileset
+	ld hl, vSprites tile $31
+	ld b, BANK(MoveAnimationTiles0) ; ROM bank
+	ld a, [wTempTilesetNumTiles]
+	ld c, a ; number of tiles
+	jp CopyVideoData ; load tileset
+
+MACRO anim_tileset
+	db \1
+	dw \2
+	db -1 ; padding
+ENDM
+
+MoveAnimationTilesPointers:
+	; number of tiles, gfx pointer
+	anim_tileset 79, MoveAnimationTiles0
+	anim_tileset 79, MoveAnimationTiles1
+	anim_tileset 64, MoveAnimationTiles2
+
+MoveAnimationTiles0:
+MoveAnimationTiles2:
+	INCBIN "gfx/battle/move_anim_0.2bpp"
+
+MoveAnimationTiles1:
+	INCBIN "gfx/battle/move_anim_1.2bpp"
+
+SlotMachineTiles2:
+IF DEF(_RED)
+	INCBIN "gfx/slots/red_slots_2.2bpp"
+ENDC
+IF DEF(_GREEN)
+	INCBIN "gfx/slots/green_slots_2.2bpp"
+ENDC
+SlotMachineTiles2End:
+
 ; Draws a "frame block". Frame blocks are blocks of tiles that are put
 ; together to form frames in battle animations.
 DrawFrameBlock:
@@ -350,55 +399,6 @@ GetSubanimationTransform2:
 	ret z
 	xor a ; SUBANIMTYPE_NORMAL << 5
 	ret
-
-; loads tile patterns for battle animations
-LoadMoveAnimationTiles:
-	ld a, [wWhichBattleAnimTileset]
-	add a
-	add a
-	ld hl, MoveAnimationTilesPointers
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hli]
-	ld [wTempTilesetNumTiles], a ; number of tiles
-	ld a, [hli]
-	ld e, a
-	ld a, [hl]
-	ld d, a ; de = address of tileset
-	ld hl, vSprites tile $31
-	ld b, BANK(MoveAnimationTiles0) ; ROM bank
-	ld a, [wTempTilesetNumTiles]
-	ld c, a ; number of tiles
-	jp CopyVideoData ; load tileset
-
-MACRO anim_tileset
-	db \1
-	dw \2
-	db -1 ; padding
-ENDM
-
-MoveAnimationTilesPointers:
-	; number of tiles, gfx pointer
-	anim_tileset 79, MoveAnimationTiles0
-	anim_tileset 79, MoveAnimationTiles1
-	anim_tileset 64, MoveAnimationTiles2
-
-MoveAnimationTiles0:
-MoveAnimationTiles2:
-	INCBIN "gfx/battle/move_anim_0.2bpp"
-
-MoveAnimationTiles1:
-	INCBIN "gfx/battle/move_anim_1.2bpp"
-
-SlotMachineTiles2:
-IF DEF(_RED)
-	INCBIN "gfx/slots/red_slots_2.2bpp"
-ENDC
-IF DEF(_BLUE)
-	INCBIN "gfx/slots/blue_slots_2.2bpp"
-ENDC
-SlotMachineTiles2End:
 
 MoveAnimation:
 	push hl
@@ -795,22 +795,15 @@ DoRockSlideSpecialEffects:
 
 FlashScreenEveryEightFrameBlocks:
 	ld a, [wSubAnimCounter]
-	and 7 ; is the subanimation counter exactly 8?
-	call z, AnimationFlashScreen ; if so, flash the screen
-	ret
-
-; flashes the screen if the subanimation counter is divisible by 4
-FlashScreenEveryFourFrameBlocks:
-	ld a, [wSubAnimCounter]
-	and 3
-	call z, AnimationFlashScreen
+	srl a ; is the subanimation counter exactly 8?
+	call c, AnimationFlashScreen ; if so, flash the screen
 	ret
 
 ; used for Explosion and Selfdestruct
 DoExplodeSpecialEffects:
 	ld a, [wSubAnimCounter]
 	cp 1 ; is it the end of the subanimation?
-	jr nz, FlashScreenEveryFourFrameBlocks
+	jp nz, AnimationFlashScreen
 ; if it's the end of the subanimation, make the attacking pokemon disappear
 	hlcoord 1, 5
 	jp AnimationHideMonPic ; make pokemon disappear
@@ -965,7 +958,7 @@ CallWithTurnFlipped:
 
 ; flashes the screen for an extended period (48 frames)
 AnimationFlashScreenLong:
-	ld a, 3 ; cycle through the palettes 3 times
+	ld a, 4 ; cycle through the palettes 4 times
 	ld [wFlashScreenLongCounter], a
 	ld a, [wOnSGB] ; running on SGB?
 	and a
@@ -1030,9 +1023,11 @@ FlashScreenLongDelay:
 	ld c, 4
 	jr z, .delayFrames
 	cp 3
-	ld c, 2
+	ld c, 3
 	jr z, .delayFrames
 	cp 2 ; nothing is done with this
+	ld c, 2
+	jr z, .delayFrames
 	ld c, 1
 .delayFrames
 	jp DelayFrames
@@ -2309,17 +2304,12 @@ INCLUDE "data/tilemaps.asm"
 AnimationLeavesFalling:
 ; Makes leaves float down from the top of the screen. This is used
 ; in Razor Leaf's animation.
-	ldh a, [rOBP0]
-	push af
 	ld a, [wAnimPalette]
 	ldh [rOBP0], a
 	ld d, $37 ; leaf tile
 	ld a, 3 ; number of leaves
 	ld [wNumFallingObjects], a
-	call AnimationFallingObjects
-	pop af
-	ldh [rOBP0], a
-	ret
+	jp AnimationFallingObjects
 
 AnimationPetalsFalling:
 ; Makes lots of petals fall down from the top of the screen. It's used in
@@ -2532,8 +2522,6 @@ AnimationShakeEnemyHUD:
 	call SaveScreenTilesToBuffer1
 	ld hl, vBGMap0
 	call BattleAnimCopyTileMapToVRAM
-	call ClearScreen
-	call Delay3
 	call LoadScreenTilesFromBuffer1
 	ld hl, vBGMap1
 	jp BattleAnimCopyTileMapToVRAM
@@ -2572,9 +2560,9 @@ ShakeEnemyHUD_ShakeBG:
 
 BattleAnimCopyTileMapToVRAM:
 	ld a, h
-	ldh [hAutoBGTransferDest + 1], a
+	ld [hAutoBGTransferDest + 1], a
 	ld a, l
-	ldh [hAutoBGTransferDest], a
+	ld [hAutoBGTransferDest], a
 	jp Delay3
 
 TossBallAnimation:

@@ -107,11 +107,39 @@ Route20Swimmer1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+Route20Swimmer1BattleText:
+	text "とおあさに　なってる　から"
+	line "およいでる　ひとも　おおいよ！"
+	done
+
+Route20Swimmer1EndBattleText:
+	text "うーみーッ！"
+	prompt
+
+Route20Swimmer1AfterBattleText:
+	text "きみは　#に　のってて"
+	line "つかれ　ないから　いいなあ"
+	done
+
 Route20Swimmer2Text:
 	text_asm
 	ld hl, Route20TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+Route20Swimmer2BattleText:
+	text "ふたごじまに"
+	line "りゾートに　きてるの　わたし"
+	done
+
+Route20Swimmer2EndBattleText:
+	text "ちょっと　やめてよ"
+	prompt
+
+Route20Swimmer2AfterBattleText:
+	text "ふたごじまの　ちかに"
+	line "しょうにゅうどうが　あるんだって"
+	done
 
 Route20Swimmer3Text:
 	text_asm
@@ -119,11 +147,38 @@ Route20Swimmer3Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+Route20Swimmer3BattleText:
+	text "なみまに　ぷかぷか　うかぶ"
+	line "<……>　あたしは　おさかな"
+	done
+
+Route20Swimmer3EndBattleText:
+	text "うー　まんぼう！"
+	prompt
+
+Route20Swimmer3AfterBattleText:
+	text "あなた　いっしょに"
+	line "<……>　ぷかぷか　しない？"
+	done
+
 Route20Swimmer4Text:
 	text_asm
 	ld hl, Route20TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
+
+Route20Swimmer4BattleText:
+	text "きみも　りゾートに　きてるの？"
+	done
+
+Route20Swimmer4EndBattleText:
+	text "てかげん　なしね"
+	prompt
+
+Route20Swimmer4AfterBattleText:
+	text "ふたごじまは　むかしは"
+	line "ふたつの　しま　だった　らしいね"
+	done
 
 Route20Swimmer5Text:
 	text_asm
@@ -131,11 +186,39 @@ Route20Swimmer5Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+Route20Swimmer5BattleText:
+	text "みよーッ！"
+	line "きたえ　あげた　この　からだ！"
+	done
+
+Route20Swimmer5EndBattleText:
+	text "ふにゃふにゃだ"
+	prompt
+
+Route20Swimmer5AfterBattleText:
+	text "じぶんの　からだ　より"
+	line "#を　きたえる　べきだった"
+	done
+
 Route20Swimmer6Text:
 	text_asm
 	ld hl, Route20TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
+
+Route20Swimmer6BattleText:
+	text "#に　のってる　なんて"
+	line "もしかして　およげない　とか？"
+	done
+
+Route20Swimmer6EndBattleText:
+	text "うー　ぶくぶく"
+	prompt
+
+Route20Swimmer6AfterBattleText:
+	text "#に　のって　いくのも"
+	line "たのしそうだなあ"
+	done
 
 Route20CooltrainerMText:
 	text_asm
@@ -143,11 +226,40 @@ Route20CooltrainerMText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+Route20CooltrainerMBattleText:
+	text "とり　#に　つかまって"
+	line "ここまで　きたよ"
+	done
+
+Route20CooltrainerMEndBattleText:
+	text "あ！　こまったな"
+	prompt
+
+Route20CooltrainerMAfterBattleText:
+	text "とりが　へばちゃって　もどれないぞ"
+	line "<……>　どうしよう"
+	done
+
 Route20Swimmer7Text:
 	text_asm
 	ld hl, Route20TrainerHeader7
 	call TalkToTrainer
 	jp TextScriptEnd
+
+Route20Swimmer7BattleText:
+	text "かれに"
+	line "おっきな　しんじゅ　もらったわ！"
+	done
+
+Route20Swimmer7EndBattleText:
+	text "やーん！"
+	line "しんじゅ　いり　なのに<……>"
+	prompt
+
+Route20Swimmer7AfterBattleText:
+	text "パルシェン　もっと　そだてたら"
+	line "しんじゅも　おっきく　なるかしら"
+	done
 
 Route20Swimmer8Text:
 	text_asm
@@ -155,132 +267,43 @@ Route20Swimmer8Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+Route20Swimmer8BattleText:
+	text "グレン　じま　から"
+	line "およいで　きたけど<……>　きついわ！"
+	done
+
+Route20Swimmer8EndBattleText:
+	text "がっかり"
+	prompt
+
+Route20Swimmer8AfterBattleText:
+	text "グレン　じまの"
+	line "だれも　すんでない　おやしき"
+	cont "いつからか　#が　すみついて"
+	cont "#　やしきと　よばれてる"
+	done
+
 Route20Swimmer9Text:
 	text_asm
 	ld hl, Route20TrainerHeader9
 	call TalkToTrainer
 	jp TextScriptEnd
 
-Route20Swimmer1BattleText:
-	text_far _Route20Swimmer1BattleText
-	text_end
-
-Route20Swimmer1EndBattleText:
-	text_far _Route20Swimmer1EndBattleText
-	text_end
-
-Route20Swimmer1AfterBattleText:
-	text_far _Route20Swimmer1AfterBattleText
-	text_end
-
-Route20Swimmer2BattleText:
-	text_far _Route20Swimmer2BattleText
-	text_end
-
-Route20Swimmer2EndBattleText:
-	text_far _Route20Swimmer2EndBattleText
-	text_end
-
-Route20Swimmer2AfterBattleText:
-	text_far _Route20Swimmer2AfterBattleText
-	text_end
-
-Route20Swimmer3BattleText:
-	text_far _Route20Swimmer3BattleText
-	text_end
-
-Route20Swimmer3EndBattleText:
-	text_far _Route20Swimmer3EndBattleText
-	text_end
-
-Route20Swimmer3AfterBattleText:
-	text_far _Route20Swimmer3AfterBattleText
-	text_end
-
-Route20Swimmer4BattleText:
-	text_far _Route20Swimmer4BattleText
-	text_end
-
-Route20Swimmer4EndBattleText:
-	text_far _Route20Swimmer4EndBattleText
-	text_end
-
-Route20Swimmer4AfterBattleText:
-	text_far _Route20Swimmer4AfterBattleText
-	text_end
-
-Route20Swimmer5BattleText:
-	text_far _Route20Swimmer5BattleText
-	text_end
-
-Route20Swimmer5EndBattleText:
-	text_far _Route20Swimmer5EndBattleText
-	text_end
-
-Route20Swimmer5AfterBattleText:
-	text_far _Route20Swimmer5AfterBattleText
-	text_end
-
-Route20Swimmer6BattleText:
-	text_far _Route20Swimmer6BattleText
-	text_end
-
-Route20Swimmer6EndBattleText:
-	text_far _Route20Swimmer6EndBattleText
-	text_end
-
-Route20Swimmer6AfterBattleText:
-	text_far _Route20Swimmer6AfterBattleText
-	text_end
-
-Route20CooltrainerMBattleText:
-	text_far _Route20CooltrainerMBattleText
-	text_end
-
-Route20CooltrainerMEndBattleText:
-	text_far _Route20CooltrainerMEndBattleText
-	text_end
-
-Route20CooltrainerMAfterBattleText:
-	text_far _Route20CooltrainerMAfterBattleText
-	text_end
-
-Route20Swimmer7BattleText:
-	text_far _Route20Swimmer7BattleText
-	text_end
-
-Route20Swimmer7EndBattleText:
-	text_far _Route20Swimmer7EndBattleText
-	text_end
-
-Route20Swimmer7AfterBattleText:
-	text_far _Route20Swimmer7AfterBattleText
-	text_end
-
-Route20Swimmer8BattleText:
-	text_far _Route20Swimmer8BattleText
-	text_end
-
-Route20Swimmer8EndBattleText:
-	text_far _Route20Swimmer8EndBattleText
-	text_end
-
-Route20Swimmer8AfterBattleText:
-	text_far _Route20Swimmer8AfterBattleText
-	text_end
-
 Route20Swimmer9BattleText:
-	text_far _Route20Swimmer9BattleText
-	text_end
+	text "にしに　ある　グレン　じまは"
+	line "#　けんきゅうの　しま！"
+	cont "あそこで　パパも　はたらいてるわ"
+	done
 
 Route20Swimmer9EndBattleText:
-	text_far _Route20Swimmer9EndBattleText
-	text_end
+	text "まってよ　もう！"
+	prompt
 
 Route20Swimmer9AfterBattleText:
-	text_far _Route20Swimmer9AfterBattleText
-	text_end
+	text "グレンは　かざんの　ふんかで"
+	line "もりあがって　できたって　きいたわ"
+	done
 
 Route20SeafoamIslandsSignText:
-	text_far _Route20SeafoamIslandsSignText
-	text_end
+	text "ふたごじま"
+	done

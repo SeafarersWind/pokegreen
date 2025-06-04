@@ -38,11 +38,40 @@ PokemonTower4FChanneler1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonTower4FChanneler1BattleText:
+	text "うぐぐ<……>　ゆうれいめ<……>"
+	line "<……>ケーッ！"
+	done
+
+PokemonTower4FChanneler1EndBattleText:
+	text "はっ！"
+	line "ゆ　ゆうれいは　どこじゃ"
+	prompt
+
+PokemonTower4FChanneler1AfterBattleText:
+	text "むう<……>"
+	line "ゆめを　みてた　ようじゃ"
+	done
+
 PokemonTower4FChanneler2Text:
 	text_asm
 	ld hl, PokemonTower4TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+PokemonTower4FChanneler2BattleText:
+	text "イッ<……>　ショ<……>　ニ<……>"
+	line "<……>　ノロ<……>ワレ！"
+	done
+
+PokemonTower4FChanneler2EndBattleText:
+	text "<……>はっ！"
+	prompt
+
+PokemonTower4FChanneler2AfterBattleText:
+	text "<……>どうしても　ゆうれいの"
+	line "しょうたいが　わからない<……>"
+	done
 
 PokemonTower4FChanneler3Text:
 	text_asm
@@ -50,38 +79,16 @@ PokemonTower4FChanneler3Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
-PokemonTower4FChanneler1BattleText:
-	text_far _PokemonTower4FChanneler1BattleText
-	text_end
-
-PokemonTower4FChanneler1EndBattleText:
-	text_far _PokemonTower4FChanneler1EndBattleText
-	text_end
-
-PokemonTower4FChanneler1AfterBattleText:
-	text_far _PokemonTower4FChanneler1AfterBattleText
-	text_end
-
-PokemonTower4FChanneler2BattleText:
-	text_far _PokemonTower4FChanneler2BattleText
-	text_end
-
-PokemonTower4FChanneler2EndBattleText:
-	text_far _PokemonTower4FChanneler2EndBattleText
-	text_end
-
-PokemonTower4FChanneler2AfterBattleText:
-	text_far _PokemonTower4FChanneler2AfterBattleText
-	text_end
-
 PokemonTower4FChanneler3BattleText:
-	text_far _PokemonTower4FChanneler3BattleText
-	text_end
+	text "フフフッ<……>！"
+	line "<……>　カテ<……>　ルカーッ！"
+	done
 
 PokemonTower4FChanneler3EndBattleText:
-	text_far _PokemonTower4FChanneler3EndBattleText
-	text_end
+	text "<……>ん　わしは？"
+	prompt
 
 PokemonTower4FChanneler3AfterBattleText:
-	text_far _PokemonTower4FChanneler3AfterBattleText
-	text_end
+	text "ふう！　#の"
+	line "さまよえる　れいよ　やすらかに<……>"
+	done

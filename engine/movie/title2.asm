@@ -16,7 +16,7 @@ TitleScroll_Out:
 ; lo: duration
 	db $12, $22, $32, $42, $52, $62, $83, $93, 0
 
-TitleScroll:
+;TitleScroll:
 	ld a, d
 
 	ld bc, TitleScroll_In

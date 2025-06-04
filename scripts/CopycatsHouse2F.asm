@@ -45,41 +45,84 @@ CopycatsHouse2FCopycatText:
 	jp TextScriptEnd
 
 .DoYouLikePokemonText:
-	text_far _CopycatsHouse2FCopycatDoYouLikePokemonText
-	text_end
+	text "<PLAYER><BOLD_P>やあ！　こんにちは！"
+	line "きみ　#　すきかい？"
+
+	para "<PLAYER><BOLD_P>ぼく　じゃなくって"
+	line "きみに　きいてるんだ　けど"
+
+	para "<PLAYER><BOLD_P><……>　えー　なんだよ！"
+	line "へンな　やつ　だなあ！"
+
+	para "モノマネむすめ<BOLD_P><……>　なに？"
+	line "ひとの　マネ　すんなって？"
+
+	para "だって　あたし　"
+	line "ものまね　しゅみ　なんだ　もん！"
+	prompt
 
 .TM31PreReceiveText:
-	text_far _CopycatsHouse2FCopycatTM31PreReceiveText
-	text_end
+	text "わあー！"
+	line "ピッピにんぎょう　くれるのー！"
+
+	para "うれしーい！"
+
+	para "<……>　じゃあねー！"
+	line "わたし　からは　これ　あげるー！"
+	prompt
 
 .ReceivedTM31Text:
-	text_far _CopycatsHouse2FCopycatReceivedTM31Text
+	text "<PLAYER>は　むすめさんから"
+	line "@"
+	text_ram wStringBuffer
+	text "を　もらった！@"
 	sound_get_item_1
-.TM31Explanation1Text:
-	text_far _CopycatsHouse2FCopycatTM31Explanation1Text
+	text_start
+
+	para "<TM>３１の　なかは"
+	line "わたしの　だいすきな　ものまね！"
+
+	para "あなたの　すきな　#に"
+	line "つかって　あげて！@"
 	text_waitbutton
 	text_end
 
 .TM31Explanation2Text:
-	text_far _CopycatsHouse2FCopycatTM31Explanation2Text
-	text_end
+	text "<PLAYER><BOLD_P>やあ！　さっきは"
+	line "<TM>　ありがとう！"
+
+	para "<PLAYER><BOLD_P><……>　なーに？"
+
+	para "<PLAYER><BOLD_P>ぼくの　まね　して"
+	line "そんなに　たのしい　かい？"
+
+	para "モノマネむすめ<BOLD_P>うん<……>！"
+	line "とっても　たのしいー！"
+	done
 
 .TM31NoRoomText:
-	text_far _CopycatsHouse2FCopycatTM31NoRoomText
+	text "にもつが　いっぱいね！@"
 	text_waitbutton
 	text_end
 
 CopycatsHouse2FDoduoText:
-	text_far _CopycatsHouse2FDoduoText
-	text_end
+	text "ドードー<BOLD_P>ギー　ギーッ！"
+
+	para "<……>　カガミ　ヨ　カガミ！"
+	line "セカイデ　イチバン　カワイイ"
+	cont "オンナノコハ　ダーレ？"
+	done
 
 CopycatsHouse2FRareDollText:
-	text_far _CopycatsHouse2FRareDollText
-	text_end
+	text "これは　めずらしい　#！？"
+	line "<……>　あれ？　ぬいぐるみ　だった"
+	done
 
 CopycatsHouse2FSNESText:
-	text_far _CopycatsHouse2FSNESText
-	text_end
+	text "これは<……>！"
+	line "マりオが　バケツを　かぶって"
+	cont "あるいて　いく　ゲームだ！"
+	done
 
 CopycatsHouse2FPCText:
 	text_asm
@@ -93,9 +136,16 @@ CopycatsHouse2FPCText:
 	jp TextScriptEnd
 
 .MySecretsText:
-	text_far _CopycatsHouse2FPCMySecretsText
-	text_end
+	text "<……>　<……>　<……>"
+
+	para "わたしの　ひみつ<……>！"
+
+	para "とくいなもの　<……>　ものまね！"
+	line "しゅみ　<……>　ぬいぐるみ！"
+	cont "すきなもの　<……>　ピッピ！"
+	cont "<……>　<……>　<……>"
+	done
 
 .CantSeeText:
-	text_far _CopycatsHouse2FPCCantSeeText
-	text_end
+	text "？　みえないぞ<……>"
+	done

@@ -6,10 +6,10 @@
 DEF ANIMATION_END EQU 80
 
 PlayIntro:
+	ld a, TRANSFERMIDDLE
+	ldh [hAutoBGTransferEnabled], a
 	xor a
 	ldh [hJoyHeld], a
-	inc a
-	ldh [hAutoBGTransferEnabled], a
 	call PlayShootingStar
 	call PlayIntroScene
 	call GBFadeOutToWhite
@@ -31,7 +31,7 @@ PlayIntroScene:
 	ldh [hSCX], a
 	ld b, TILEMAP_GENGAR_INTRO_1
 	call IntroCopyTiles
-	ld a, 0
+	ld a, 8
 	ld [wBaseCoordX], a
 	ld a, 80
 	ld [wBaseCoordY], a
@@ -116,7 +116,7 @@ PlayIntroScene:
 	ld de, IntroNidorinoAnimation4
 	call AnimateIntroNidorino
 ; hop
-	ld a, SFX_INTRO_HOP
+	ld a, SFX_INTRO_HIP
 	call PlaySound
 	ld de, IntroNidorinoAnimation5
 	call AnimateIntroNidorino
@@ -138,7 +138,9 @@ PlayIntroScene:
 	ld a, (FightIntroFrontMon3 - FightIntroFrontMon) / LEN_2BPP_TILE
 	ld [wIntroNidorinoBaseTile], a
 	ld de, IntroNidorinoAnimation7
-	jp AnimateIntroNidorino
+	call AnimateIntroNidorino
+	ld c, $50
+	jp CheckForUserInterruption
 
 AnimateIntroNidorino:
 	ld a, [de]
@@ -324,7 +326,7 @@ PlayShootingStar:
 	call DelayFrames
 	farcall AnimateShootingStar
 	push af
-	; A `call LoadPresentsGraphic` here was removed in localization
+	call LoadPresentsGraphic ; this call was removed in localization
 	pop af
 	jr c, .next ; skip the delay if the user interrupted the animation
 	ld c, 40
@@ -356,12 +358,17 @@ IntroDrawBlackBars:
 	ld c,  BG_MAP_WIDTH * 4
 	jp IntroPlaceBlackTiles
 
-LoadPresentsGraphic: ; unreferenced
+LoadPresentsGraphic:
 	; This routine loaded the "PRESENTS" text graphic (tiles
 	; $67, $68, $69, $6A, $6B, and $6C from gamefreak_presents.2bpp)
 	; at coordinates (11, 7) in the Japanese versions.
 	; It was dummied out in the English localization.
-	ret
+	hlcoord 7, 11
+	ld de, PresentsGraphic
+	jp PlaceString
+
+PresentsGraphic:
+	db $67, $68, $69, $6A, $6B, $6C, $50
 
 IntroNidorinoAnimation0:
 	db 0, 0
@@ -447,23 +454,12 @@ FightIntroBackMon:
 	ds 16, $00 ; blank tile
 FightIntroBackMonEnd:
 
-IF DEF(_RED)
 FightIntroFrontMon:
 	INCBIN "gfx/intro/red_nidorino_1.2bpp"
 FightIntroFrontMon2:
 	INCBIN "gfx/intro/red_nidorino_2.2bpp"
 FightIntroFrontMon3:
 	INCBIN "gfx/intro/red_nidorino_3.2bpp"
-ENDC
-
-IF DEF(_BLUE)
-FightIntroFrontMon:
-	INCBIN "gfx/intro/blue_jigglypuff_1.2bpp"
-FightIntroFrontMon2:
-	INCBIN "gfx/intro/blue_jigglypuff_2.2bpp"
-FightIntroFrontMon3:
-	INCBIN "gfx/intro/blue_jigglypuff_3.2bpp"
-ENDC
 
 FightIntroFrontMonEnd:
 

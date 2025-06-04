@@ -36,8 +36,21 @@ CinnabarGymQuiz::
 	jp TextScriptEnd
 
 CinnabarGymQuizIntroText:
-	text_far _CinnabarGymQuizIntroText
-	text_end
+	text "#　クイズ！"
+
+	para "せいかい　すると　ドアが　あいて"
+	line "つぎへ　すすめます！"
+
+	para "まちがえたら　でしの　<TRAINER>と"
+	line "たたかって　いただきます！"
+
+	para "ここの　りーダーに　あう　まで"
+	line "#の　たいりょくを"
+	cont "とって　おきたいなら！"
+
+	para "がんばって　こたえて　ください！"
+	line "では　おこたえ　ください！"
+	prompt
 
 CinnabarQuizQuestions:
 	dw CinnabarQuizQuestionsText1
@@ -48,28 +61,38 @@ CinnabarQuizQuestions:
 	dw CinnabarQuizQuestionsText6
 
 CinnabarQuizQuestionsText1:
-	text_far _CinnabarQuizQuestionsText1
-	text_end
+	text "#　キャタピーが　しんかすると"
+	line "バタフりーに　なる？"
+	done
 
 CinnabarQuizQuestionsText2:
-	text_far _CinnabarQuizQuestionsText2
-	text_end
+	text "#　りーグ　にんてい"
+	line "バッジは　ぜんぶで　９しゅるい？"
+	done
 
 CinnabarQuizQuestionsText3:
-	text_far _CinnabarQuizQuestionsText3
-	text_end
+	text "ニョロモは　３かい　しんかする"
+	line "#　である？"
+	done
 
 CinnabarQuizQuestionsText4:
-	text_far _CinnabarQuizQuestionsText4
-	text_end
+	text "かみなり　タイプの　わざを"
+	line "くりだした　とき"
+
+	para "じめん　タイプの　#には"
+	line "よく　きく？"
+	done
 
 CinnabarQuizQuestionsText5:
-	text_far _CinnabarQuizQuestionsText5
-	text_end
+	text "おなじ　レべルの　おなじ　#"
+	line "でも　つかまえる　たびに"
+	cont "つよさは　ちがう？"
+	done
 
 CinnabarQuizQuestionsText6:
-	text_far _CinnabarQuizQuestionsText6
-	text_end
+	text "「<TM>２８」とは"
+	line "「しねしねこうせん」である？"
+	done
 
 CinnabarGymGateFlagAction:
 	EventFlagAddress hl, EVENT_CINNABAR_GYM_GATE0_UNLOCKED
@@ -118,7 +141,9 @@ CinnabarGymQuiz_AskQuestion:
 
 CinnabarGymQuizCorrectText:
 	sound_get_item_1
-	text_far _CinnabarGymQuizCorrectText
+	text "あたり　です！"
+
+	para "さきへ　すすんで　いいです@"
 	text_promptbutton
 	text_asm
 
@@ -137,8 +162,8 @@ CinnabarGymQuizCorrectText:
 	jp TextScriptEnd
 
 CinnabarGymQuizIncorrectText:
-	text_far _CinnabarGymQuizIncorrectText
-	text_end
+	text "ばか　はずれです<……>"
+	prompt
 
 UpdateCinnabarGymGateTileBlocks_::
 ; Update the overworld map with open floor blocks or locked gate blocks

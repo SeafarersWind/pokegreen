@@ -1,5 +1,5 @@
 Music_IntroBattle_Ch1::
-	tempo 98
+	tempo 102
 	volume 7, 7
 	duty_cycle 3
 	vibrato 6, 3, 4

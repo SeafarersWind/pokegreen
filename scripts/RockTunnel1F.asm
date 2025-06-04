@@ -80,89 +80,111 @@ RockTunnel1FTalkToTrainer:
 	jp TextScriptEnd
 
 RockTunnel1FHiker1BattleText:
-	text_far _RockTunnel1FHiker1BattleText
-	text_end
+	text "この　ながーい"
+	line "トンネルを　ぬける　つもりか！"
+	done
 
 RockTunnel1FHiker1EndBattleText:
-	text_far _RockTunnel1FHiker1EndBattleText
-	text_end
+	text "おいらの　まけだ"
+	prompt
 
 RockTunnel1FHiker1AfterBattleText:
-	text_far _RockTunnel1FHiker1AfterBattleText
-	text_end
+	text "たまに　でる　イワークは"
+	line "レべルが　たかいと　しめつけてくる"
+	cont "きを　つけなよ"
+	done
 
 RockTunnel1FHiker2BattleText:
-	text_far _RockTunnel1FHiker2BattleText
-	text_end
+	text "えーと"
+	line "みちに　まよったかな？"
+	done
 
 RockTunnel1FHiker2EndBattleText:
-	text_far _RockTunnel1FHiker2EndBattleText
-	text_end
+	text "たたかってる"
+	line "ばあいじゃ　なかった"
+	cont "でぐちは　どっち　だっけ？"
+	prompt
 
 RockTunnel1FHiker2AfterBattleText:
-	text_far _RockTunnel1FHiker2AfterBattleText
-	text_end
+	text "１２ばん　どうろに"
+	line "#が　ねてたろ？"
+	cont "おれも　こまって　まわりみちだ"
+	done
 
 RockTunnel1FHiker3BattleText:
-	text_far _RockTunnel1FHiker3BattleText
-	text_end
+	text "おれは"
+	line "やまに　すんで　ながい"
+	cont "よそものに　でかい　つらは　させん"
+	done
 
 RockTunnel1FHiker3EndBattleText:
-	text_far _RockTunnel1FHiker3EndBattleText
-	text_end
+	text "やるなあ"
+	prompt
 
 RockTunnel1FHiker3AfterBattleText:
-	text_far _RockTunnel1FHiker3AfterBattleText
-	text_end
+	text "おまえ　みこみが　ある"
+	line "やまおとこに　ならんか？"
+	done
 
 RockTunnel1FSuperNerdBattleText:
-	text_far _RockTunnel1FSuperNerdBattleText
-	text_end
+	text "#　ファイトー！"
+	line "レディー　ゴー！"
+	done
 
 RockTunnel1FSuperNerdEndBattleText:
-	text_far _RockTunnel1FSuperNerdEndBattleText
-	text_end
+	text "やぶれたのか"
+	prompt
 
 RockTunnel1FSuperNerdAfterBattleText:
-	text_far _RockTunnel1FSuperNerdAfterBattleText
-	text_end
+	text "ズバットでも"
+	line "とって　かえろうかな<……>"
+	done
 
 RockTunnel1FCooltrainerF1BattleText:
-	text_far _RockTunnel1FCooltrainerF1BattleText
-	text_end
+	text "きゃ　びっくり！"
+	line "うすぐらい　からって"
+	cont "へんな　こと　しないで！"
+	done
 
 RockTunnel1FCooltrainerF1EndBattleText:
-	text_far _RockTunnel1FCooltrainerF1EndBattleText
-	text_end
+	text "<……>　くらくて"
+	line "よく　みえないんだもん"
+	prompt
 
 RockTunnel1FCooltrainerF1AfterBattleText:
-	text_far _RockTunnel1FCooltrainerF1AfterBattleText
-	text_end
+	text "トンネルにも　#　いるのね"
+	line "さっき　ワンりキーが　いたわ"
+	done
 
 RockTunnel1FCooltrainerF2BattleText:
-	text_far _RockTunnel1FCooltrainerF2BattleText
-	text_end
+	text "#　さがしに　きて"
+	line "こんな　とこまで　きちゃった！"
+	done
 
 RockTunnel1FCooltrainerF2EndBattleText:
-	text_far _RockTunnel1FCooltrainerF2EndBattleText
-	text_end
+	text "もう　#　ないわ"
+	prompt
 
 RockTunnel1FCooltrainerF2AfterBattleText:
-	text_far _RockTunnel1FCooltrainerF2AfterBattleText
-	text_end
+	text "かわいい　かお　して"
+	line "けっこう　つよい　じゃない"
+	done
 
 RockTunnel1FCooltrainerF3BattleText:
-	text_far _RockTunnel1FCooltrainerF3BattleText
-	text_end
+	text "あ　それは　#！"
+	line "さっそく　はじめましょ！"
+	done
 
 RockTunnel1FCooltrainerF3EndBattleText:
-	text_far _RockTunnel1FCooltrainerF3EndBattleText
-	text_end
+	text "でなおして　くるわ"
+	prompt
 
 RockTunnel1FCooltrainerF3AfterBattleText:
-	text_far _RockTunnel1FCooltrainerF3AfterBattleText
-	text_end
+	text "エキサイト　して"
+	line "あせ　かいちゃったわ"
+	done
 
 RockTunnel1FSignText:
-	text_far _RockTunnel1FSignText
-	text_end
+	text "ここは　イワヤマ　トンネル"
+	line "ハナダ　シティ　<……>　シオン　タウン"
+	done

@@ -73,14 +73,6 @@ SilphCo6F_Blocks: INCBIN "maps/SilphCo6F.blk"
 
 SECTION "Maps 3", ROMX
 
-INCLUDE "data/maps/headers/CinnabarIsland.asm"
-INCLUDE "data/maps/objects/CinnabarIsland.asm"
-CinnabarIsland_Blocks: INCBIN "maps/CinnabarIsland.blk"
-
-INCLUDE "data/maps/headers/Route1.asm"
-INCLUDE "data/maps/objects/Route1.asm"
-Route1_Blocks: INCBIN "maps/Route1.blk"
-
 UndergroundPathRoute8_Blocks: INCBIN "maps/UndergroundPathRoute8.blk"
 
 OaksLab_Blocks: INCBIN "maps/OaksLab.blk"
@@ -105,6 +97,14 @@ CeruleanTrashedHouse_Blocks: INCBIN "maps/CeruleanTrashedHouse.blk"
 
 DiglettsCaveRoute11_Blocks:
 DiglettsCaveRoute2_Blocks: INCBIN "maps/DiglettsCaveRoute2.blk"
+
+INCLUDE "data/maps/headers/CinnabarIsland.asm"
+INCLUDE "data/maps/objects/CinnabarIsland.asm"
+CinnabarIsland_Blocks: INCBIN "maps/CinnabarIsland.blk"
+
+INCLUDE "data/maps/headers/Route1.asm"
+INCLUDE "data/maps/objects/Route1.asm"
+Route1_Blocks: INCBIN "maps/Route1.blk"
 
 
 SECTION "Maps 4", ROMX
@@ -248,16 +248,16 @@ BillsHouse_Blocks: INCBIN "maps/BillsHouse.blk"
 
 SECTION "Maps 5", ROMX
 
-INCLUDE "data/maps/headers/LavenderTown.asm"
-INCLUDE "data/maps/objects/LavenderTown.asm"
-LavenderTown_Blocks: INCBIN "maps/LavenderTown.blk"
-
 ViridianPokecenter_Blocks: INCBIN "maps/ViridianPokecenter.blk"
 
 SafariZoneCenterRestHouse_Blocks:
 SafariZoneWestRestHouse_Blocks:
 SafariZoneEastRestHouse_Blocks:
 SafariZoneNorthRestHouse_Blocks: INCBIN "maps/SafariZoneCenterRestHouse.blk"
+
+INCLUDE "data/maps/headers/LavenderTown.asm"
+INCLUDE "data/maps/objects/LavenderTown.asm"
+LavenderTown_Blocks: INCBIN "maps/LavenderTown.blk"
 
 INCLUDE "scripts/LavenderTown.asm"
 
@@ -357,12 +357,12 @@ INCLUDE "data/maps/objects/SafariZoneNorthRestHouse.asm"
 INCLUDE "data/maps/headers/CeruleanCave2F.asm"
 INCLUDE "scripts/CeruleanCave2F.asm"
 INCLUDE "data/maps/objects/CeruleanCave2F.asm"
-CeruleanCave2F_Blocks: INCBIN "maps/CeruleanCave2F.blk"
+CeruleanCave2F_Blocks: INCBIN "maps/green/CeruleanCave2F.blk"
 
 INCLUDE "data/maps/headers/CeruleanCaveB1F.asm"
 INCLUDE "scripts/CeruleanCaveB1F.asm"
 INCLUDE "data/maps/objects/CeruleanCaveB1F.asm"
-CeruleanCaveB1F_Blocks: INCBIN "maps/CeruleanCaveB1F.blk"
+CeruleanCaveB1F_Blocks: INCBIN "maps/green/CeruleanCaveB1F.blk"
 
 INCLUDE "data/maps/headers/RockTunnelB1F.asm"
 INCLUDE "scripts/RockTunnelB1F.asm"
@@ -392,10 +392,6 @@ SeafoamIslandsB4F_Blocks: INCBIN "maps/SeafoamIslandsB4F.blk"
 
 SECTION "Maps 7", ROMX
 
-INCLUDE "data/maps/headers/Route7.asm"
-INCLUDE "data/maps/objects/Route7.asm"
-Route7_Blocks: INCBIN "maps/Route7.blk"
-
 CeladonPokecenter_Blocks:
 RockTunnelPokecenter_Blocks:
 MtMoonPokecenter_Blocks: INCBIN "maps/MtMoonPokecenter.blk"
@@ -409,6 +405,10 @@ Route16Gate2F_Blocks:
 Route15Gate2F_Blocks:
 Route12Gate2F_Blocks:
 Route11Gate2F_Blocks: INCBIN "maps/Route11Gate2F.blk"
+
+INCLUDE "data/maps/headers/Route7.asm"
+INCLUDE "data/maps/objects/Route7.asm"
+Route7_Blocks: INCBIN "maps/Route7.blk"
 
 
 SECTION "Maps 8", ROMX
@@ -569,6 +569,14 @@ INCLUDE "scripts/SafariZoneSecretHouse.asm"
 INCLUDE "data/maps/objects/SafariZoneSecretHouse.asm"
 SafariZoneSecretHouse_Blocks: INCBIN "maps/SafariZoneSecretHouse.blk"
 
+; padding
+	db $ed, $f7, $15, $3f, $7f, $93, $5d, $07, $35, $e9, $87, $49, $dd, $7f, $15, $71
+	db $3d, $5b, $ef, $df, $ba, $df, $9f, $7d, $57, $f4, $ff, $df, $cf, $f5, $a9, $11
+	db $bb, $77, $0f, $17, $f7, $ef, $a7, $a1, $5d, $3b, $bf, $55, $c1, $07, $1b, $fd
+	db $a9, $f5, $f1, $bf, $5f, $73, $0b, $b3, $1f, $77, $97, $5f, $cd, $af, $77, $e7
+	db $2f, $e7, $bb, $7b, $1d, $7d, $5d, $2f, $d5, $c7, $bb, $7d, $dd, $f7, $eb, $cf
+	db $d3, $7B, $1f, $5b, $bf
+
 
 SECTION "Maps 9", ROMX
 
@@ -654,6 +662,12 @@ PokemonMansionB1F_Blocks: INCBIN "maps/PokemonMansionB1F.blk"
 
 SECTION "Maps 11", ROMX
 
+VermilionOldRodHouse_Blocks:
+Route12SuperRodHouse_Blocks:
+Daycare_Blocks: INCBIN "maps/Daycare.blk"
+
+FuchsiaGoodRodHouse_Blocks: INCBIN "maps/FuchsiaGoodRodHouse.blk"
+
 INCLUDE "data/maps/headers/Route2.asm"
 INCLUDE "data/maps/objects/Route2.asm"
 Route2_Blocks: INCBIN "maps/Route2.blk"
@@ -693,12 +707,6 @@ Route19_Blocks: INCBIN "maps/Route19.blk"
 INCLUDE "data/maps/headers/Route21.asm"
 INCLUDE "data/maps/objects/Route21.asm"
 Route21_Blocks: INCBIN "maps/Route21.blk"
-
-VermilionOldRodHouse_Blocks:
-Route12SuperRodHouse_Blocks:
-Daycare_Blocks: INCBIN "maps/Daycare.blk"
-
-FuchsiaGoodRodHouse_Blocks: INCBIN "maps/FuchsiaGoodRodHouse.blk"
 
 
 SECTION "Maps 12", ROMX
@@ -743,6 +751,8 @@ SilphCo8F_Blocks: INCBIN "maps/SilphCo8F.blk"
 
 SECTION "Maps 13", ROMX
 
+	INCBIN "maps/UnusedPokecenterCopy.blk"
+
 INCLUDE "data/maps/headers/Route6.asm"
 INCLUDE "data/maps/objects/Route6.asm"
 Route6_Blocks: INCBIN "maps/Route6.blk"
@@ -774,8 +784,6 @@ Route16_Blocks: INCBIN "maps/Route16.blk"
 INCLUDE "data/maps/headers/Route18.asm"
 INCLUDE "data/maps/objects/Route18.asm"
 Route18_Blocks: INCBIN "maps/Route18.blk"
-
-	INCBIN "maps/UnusedPokecenterCopy.blk"
 
 
 SECTION "Maps 14", ROMX
@@ -1126,7 +1134,7 @@ INCLUDE "data/maps/objects/PewterMart.asm"
 INCLUDE "data/maps/headers/CeruleanCave1F.asm"
 INCLUDE "scripts/CeruleanCave1F.asm"
 INCLUDE "data/maps/objects/CeruleanCave1F.asm"
-CeruleanCave1F_Blocks: INCBIN "maps/CeruleanCave1F.blk"
+CeruleanCave1F_Blocks: INCBIN "maps/green/CeruleanCave1F.blk"
 
 INCLUDE "data/maps/headers/CeruleanBadgeHouse.asm"
 INCLUDE "scripts/CeruleanBadgeHouse.asm"

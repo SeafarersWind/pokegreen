@@ -20,13 +20,15 @@ ConversionEffect_:
 	ld a, [hl]
 	ld [de], a
 	ld hl, PlayCurrentMoveAnimation
-	call CallBankF
+	ld b, BANK(PrintButItFailedText_)
+	call Bankswitch
 	ld hl, ConvertedTypeText
 	jp PrintText
 
 ConvertedTypeText:
-	text_far _ConvertedTypeText
-	text_end
+	text "<TARGET>の　ぞくせいを"
+	line "じぶんに　はりつけた！"
+	prompt
 
 PrintButItFailedText:
 	ld hl, PrintButItFailedText_

@@ -15,6 +15,8 @@ SeafoamIslands1F_Object:
 	warp_event 23, 15, SEAFOAM_ISLANDS_B1F, 5
 
 	def_bg_events
+	bg_event  5, 13, 3 ; glitched text boxes
+	bg_event 25, 13, 4
 
 	def_object_events
 	object_event 18, 10, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_SEAFOAMISLANDS1F_BOULDER1

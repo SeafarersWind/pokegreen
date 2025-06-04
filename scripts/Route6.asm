@@ -46,16 +46,18 @@ Route6CooltrainerM1Text:
 	jp TextScriptEnd
 
 Route6CooltrainerM1BattleText:
-	text_far _Route6CooltrainerM1BattleText
-	text_end
+	text "だれだ！"
+	line "ぼくらの　ひそひそ　ばなしを"
+	cont "ぬすみ　ぎき　してる　やつは！"
+	done
 
 Route6CooltrainerM1EndBattleText:
-	text_far _Route6CooltrainerM1EndBattleText
-	text_end
+	text "なぜか　かてないんだ"
+	prompt
 
 Route6CooltrainerAfterBattleText: ; used by both COOLTRAINER_M1 and COOLTRAINER_F1
-	text_far _Route6CooltrainerAfterBattleText
-	text_end
+	text "<……>　<……>　ひそ　ひそ<……>"
+	done
 
 Route6CooltrainerF1Text:
 	text_asm
@@ -64,12 +66,15 @@ Route6CooltrainerF1Text:
 	jp TextScriptEnd
 
 Route6CooltrainerF1BattleText:
-	text_far _Route6CooltrainerF1BattleText
-	text_end
+	text "ちょっと　そこの　きみ！"
+	line "ひとの　たち　ばなしを"
+	cont "ぬすみ　ぎき　するもんじゃないわ"
+	done
 
 Route6CooltrainerF1EndBattleText:
-	text_far _Route6CooltrainerF1EndBattleText
-	text_end
+	text "やん！"
+	line "やられる　なんて　なさけないわ"
+	prompt
 
 Route6Youngster1Text:
 	text_asm
@@ -78,16 +83,19 @@ Route6Youngster1Text:
 	jp TextScriptEnd
 
 Route6Youngster1BattleText:
-	text_far _Route6Youngster1BattleText
-	text_end
+	text "この　へんまで　くると"
+	line "あんまり　むしも　いないんだ"
+	done
 
 Route6Youngster1EndBattleText:
-	text_far _Route6Youngster1EndBattleText
-	text_end
+	text "そんな　バカなあー"
+	prompt
 
 Route6Youngster1AfterBattleText:
-	text_far _Route6Youngster1AfterBattleText
-	text_end
+	text "ぼく　やっぱり"
+	line "むし　#　すきだし"
+	cont "トキワの　もりに　かえろうかな"
+	done
 
 Route6CooltrainerM2Text:
 	text_asm
@@ -96,16 +104,20 @@ Route6CooltrainerM2Text:
 	jp TextScriptEnd
 
 Route6CooltrainerM2BattleText:
-	text_far _Route6CooltrainerM2BattleText
-	text_end
+	text "なんだい"
+	line "おれに　なんか　よう？"
+	done
 
 Route6CooltrainerM2EndBattleText:
-	text_far _Route6CooltrainerM2EndBattleText
-	text_end
+	text "なさけない"
+	line "うられた　ケンカに　まけた"
+	prompt
 
 Route6CooltrainerM2AfterBattleText:
-	text_far _Route6CooltrainerM2AfterBattleText
-	text_end
+	text "もっと　たくさん"
+	line "#　もって　あるいてた"
+	cont "ほうが　あんしんだな"
+	done
 
 Route6CooltrainerF2Text:
 	text_asm
@@ -114,16 +126,20 @@ Route6CooltrainerF2Text:
 	jp TextScriptEnd
 
 Route6CooltrainerF2BattleText:
-	text_far _Route6CooltrainerF2BattleText
-	text_end
+	text "わたし？"
+	line "<……>　<……>　<……>　うーん"
+	cont "つきあっても　いいかな"
+	done
 
 Route6CooltrainerF2EndBattleText:
-	text_far _Route6CooltrainerF2EndBattleText
-	text_end
+	text "<……>　どうも"
+	line "うまく　いかないわ"
+	prompt
 
 Route6CooltrainerF2AfterBattleText:
-	text_far _Route6CooltrainerF2AfterBattleText
-	text_end
+	text "あたしも　つよく　なりたいの"
+	line "コツを　おしえて　くれない　かしら"
+	done
 
 Route6Youngster2Text:
 	text_asm
@@ -132,17 +148,21 @@ Route6Youngster2Text:
 	jp TextScriptEnd
 
 Route6Youngster2BattleText:
-	text_far _Route6Youngster2BattleText
-	text_end
+	text "おや？　みかけない　かお　だ！"
+	line "つよいのかな？"
+	done
 
 Route6Youngster2EndBattleText:
-	text_far _Route6Youngster2EndBattleText
-	text_end
+	text "そりゃ　ないよ"
+	prompt
 
 Route6Youngster2AfterBattleText:
-	text_far _Route6Youngster2AfterBattleText
-	text_end
+	text "#が　よわいのか"
+	line "ぼくの　うでが　わるいのか<……>"
+	cont "どっちだと　おもう？"
+	done
 
 Route6UndergroundPathSignText:
-	text_far _Route6UndergroundPathSignText
-	text_end
+	text "ここから　ちかつうろ"
+	line "ハナダ　シティ　<……>　クチバ　シティ"
+	done

@@ -75,9 +75,12 @@ SafariGameOverText:
 	jp TextScriptEnd
 
 TimesUpText:
-	text_far _TimesUpText
-	text_end
+	text "アナウンス<BOLD_P>ピンポーン！"
+
+	para "じかんが　きました！"
+	prompt
 
 GameOverText:
-	text_far _GameOverText
-	text_end
+	text "アナウンス<BOLD_P>サファり　ゲーム"
+	line "おわり　でーす！"
+	done

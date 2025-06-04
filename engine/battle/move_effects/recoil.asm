@@ -1,5 +1,5 @@
 RecoilEffect_:
-	ldh a, [hWhoseTurn]
+	ld a, [hWhoseTurn]
 	and a
 	ld a, [wPlayerMoveNum]
 	ld hl, wBattleMonMaxHP
@@ -66,5 +66,6 @@ RecoilEffect_:
 	ld hl, HitWithRecoilText
 	jp PrintText
 HitWithRecoilText:
-	text_far _HitWithRecoilText
-	text_end
+	text "<USER>は　こうげきの"
+	line "はんどうを　うけた！"
+	prompt

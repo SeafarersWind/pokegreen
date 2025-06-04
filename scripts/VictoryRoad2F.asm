@@ -106,11 +106,41 @@ VictoryRoad2FHikerText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+VictoryRoad2FHikerBattleText:
+	text "ここがッ！"
+	line "<TRAINER>　さいごの　しれん！"
+	cont "チャンピオン　ロード　だあ！"
+	done
+
+VictoryRoad2FHikerEndBattleText:
+	text "チェストー！"
+	prompt
+
+VictoryRoad2FHikerAfterBattleText:
+	text "ここも　いたる　ところに"
+	line "しかけが　ある！　こまったときは"
+	cont "いわを　おして　みろ！"
+	done
+
 VictoryRoad2FSuperNerd1Text:
 	text_asm
 	ld hl, VictoryRoad2TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
+
+VictoryRoad2FSuperNerd1BattleText:
+	text "ここに　きた　から　には"
+	line "してんのうに　いどむ　つもりだな！"
+	done
+
+VictoryRoad2FSuperNerd1EndBattleText:
+	text "<……>　できるッ！"
+	prompt
+
+VictoryRoad2FSuperNerd1AfterBattleText:
+	text "そうだ！　<RIVAL>も"
+	line "ここを　ぬけてったぜ！"
+	done
 
 VictoryRoad2FCooltrainerMText:
 	text_asm
@@ -118,17 +148,59 @@ VictoryRoad2FCooltrainerMText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+VictoryRoad2FCooltrainerMBattleText:
+	text "ピシッ　ピシーッ！"
+	line "ムチが　しなるぜーッ！"
+	done
+
+VictoryRoad2FCooltrainerMEndBattleText:
+	text "ひゅーッ！"
+	prompt
+
+VictoryRoad2FCooltrainerMAfterBattleText:
+	text "さすが　チャンピオン　ロードに"
+	line "くる　だけの　ことは　あるな<……>！"
+	done
+
 VictoryRoad2FSuperNerd2Text:
 	text_asm
 	ld hl, VictoryRoad2TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
+VictoryRoad2FSuperNerd2BattleText:
+	text "ここを　ぶじに　ぬければ"
+	line "してんのうに　あえるぞ！"
+	done
+
+VictoryRoad2FSuperNerd2EndBattleText:
+	text "<……>　ありー！"
+	prompt
+
+VictoryRoad2FSuperNerd2AfterBattleText:
+	text "#の　ちしき　だったら"
+	line "ぼくは　まけないと　おもうぞ！"
+	done
+
 VictoryRoad2FSuperNerd3Text:
 	text_asm
 	ld hl, VictoryRoad2TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
+
+VictoryRoad2FSuperNerd3BattleText:
+	text "どうだ！"
+	line "チャンピオン　ロードは　きついか？"
+	done
+
+VictoryRoad2FSuperNerd3EndBattleText:
+	text "よし　ごうかくだ！"
+	prompt
+
+VictoryRoad2FSuperNerd3AfterBattleText:
+	text "ここで　へばって"
+	line "ひきかえす　やつも　おおいぜ！"
+	done
 
 VictoryRoad2FMoltresText:
 	text_asm
@@ -137,69 +209,9 @@ VictoryRoad2FMoltresText:
 	jp TextScriptEnd
 
 VictoryRoad2FMoltresBattleText:
-	text_far _VictoryRoad2FMoltresBattleText
+	text "ギヤーオ！@"
 	text_asm
 	ld a, MOLTRES
 	call PlayCry
 	call WaitForSoundToFinish
 	jp TextScriptEnd
-
-VictoryRoad2FHikerBattleText:
-	text_far _VictoryRoad2FHikerBattleText
-	text_end
-
-VictoryRoad2FHikerEndBattleText:
-	text_far _VictoryRoad2FHikerEndBattleText
-	text_end
-
-VictoryRoad2FHikerAfterBattleText:
-	text_far _VictoryRoad2FHikerAfterBattleText
-	text_end
-
-VictoryRoad2FSuperNerd1BattleText:
-	text_far _VictoryRoad2FSuperNerd1BattleText
-	text_end
-
-VictoryRoad2FSuperNerd1EndBattleText:
-	text_far _VictoryRoad2FSuperNerd1EndBattleText
-	text_end
-
-VictoryRoad2FSuperNerd1AfterBattleText:
-	text_far _VictoryRoad2FSuperNerd1AfterBattleText
-	text_end
-
-VictoryRoad2FCooltrainerMBattleText:
-	text_far _VictoryRoad2FCooltrainerMBattleText
-	text_end
-
-VictoryRoad2FCooltrainerMEndBattleText:
-	text_far _VictoryRoad2FCooltrainerMEndBattleText
-	text_end
-
-VictoryRoad2FCooltrainerMAfterBattleText:
-	text_far _VictoryRoad2FCooltrainerMAfterBattleText
-	text_end
-
-VictoryRoad2FSuperNerd2BattleText:
-	text_far _VictoryRoad2FSuperNerd2BattleText
-	text_end
-
-VictoryRoad2FSuperNerd2EndBattleText:
-	text_far _VictoryRoad2FSuperNerd2EndBattleText
-	text_end
-
-VictoryRoad2FSuperNerd2AfterBattleText:
-	text_far _VictoryRoad2FSuperNerd2AfterBattleText
-	text_end
-
-VictoryRoad2FSuperNerd3BattleText:
-	text_far _VictoryRoad2FSuperNerd3BattleText
-	text_end
-
-VictoryRoad2FSuperNerd3EndBattleText:
-	text_far _VictoryRoad2FSuperNerd3EndBattleText
-	text_end
-
-VictoryRoad2FSuperNerd3AfterBattleText:
-	text_far _VictoryRoad2FSuperNerd3AfterBattleText
-	text_end

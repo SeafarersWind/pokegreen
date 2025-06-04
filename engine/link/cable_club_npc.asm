@@ -12,6 +12,8 @@ CableClubNPC::
 .receivedPokedex
 	ld a, $1
 	ld [wMenuJoypadPollCount], a
+	ld a, $10
+	ld [wUnusedLinkByte], a
 	ld a, 90
 	ld [wLinkTimeoutCounter], a
 .establishConnectionLoop
@@ -122,33 +124,46 @@ CableClubNPC::
 	jpfar LinkMenu
 
 CableClubNPCAreaReservedFor2FriendsLinkedByCableText:
-	text_far _CableClubNPCAreaReservedFor2FriendsLinkedByCableText
-	text_end
+	text "こちらは　ともだちと"
+	line "つうしんケーブルを　つないだ"
+
+	para "かたがたを　とくべつに！"
+	line "ごあんない　いたして　おります"
+	done
 
 CableClubNPCWelcomeText:
-	text_far _CableClubNPCWelcomeText
-	text_end
+	text "つうしん　ケーブル　クラブに"
+	line "ようこそ！"
+	done
 
 CableClubNPCPleaseApplyHereHaveToSaveText:
-	text_far _CableClubNPCPleaseApplyHereHaveToSaveText
-	text_end
+	text "うけつけは　こちらです"
+
+	para "つうしんを　はじめるまえに"
+	line "レポートを　かきます"
+	done
 
 CableClubNPCPleaseWaitText:
-	text_far _CableClubNPCPleaseWaitText
+	text "しょうしょう　おまち　ください@"
 	text_pause
 	text_end
 
 CableClubNPCLinkClosedBecauseOfInactivityText:
-	text_far _CableClubNPCLinkClosedBecauseOfInactivityText
-	text_end
+	text "まち　じかんが　ながいので"
+	line "うけつけを　ちゅうし　いたします！"
+
+	para "ともだちと　れんらくを　とって"
+	line "もういちど　おこし　ください！"
+	done
 
 CableClubNPCPleaseComeAgainText:
-	text_far _CableClubNPCPleaseComeAgainText
-	text_end
+	text "それでは　また　おこしください"
+	done
 
 CableClubNPCMakingPreparationsText:
-	text_far _CableClubNPCMakingPreparationsText
-	text_end
+	text "こちらは　ただいま"
+	line "じゅんびちゅうです"
+	done
 
 CloseLinkConnection:
 	call Delay3

@@ -29,8 +29,10 @@ Route4TrainerHeader0:
 	db -1 ; end
 
 Route4CooltrainerF1Text:
-	text_far _Route4CooltrainerF1Text
-	text_end
+	text "いたッ！"
+	line "つまづいて　ころんじゃった"
+	cont "#の　イシツブテだわ！"
+	done
 
 Route4CooltrainerF2Text:
 	text_asm
@@ -39,21 +41,28 @@ Route4CooltrainerF2Text:
 	jp TextScriptEnd
 
 Route4CooltrainerF2BattleText:
-	text_far _Route4CooltrainerF2BattleText
-	text_end
+	text "わたし　オツキミやまに"
+	line "キノコの　#　とりに　きたの！"
+	done
 
 Route4CooltrainerF2EndBattleText:
-	text_far _Route4CooltrainerF2EndBattleText
-	text_end
+	text "せっかく　とったのに！"
+	prompt
 
 Route4CooltrainerF2AfterBattleText:
-	text_far _Route4CooltrainerF2AfterBattleText
-	text_end
+	text "このあたりは"
+	line "もう　キノコ　みつかんないかも"
+
+	para "だって　あたしが"
+	line "ぜんぶ　とっちゃったもん"
+	done
 
 Route4MtMoonSignText:
-	text_far _Route4MtMoonSignText
-	text_end
+	text "ここは　オツキミやま"
+	line "<……>　どうくつ　いりぐち"
+	done
 
 Route4SignText:
-	text_far _Route4SignText
-	text_end
+	text "ここは　４ばん　どうろ"
+	line "オツキミやま　<……>　ハナダ　シティ"
+	done

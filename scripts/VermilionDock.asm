@@ -213,5 +213,5 @@ VermilionDock_TextPointers:
 	dw_const VermilionDockUnusedText, TEXT_VERMILIONDOCK_UNUSED
 
 VermilionDockUnusedText:
-	text_far _VermilionDockUnusedText
-	text_end
+	text_start
+	done

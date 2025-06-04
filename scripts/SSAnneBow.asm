@@ -30,16 +30,21 @@ SSAnne5TrainerHeader1:
 	db -1 ; end
 
 SSAnneBowSuperNerdText:
-	text_far _SSAnneBowSuperNerdText
-	text_end
+	text "パーティも　そろそろ　おわるし"
+	line "ふねの　しゅっぱつの　じかん　だな"
+	done
 
 SSAnneBowSailor1Text:
-	text_far _SSAnneBowSailor1Text
-	text_end
+	text "まったく！"
+	line "デッキ　そうじは　らくじゃねえぜ"
+	done
 
 SSAnneBowCooltrainerMText:
-	text_far _SSAnneBowCooltrainerMText
-	text_end
+	text "うう<……>　きもち　わるい！"
+
+	para "<……>　ふなよい　したので"
+	line "かぜに　あたってるんです<……>"
+	done
 
 SSAnneBowSailor2Text:
 	text_asm
@@ -48,16 +53,21 @@ SSAnneBowSailor2Text:
 	jp TextScriptEnd
 
 SSAnneBowSailor2BattleText:
-	text_far _SSAnneBowSailor2BattleText
-	text_end
+	text "おうおう！　"
+
+	para "ふなのりの　おれと　しょうぶだ！"
+	done
 
 SSAnneBowSailor2EndBattleText:
-	text_far _SSAnneBowSailor2EndBattleText
-	text_end
+	text "つよいな"
+	line "びっくり　したぜ"
+	prompt
 
 SSAnneBowSailor2AfterBattleText:
-	text_far _SSAnneBowSailor2AfterBattleText
-	text_end
+	text "なあ！　この　せかいに"
+	line "#は　ぜんぶで　どのくらい"
+	cont "しゅるいが　あると　おもうか？"
+	done
 
 SSAnneBowSailor3Text:
 	text_asm
@@ -66,13 +76,16 @@ SSAnneBowSailor3Text:
 	jp TextScriptEnd
 
 SSAnneBowSailor3BattleText:
-	text_far _SSAnneBowSailor3BattleText
-	text_end
+	text "おい　ぼうず！"
+	line "のってて　ふなよい　しないか？"
+	done
 
 SSAnneBowSailor3EndBattleText:
-	text_far _SSAnneBowSailor3EndBattleText
-	text_end
+	text "ゆだん　したか"
+	prompt
 
 SSAnneBowSailor3AfterBattleText:
-	text_far _SSAnneBowSailor3AfterBattleText
-	text_end
+	text "おれの　おやじは　#は"
+	line "１００しゅるい　いると　いってたが"
+	cont "おれは　それ　いじょう　だと　おもう"
+	done

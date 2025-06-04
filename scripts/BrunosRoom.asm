@@ -132,17 +132,36 @@ BrunosRoomBrunoText:
 	jp TextScriptEnd
 
 BrunoBeforeBattleText:
-	text_far _BrunoBeforeBattleText
-	text_end
+	text "おれは　してんのうの　シバ！"
+
+	para "ひとも　#も"
+	line "たたかい　きたえれば"
+	cont "どこまでも　つよくなる！"
+
+	para "おれは　そんな　きたえ　ぬかれた"
+	line "#と　ともに　いきてきた！"
+	cont "そして　これからもな！"
+
+	para "<PLAYER>と　いったな！"
+
+	para "おれたちの　スーパー　パワーを"
+	line "うけて　みるが　いい！"
+
+	para "ウー！　ハーッ！"
+	done
 
 BrunoEndBattleText:
-	text_far _BrunoEndBattleText
-	text_end
+	text "どうした　ことだ！"
+	line "<……>　おれが　まけるとは！"
+	prompt
 
 BrunoAfterBattleText:
-	text_far _BrunoAfterBattleText
-	text_end
+	text "まけちまったら"
+	line "おれの　でばんは　おわりだ！"
+	cont "くそッ！　つぎに　いって　くれ！"
+	done
 
 BrunosRoomBrunoDontRunAwayText:
-	text_far _BrunosRoomBrunoDontRunAwayText
-	text_end
+	text "だれかの　こえが　きこえる<……>"
+	line "「にげては　ならん！」"
+	done

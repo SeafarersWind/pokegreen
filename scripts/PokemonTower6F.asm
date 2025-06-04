@@ -122,17 +122,66 @@ PokemonTower6FChanneler1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonTower6FChanneler1BattleText:
+	text "<……>　チ<……>　ニ<……>　ウエッ！"
+	line "<……>　テ<……>　ルッ<……>！"
+	done
+
+PokemonTower6FChanneler1EndBattleText:
+	text "<……>ううーむ"
+	prompt
+
+PokemonTower6FChanneler1AfterBattleText:
+	text "ああ<……>！　クラクラ　する！"
+	line "ひんけつ　かも　しれん<……>"
+	done
+
 PokemonTower6FChanneler2Text:
 	text_asm
 	ld hl, PokemonTower6TrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
+PokemonTower6FChanneler2BattleText:
+	text "<……>　カッ<……>　ナ<……>　シッ！"
+	line "<……>　バ<……>　りッ！"
+	done
+
+PokemonTower6FChanneler2EndBattleText:
+	text "<……>なにかが"
+	line "わしの　からだから　ぬけてく"
+	prompt
+
+PokemonTower6FChanneler2AfterBattleText:
+	text "わしの　からだ　から　ぬけたもの<……>"
+	line "それは　かみのけ　では　ない！"
+	cont "あくりょう　じゃ"
+	done
+
 PokemonTower6FChanneler3Text:
 	text_asm
 	ld hl, PokemonTower6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
+
+PokemonTower6FChanneler3BattleText:
+	text "<……>ヒヒ<……>　ヒ<……>　ヒッ！"
+	line "<……>　ヒ<……>　ヒヒ<……>ヒヒッ！"
+	done
+
+PokemonTower6FChanneler3EndBattleText:
+	text "ひいーっ！"
+	prompt
+
+PokemonTower6FChanneler3AfterBattleText:
+	text "<……>ヒ　ヒヒ　<LV>っーくしょん！"
+	line "あれ　わしは　どうしてたんじゃ？"
+	done
+
+PokemonTower6FBeGoneText:
+	text "<……>　タチサレ！"
+	line "<……>　ココカラ　タチサレ<……>"
+	done
 
 PokemonTower6FMarowakDepartedText:
 	text_asm
@@ -148,49 +197,16 @@ PokemonTower6FMarowakDepartedText:
 	jp TextScriptEnd
 
 PokemonTower6FGhostWasCubonesMotherText:
-	text_far _PokemonTower6FGhostWasCubonesMotherText
-	text_end
+	text "ゆうれいの　しょうたいは<……>"
+
+	para "カラカラの　おかあさんの"
+	line "まよえる　たましい　だった！"
+	done
 
 PokemonTower6FSoulWasCalmedText:
-	text_far _PokemonTower6FSoulWasCalmedText
-	text_end
+	text "やさしい　カラカラの　おかあさんに"
+	line "もどった　たましいは"
+	cont "ぶじ　てんに　のぼって<……>"
 
-PokemonTower6FChanneler1BattleText:
-	text_far _PokemonTower6FChanneler1BattleText
-	text_end
-
-PokemonTower6FChanneler1EndBattleText:
-	text_far _PokemonTower6FChanneler1EndBattleText
-	text_end
-
-PokemonTower6FChanneler1AfterBattleText:
-	text_far _PokemonTower6FChanneler1AfterBattleText
-	text_end
-
-PokemonTower6FChanneler2BattleText:
-	text_far _PokemonTower6FChanneler2BattleText
-	text_end
-
-PokemonTower6FChanneler2EndBattleText:
-	text_far _PokemonTower6FChanneler2EndBattleText
-	text_end
-
-PokemonTower6FChanneler2AfterBattleText:
-	text_far _PokemonTower6FChanneler2AfterBattleText
-	text_end
-
-PokemonTower6FChanneler3BattleText:
-	text_far _PokemonTower6FChanneler3BattleText
-	text_end
-
-PokemonTower6FChanneler3EndBattleText:
-	text_far _PokemonTower6FChanneler3EndBattleText
-	text_end
-
-PokemonTower6FChanneler3AfterBattleText:
-	text_far _PokemonTower6FChanneler3AfterBattleText
-	text_end
-
-PokemonTower6FBeGoneText:
-	text_far _PokemonTower6FBeGoneText
-	text_end
+	para "<……>　<……>きえて　いきました"
+	done
