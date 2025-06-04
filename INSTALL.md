@@ -1,6 +1,6 @@
 # Instructions
 
-These instructions explain how to set up the tools required to build **pokeaka**, including [**rgbds**](https://github.com/gbdev/rgbds), which assembles the source files into a ROM.
+These instructions explain how to set up the tools required to build **pokegreen**, including [**rgbds**](https://github.com/gbdev/rgbds), which assembles the source files into a ROM.
 
 If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
 
@@ -15,9 +15,9 @@ Update WSL's software before continuing. If you chose Debian, Ubuntu, or another
 apt-get update && apt-get upgrade
 ```
 
-WSL has its own file system that's not accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to install pokeaka within Windows. You'll have to change the **current working directory** every time you open WSL.
+WSL has its own file system that's not accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to install pokegreen within Windows. You'll have to change the **current working directory** every time you open WSL.
 
-For example, if you want to store pokeaka in **C:\Users\\*\<user>*\Desktop**, enter this command:
+For example, if you want to store pokegreen in **C:\Users\\*\<user>*\Desktop**, enter this command:
 
 ```bash
 cd /mnt/c/Users/<user>/Desktop
@@ -48,9 +48,9 @@ Then follow the [**rgbds** install instructions](https://rgbds.gbdev.io/install#
 
 Now open the **Cygwin terminal** and enter the following commands.
 
-Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\*\<user>***. If you don't want to store pokeaka there, you'll have to change the **current working directory** every time you open Cygwin.
+Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\*\<user>***. If you don't want to store pokegreen there, you'll have to change the **current working directory** every time you open Cygwin.
 
-For example, if you want to store pokeaka in **C:\Users\\*\<user>*\Desktop**:
+For example, if you want to store pokegreen in **C:\Users\\*\<user>*\Desktop**:
 
 ```bash
 cd /cygdrive/c/Users/<user>/Desktop
@@ -58,7 +58,7 @@ cd /cygdrive/c/Users/<user>/Desktop
 
 (The Windows `C:\` drive is called `/cygdrive/c/` in Cygwin. Replace *\<user>* in the example path with your username.)
 
-Now you're ready to [build **pokeaka**](#build-pokeaka).
+Now you're ready to [build **pokegreen**](#build-pokegreen).
 
 
 ## macOS
@@ -69,7 +69,7 @@ Open **Terminal** and prepare to enter commands.
 
 Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for macOS to install **rgbds 0.9.2**.
 
-Now you're ready to [build **pokeaka**](#build-pokeaka).
+Now you're ready to [build **pokegreen**](#build-pokegreen).
 
 
 ## Linux
@@ -78,7 +78,7 @@ Open **Terminal** and enter the following commands, depending on which distro yo
 
 ### Debian or Ubuntu
 
-To install the software required for **pokeaka**:
+To install the software required for **pokegreen**:
 
 ```bash
 sudo apt-get install make gcc git
@@ -88,7 +88,7 @@ Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building
 
 ### OpenSUSE
 
-To install the software required for **pokeaka**:
+To install the software required for **pokegreen**:
 
 ```bash
 sudo zypper install make gcc git
@@ -98,7 +98,7 @@ Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building
 
 ### Arch Linux
 
-To install the software required for **pokeaka**:
+To install the software required for **pokegreen**:
 
 ```bash
 sudo pacman -S make gcc git rgbds
@@ -108,7 +108,7 @@ If you want to compile and install **rgbds** yourself instead, then follow the [
 
 ### Termux
 
-To install the software required for **pokeaka**:
+To install the software required for **pokegreen**:
 
 ```bash
 pkg install make clang git sed
@@ -133,19 +133,19 @@ If your distro is not listed here, try to find the required software in its repo
 
 If `rgbds` is not available, you'll need to follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 0.9.2** from source.
 
-Now you're ready to [build **pokeaka**](#build-pokeaka).
+Now you're ready to [build **pokegreen**](#build-pokegreen).
 
 
-## Build pokeaka
+## Build pokegreen
 
-To download the **pokeaka** source files:
+To download the **pokegreen** source files:
 
 ```bash
-git clone https://github.com/SeafarersWind/pokeaka
-cd pokeaka
+git clone https://github.com/SeafarersWind/pokegreen
+cd pokegreen
 ```
 
-To build **pokeaka.gb** and **pokemidori.gb**:
+To build **pokered.gb** and **pokegreen.gb**:
 
 ```bash
 make
@@ -153,7 +153,7 @@ make
 
 ### Build with a local rgbds version
 
-If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 0.9.2 globally. Instead, you can put its files in a directory within pokeaka, such as `pokeaka/rgbds-0.9.2/`. Then specify it when you run `make`:
+If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 0.9.2 globally. Instead, you can put its files in a directory within pokegreen, such as `pokegreen/rgbds-0.9.2/`. Then specify it when you run `make`:
 
 ```bash
 make RGBDS=rgbds-0.9.2/

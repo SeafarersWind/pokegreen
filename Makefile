@@ -1,6 +1,6 @@
 roms := \
-	pokeaka.gb \
-	pokemidori.gb
+	pokered.gb \
+	pokegreen.gb
 
 rom_obj := \
 	audio.o \
@@ -13,8 +13,8 @@ rom_obj := \
 	gfx/sprites.o \
 	gfx/tilesets.o
 
-pokeaka_obj          := $(rom_obj:.o=_aka.o)
-pokemidori_obj       := $(rom_obj:.o=_midori.o)
+pokered_obj          := $(rom_obj:.o=_red.o)
+pokegreen_obj        := $(rom_obj:.o=_green.o)
 
 
 ### Build tools
@@ -41,10 +41,10 @@ RGBLINK ?= $(RGBDS)rgblink
 .PHONY: all red blue clean tidy compare tools
 
 all: $(roms)
-red:          pokeaka.gb
-aka:          pokeaka.gb
-green:        pokemidori.gb
-midori:       pokemidori.gb
+red:          pokered.gb
+aka:          pokered.gb
+green:        pokegreen.gb
+midori:       pokegreen.gb
 
 clean: tidy
 	find gfx \
@@ -57,8 +57,8 @@ tidy:
 	$(RM) $(roms) \
 	      $(roms:.gb=.sym) \
 	      $(roms:.gb=.map) \
-	      $(pokeaka_obj) \
-	      $(pokemidori_obj) \
+	      $(pokered_obj) \
+	      $(pokegreen_obj) \
 	      rgbdscheck.o
 	$(MAKE) clean -C tools/
 
@@ -75,8 +75,8 @@ ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
 endif
 
-$(pokeaka_obj):          RGBASMFLAGS += -D _RED
-$(pokemidori_obj):       RGBASMFLAGS += -D _GREEN
+$(pokered_obj):          RGBASMFLAGS += -D _RED
+$(pokegreen_obj):        RGBASMFLAGS += -D _GREEN
 
 rgbdscheck.o: rgbdscheck.asm
 	$(RGBASM) -o $@ $<
@@ -96,9 +96,9 @@ $1: $2 $$(shell tools/scan_includes $2) $(preinclude_deps) | rgbdscheck.o
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
-# Dependencies for objects (drop _aka and _midori from asm file basenames)
-$(foreach obj, $(pokeaka_obj), $(eval $(call DEP,$(obj),$(obj:_aka.o=.asm))))
-$(foreach obj, $(pokemidori_obj), $(eval $(call DEP,$(obj),$(obj:_midori.o=.asm))))
+# Dependencies for objects (drop _red and _green from asm file basenames)
+$(foreach obj, $(pokered_obj), $(eval $(call DEP,$(obj),$(obj:_red.o=.asm))))
+$(foreach obj, $(pokegreen_obj), $(eval $(call DEP,$(obj),$(obj:_green.o=.asm))))
 
 endif
 
@@ -106,11 +106,11 @@ endif
 %.asm: ;
 
 
-pokeaka_pad          = 0x00
-pokemidori_pad       = 0x00
+pokered_pad          = 0x00
+pokegreen_pad        = 0x00
 
-pokeaka_opt          = -sv -n 0 -k 01 -l 0x33 -m MBC1+RAM+BATTERY -r 03 -t "POKEMON RED"
-pokemidori_opt       = -sv -n 0 -k 01 -l 0x33 -m MBC1+RAM+BATTERY -r 03 -t "POKEMON GREEN"
+pokered_opt          = -sv -n 0 -k 01 -l 0x33 -m MBC1+RAM+BATTERY -r 03 -t "POKEMON RED"
+pokegreen_opt        = -sv -n 0 -k 01 -l 0x33 -m MBC1+RAM+BATTERY -r 03 -t "POKEMON GREEN"
 
 %.gb: $$(%_obj) layout.link
 	$(RGBLINK) -p $($*_pad) -d -m $*.map -n $*.sym -l layout.link -o $@ $(filter %.o,$^)
