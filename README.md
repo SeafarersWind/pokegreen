@@ -1,4 +1,4 @@
-# Pokémon Aka and Midori
+# Pokémon Red and Green
 
 This is a disassembly of the Japanese version of Pokémon Red and Green, forked from [pokered](https://github.com/pret/pokered).
 
